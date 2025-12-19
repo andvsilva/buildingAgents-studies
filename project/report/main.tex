@@ -1,0 +1,227 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[brazil, english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-2.5pt}
+\usepackage{xcolor}
+\usepackage{amsmath, amssymb, bm}
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage{tikz}
+\usepackage{newunicodechar}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{tikz-3dplot} % Necessário para coordenadas 3D
+\usetikzlibrary{intersections}
+\usepackage{siunitx}
+\usetikzlibrary{3d, arrows.meta}
+\usepackage{booktabs}
+
+
+\usepackage{color}
+\definecolor{myblue}{rgb}{.8, .8, 1}
+
+\usepackage{amsmath}
+\usepackage{empheq}
+
+\newlength\mytemplen
+\newsavebox\mytempbox
+
+\makeatletter
+\newcommand\mybluebox{%
+    \@ifnextchar[%]
+       {\@mybluebox}%
+       {\@mybluebox[0pt]}}
+
+\def\@mybluebox[#1]{%
+    \@ifnextchar[%]
+       {\@@mybluebox[#1]}%
+       {\@@mybluebox[#1][0pt]}}
+
+\def\@@mybluebox[#1][#2]#3{
+    \sbox\mytempbox{#3}%
+    \mytemplen\ht\mytempbox
+    \advance\mytemplen #1\relax
+    \ht\mytempbox\mytemplen
+    \mytemplen\dp\mytempbox
+    \advance\mytemplen #2\relax
+    \dp\mytempbox\mytemplen
+    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+\makeatother
+
+\usepackage[most]{tcolorbox}
+
+\newtcbox{\mymath}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=blue!30!black,
+    colback=blue!30, boxrule=1pt,
+    #1}
+
+\tcbset{
+    highlight math style={
+        enhanced,
+        colframe=red!60!black,
+        colback=yellow!50,
+        arc=4pt,
+        boxrule=1pt,
+        drop fuzzy shadow
+    }
+    }
+
+\usepackage{physics}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+\linespread{1.5}
+
+\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
+\definecolor{byzantium}{rgb}{0.44, 0.16, 0.39}
+\newunicodechar{∘}{\circ}
+
+\input{commands.tex}
+
+\hypersetup{
+    colorlinks=true,% make the links colored
+    linkcolor=blue
+}
+
+\usepackage{setspace}
+\addbibresource{bibliography.bib}
+
+\newcommand{\printingbibliography}{%
+
+    \pagestyle{myheadings}
+    \markright{}
+    \sloppy
+    \printbibliography[heading=bibintoc, % add to table of contents
+                   title=Refer\^encias % Chapter name
+                  ]
+    \fussy%
+}
+\PassOptionsToPackage{table}{xcolor}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[R]{\thepage}
+
+\geometry{a4paper,top=30mm,bottom=20mm,left=30mm,right=20mm}
+
+\titleformat*{\section}{\bfseries\large}
+\titleformat*{\subsection}{\bfseries\normalsize}
+
+\title{ \textbf{\large Multi-agent AI system \\
+Building Effective Agents \\
+Personal Studies} }
+\author{Andr\'e Vieira da Silva}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\noindent\rule{\linewidth}{0.4pt}\\
+\justifying
+
+\tableofcontents
+
+
+\chapter{Building AI Agents in Python for Investments}
+
+\section{Introduction}
+
+Risk analysis is a central component of investment decision-making, as financial returns are inherently uncertain and subject to market volatility, systemic shocks, and behavioral dynamics. Traditional risk management frameworks rely on static models, predefined rules, and periodic human evaluation, which may be insufficient in environments characterized by high data volume, rapid market changes, and complex interdependencies.
+
+Recent advances in Artificial Intelligence (AI), particularly in AI agents powered by Large Language Models (LLMs), enable a new paradigm for investment risk analysis. AI agents are goal-oriented systems capable of reasoning, interacting with tools, and adapting their behavior based on feedback from the environment. When applied to finance, these agents act as decision-support mechanisms, enhancing the ability to identify, quantify, and communicate risk rather than replacing human judgment.
+
+This work explores the use of AI agents for investment risk analysis, focusing on their architecture, functional roles, and methodological foundations. By decomposing risk analysis into specialized agents, the proposed approach aligns closely with real-world investment teams while offering improved scalability, automation, and explainability.
+
+\section{Development: AI Agents for Risk Analysis}
+
+\subsection{Risk Analysis in Investment Contexts}
+
+In investments, risk is commonly understood as the potential deviation of realized returns from expected outcomes, including both volatility and extreme losses. Effective risk management seeks not only to measure risk but also to anticipate adverse scenarios, enforce constraints, and preserve capital.
+
+Key categories of investment risk include:
+\begin{itemize}
+  \item Market risk, arising from price fluctuations;
+  \item Liquidity risk, related to the ability to enter or exit positions;
+  \item Concentration risk, due to excessive exposure to correlated assets;
+  \item Model risk, stemming from incorrect assumptions or oversimplified models.
+\end{itemize}
+
+AI agents provide a structured mechanism to address each of these dimensions in a modular and auditable manner.
+
+\subsection{Agent-Based Risk Architecture}
+
+In an agent-based risk framework, the overall risk function is decomposed into autonomous but cooperative agents, each responsible for a specific analytical task. This mirrors the organizational structure of professional risk desks.
+
+A typical architecture includes:
+\begin{itemize}
+  \item Market Risk Agents, responsible for volatility, drawdown, and tail-risk metrics;
+  \item Stress Testing Agents, simulating adverse market scenarios;
+  \item Correlation and Concentration Agents, assessing diversification;
+  \item Compliance or Constraint Agents, enforcing predefined investment rules;
+  \item Risk Reporting Agents, translating numerical outputs into human-readable insights.
+\end{itemize}
+
+An orchestration layer coordinates agent execution, aggregates outputs, and ensures consistency across analyses. Here a diagram to describe the workflow:
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.6]{images/diagramAIagent.png}
+    \caption{fun\c{c}\~ao do 2 Grau para altura do saldo do golfinho}
+    \label{fig:AIagent}
+\end{figure}
+
+\subsection{Advantages of an Agent-Based Approach}
+
+Compared to monolithic risk engines, AI agent architectures offer:
+\begin{itemize}
+  \item Modularity, allowing independent development and testing of risk components;
+  \item Scalability, enabling parallel analysis across assets and portfolios;
+  \item Explainability, through explicit separation of responsibilities;
+  \item Adaptability, as agents can be extended or replaced without redesigning the entire system.
+\end{itemize}
+
+Deterministic mathematical computations remain isolated from probabilistic language models, ensuring numerical reliability.
+
+\section{Methods}
+
+\subsection{Data Acquisition and Preprocessing}
+
+Risk analysis begins with structured financial data, typically including historical prices, returns, volumes, and macroeconomic indicators. Data preprocessing involves handling missing values, aligning time series, and normalizing prices into returns. This process is commonly handled by a Data or ETL Agent, ensuring consistency and traceability of inputs.
+
+\subsection{Market Risk Metrics}
+
+Market risk agents compute standard quantitative measures, such as volatility, maximum drawdown, Value at Risk (VaR), and Expected Shortfall (CVaR). These metrics provide complementary perspectives on risk, particularly tail behavior, which is critical in financial markets.
+
+\subsection{Stress Testing and Scenario Analysis}
+
+Stress testing agents evaluate portfolio resilience under hypothetical or historical shocks, such as market crashes or interest rate spikes. Scenarios may be deterministic or probabilistic, allowing assessment of robustness beyond normal market conditions.
+
+\subsection{Constraint Enforcement and Validation}
+
+Risk analysis includes the enforcement of investment constraints, such as maximum drawdown limits, exposure caps, and volatility thresholds. Constraint agents flag violations for human review rather than executing automated actions, ensuring regulatory compliance and governance.
+
+\subsection{Interpretation and Reporting}
+
+While numerical computation remains deterministic, LLM-based agents play a key role in interpretation. Risk reporting agents convert quantitative outputs into structured narratives, highlighting key concerns, trade-offs, and recommendations in language accessible to decision-makers. This separation ensures that language models enhance understanding rather than numerical computation.
+
+\section{Conclusion}
+
+AI agents provide a robust framework for modern investment risk analysis by combining classical financial theory with contemporary AI techniques. When properly designed, agent-based systems enhance scalability, interpretability, and governance while preserving human oversight. As investment environments continue to grow in complexity, AI agents are likely to become a foundational component of professional risk management infrastructures.
+
+%%%%%%%% Bibliography 
+% Os comandos para incluir as referências bibliográficas
+\printingbibliography
+
+\end{document}
