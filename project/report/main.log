@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.12.17)  19 DEC 2025 14:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.12.17)  19 DEC 2025 16:17
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1800,7 +1800,7 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
  (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<images/diagramAIagent.png, id=141, 614.295pt x 425.33907pt>
+<images/diagramAIagent.png, id=190, 614.295pt x 425.33907pt>
 File: images/diagramAIagent.png Graphic file (type png)
 <use images/diagramAIagent.png>
 Package pdftex.def Info: images/diagramAIagent.png  used on input line 180.
@@ -1812,8 +1812,26 @@ Package pdftex.def Info: images/diagramAIagent.png  used on input line 180.
 [5 <./images/diagramAIagent.png (PNG copy)>]
 
 [6]
+Chapter 2.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
+38.
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+244.
 
-LaTeX Warning: Empty bibliography on input line 225.
+(/usr/share/texmf/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+[7
+
+]
+
+[8]
+
+LaTeX Warning: Empty bibliography on input line 324.
 
 
 Package caption Warning: Unused \captionsetup[sub] on input line 57.
@@ -1821,31 +1839,33 @@ See the caption package documentation for explanation.
 
 
 
-[7] (./main.aux)
+[9] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: FF6FD5DD764D09B491BF2C91AFB4D6DB;2701.
+(rerunfilecheck)             Checksum: E4C49E2F3FE8F79DA7DB732CD536B095;4322.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 57193 strings out of 473197
- 1330323 string characters out of 5718604
- 2204061 words of memory out of 5000000
- 79538 multiletter control sequences out of 15000+600000
- 621851 words of font info for 104 fonts, out of 8000000 for 9000
+ 57306 strings out of 473197
+ 1332075 string characters out of 5718604
+ 2206097 words of memory out of 5000000
+ 79628 multiletter control sequences out of 15000+600000
+ 622475 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,11n,96p,1867b,1864s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/ty
-pe1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb>
-Output written on main.pdf (8 pages, 261570 bytes).
+pe1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmro12.pfb></usr/share/texmf/fonts/type1/pub
+lic/lm/lmtt12.pfb>
+Output written on main.pdf (10 pages, 319193 bytes).
 PDF statistics:
- 188 PDF objects out of 1000 (max. 8388607)
- 144 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 266 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 268 PDF objects out of 1000 (max. 8388607)
+ 216 compressed objects within 3 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 330 words of extra memory for PDF output out of 10000 (max. 10000000)
 

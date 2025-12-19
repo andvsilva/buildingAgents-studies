@@ -11,4 +11,12 @@
 \contentsline {subsection}{\numberline {1.3.3}Stress Testing and Scenario Analysis}{6}{subsection.1.3.3}%
 \contentsline {subsection}{\numberline {1.3.4}Constraint Enforcement and Validation}{6}{subsection.1.3.4}%
 \contentsline {subsection}{\numberline {1.3.5}Interpretation and Reporting}{6}{subsection.1.3.5}%
-\contentsline {section}{\numberline {1.4}Conclusion}{6}{section.1.4}%
+\contentsline {chapter}{\numberline {2}High-Level Architecture (Multi-Agent)}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Agent Roles and Responsibilities}{7}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Data Engineer Agent}{7}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Risk Modeler Agent}{8}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Stress Testing Agent}{8}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Risk Supervisor Agent}{8}{subsection.2.1.4}%
+\contentsline {section}{\numberline {2.2}Workflow of the Multi-Agent System}{9}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Advantages of the Multi-Agent Approach}{9}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Conclusion}{9}{section.2.4}%
