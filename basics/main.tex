@@ -25,7 +25,7 @@
 \usepackage{siunitx}
 \usetikzlibrary{3d, arrows.meta}
 \usepackage{booktabs}
-
+\usepackage{color,soul}
 
 \usepackage{color}
 \definecolor{myblue}{rgb}{.8, .8, 1}
@@ -134,14 +134,15 @@ Personal Studies} }
 \section{Introduction}
 
 Artificial Intelligence (AI) agents represent a shift from static, rule-based software to systems capable of reasoning, acting, 
-and adapting in dynamic environments. This article provides a complete introduction to AI agents, covering their core concepts, 
-architectures, types, applications, and challenges \cite{anthropic2024}.
+and adapting in dynamic environments. This article provides a complete \colorbox{yellow}{introduction to AI agents, covering their core concepts, 
+architectures,} \colorbox{yellow}{types, applications, and challenges} \cite{anthropic2024}.
 
 \section{What Are AI Agents? }
 
 An \textbf{AI agent}  is a software system that can perceive an environment, make decisions, and take actions to achieve a specific goal. Unlike traditional programs, AI agents are not limited to predefined execution paths; instead, they adapt their behavior based on context, feedback, and objectives.
 
-Modern AI agents are often powered by Large Language Models (LLMs) and extended with tools, memory, and feedback loops.
+\colorbox{green!20}{Modern AI agents are often powered by Large Language Models (LLMs) and extended} 
+\colorbox{green!20}{with tools, memory, and feedback loops.}
 
 \section{Agents vs Traditional Software}
 
@@ -167,7 +168,8 @@ Agents are particularly useful when it is not possible to anticipate all executi
 
 \subsection{Goal}
 
-Every agent operates with a clear objective, such as answering a question, analyzing data, or completing a workflow. Without a well-defined goal, effective reasoning is not possible.
+\colorbox{yellow}{Every agent operates with a clear objective, such as answering a question, analyzing data, }
+\colorbox{yellow}{or completing a workflow. Without a well-defined goal, effective reasoning is not possible.}
 
 \subsection{Perception}
 
@@ -199,7 +201,7 @@ After acting, the agent observes the outcome, evaluates success or failure, and 
 Most AI agents operate within a continuous loop:
 
 \begin{center}
-\texttt{Goal $\rightarrow$ Plan $\rightarrow$ Act $\rightarrow$ Observe $\rightarrow$ Evaluate $\rightarrow$ Adjust}
+\colorbox{red!15}{\texttt{Goal $\rightarrow$ Plan $\rightarrow$ Act $\rightarrow$ Observe $\rightarrow$ Evaluate $\rightarrow$ Adjust}}
 \end{center}
 
 The loop repeats until the goal is achieved or a termination condition is met.
@@ -224,17 +226,18 @@ Learning agents improve their performance over time using feedback or reinforcem
 
 \subsection{Multi-Agent Systems}
 
-Multi-agent systems consist of multiple agents working collaboratively or competitively. Each agent typically has a specialized role, increasing scalability and robustness.
+\colorbox{green!20}{Multi-agent systems consist of multiple agents working collaboratively or competitively.} 
+\colorbox{green!20}{Each agent typically has a specialized role, increasing scalability and robustness.}
 
 \section{Multi-Agent Systems}
 
 In a multi-agent system, responsibilities are distributed among agents. Typical roles include:
 \begin{itemize}
-  \item Planner Agent: task decomposition and strategy definition.
-  \item Executor Agent: performs actions and tool calls.
-  \item Data Agent: handles data ingestion and transformation.
-  \item Analyst Agent: performs statistical or analytical tasks.
-  \item Critic Agent: validates outputs and detects errors.
+  \item \colorbox{green!20}{Planner Agent:} task decomposition and strategy definition.
+  \item \colorbox{green!20}{Executor Agent:} performs actions and tool calls.
+  \item \colorbox{green!20}{Data Agent:} handles data ingestion and transformation.
+  \item \colorbox{green!20}{Analyst Agent:} performs statistical or analytical tasks.
+  \item \colorbox{green!20}{Critic Agent:} validates outputs and detects errors.
 \end{itemize}
 
 This structure mirrors human teams and improves system reliability.

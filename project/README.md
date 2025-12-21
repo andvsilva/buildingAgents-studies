@@ -1,308 +1,351 @@
 
 ---
 
-# 🧠 AI Agent Project in Python
+# 🧠 12-Week AI Engineering Study Plan (Engineer Track)
 
-### Multi-Agent Architecture with Memory, Tools, and Orchestration
+⏱️ **Suggested load**: 10–15 h/week
+🛠️ **Core stack**: Python, FastAPI, Docker, PyTorch, LLM APIs, Vector DBs
 
+Below is a **12-week AI Engineering study plan** designed for **application-level mastery**, not academic theory.
+It assumes:
 
-## 📌 Overview
+* Strong **Python backend background**
+* Goal: **build production-ready AI systems (LLMs, RAG, agents)**
+* End result: **portfolio-grade AI engineering projects**
 
-This project implements a **full AI Agent system in Python**, evolving from a single agent to a **multi-agent architecture** with:
+Each week includes **concepts, engineering skills, hands-on deliverables, and evaluation criteria**.
 
-* Specialized agents (risk, strategy, reporting)
-* Tool usage (Python functions)
-* Shared memory
-* Central orchestration
-* Evaluation layer
-* Clean, extensible architecture
-
-The goal is to demonstrate **how to build AI agents from first principles**, without hiding logic behind heavy frameworks — while remaining fully compatible with **CrewAI**, **LangGraph**, or other agent frameworks later.
 
 ---
 
-## 🎯 Project Objective
+## 📅 WEEK 1 — AI Engineering Foundations
 
-The system simulates a **decision-making pipeline** where multiple AI agents collaborate to:
+### 🎯 Objectives
 
-1. Analyze data (risk analysis)
-2. Reason over results
-3. Propose strategies
-4. Generate an executive report
-5. Evaluate output quality
+* Understand what AI engineers build
+* Differentiate ML research vs AI systems
 
-This mirrors **real-world AI agent use cases**, such as:
+### 📚 Topics
 
-* Investment analysis
-* Risk management
-* Decision support systems
-* Autonomous analytics pipelines
+* AI Engineering lifecycle
+* LLMs vs classical ML
+* Model-as-a-service
+* Failure modes of AI systems
 
----
+### 🛠️ Hands-on
 
-## 🏗️ High-Level Architecture
+* Set up environment:
 
-```
-User / System
-     ↓
- Orchestrator
-     ↓
- ┌───────────────┐
- │ Risk Agent    │─── Tools (Statistics)
- └───────────────┘
-          ↓
- ┌───────────────┐
- │ Strategy Agent│─── LLM Reasoning
- └───────────────┘
-          ↓
- ┌───────────────┐
- │ Report Agent  │
- └───────────────┘
-          ↓
- Shared Memory + Evaluation
-```
+  * Python 3.11
+  * venv / poetry
+  * FastAPI
+* Call LLM via API (OpenAI / local Ollama)
+
+### 📦 Deliverable
+
+✔ Minimal LLM-powered API endpoint
 
 ---
 
-## 📁 Project Structure
+## 📅 WEEK 2 — Math & ML Essentials (Engineer View)
 
-```
-ai_agent_project/
-│
-├── main.py                 # Entry point
-├── config.py               # Global configuration
-├── requirements.txt        # Dependencies
-│
-├── agents/                 # Agent definitions
-│   ├── base_agent.py
-│   ├── risk_agent.py
-│   ├── strategy_agent.py
-│   └── report_agent.py
-│
-├── tools/                  # Agent tools
-│   ├── statistics.py
-│   └── data_loader.py
-│
-├── memory/                 # Shared memory
-│   └── memory.py
-│
-├── orchestrator/           # Agent coordination
-│   └── orchestrator.py
-│
-└── evaluation/             # Output validation
-    └── evaluator.py
-```
+### 🎯 Objectives
+
+* Understand math only where it affects systems
+
+### 📚 Topics
+
+* Linear algebra for embeddings
+* Probability & entropy
+* Loss functions
+* Gradient descent intuition
+
+### 🛠️ Hands-on
+
+* Implement:
+
+  * Cosine similarity
+  * Simple SGD from scratch
+* Visualize embeddings
+
+### 📦 Deliverable
+
+✔ Embedding similarity service
 
 ---
 
-## ⚙️ Installation & Setup
+## 📅 WEEK 3 — Self-Supervised Learning & Transformers
 
-### 1️⃣ Create Virtual Environment
+### 🎯 Objectives
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-```
+* Understand why LLMs work
 
-### 2️⃣ Install Dependencies
+### 📚 Topics
 
-```bash
-pip install -r requirements.txt
-```
+* Self-supervised learning
+* Transformer architecture
+* Attention math
+* Tokenization
 
-### 3️⃣ Configure Environment Variables
+### 🛠️ Hands-on
 
-Create a `.env` file:
+* Implement attention in NumPy
+* Train a tiny transformer on text
 
-```env
-OPENAI_API_KEY=your_api_key_here
-```
+### 📦 Deliverable
 
----
-
-## 🧠 Core Concepts
-
-### 🔹 Agent
-
-An agent is defined by:
-
-* **Role** – what it is
-* **Goal** – what it wants to achieve
-* **Memory** – what it remembers
-* **Reasoning** – how it thinks
-* **Actions** – what it can do
-
-```text
-Agent = Role + Goal + Memory + Tools + Reasoning
-```
+✔ Mini transformer demo
 
 ---
 
-### 🔹 BaseAgent (`agents/base_agent.py`)
+## 📅 WEEK 4 — Prompt Engineering as Software
 
-All agents inherit from a common abstraction:
+### 🎯 Objectives
 
-Responsibilities:
+* Treat prompts like production code
 
-* Prompt construction
-* LLM interaction
-* Short-term memory
-* Role-based reasoning
+### 📚 Topics
 
----
+* Prompt patterns
+* ReAct
+* Chain-of-Thought
+* Prompt injection
 
-### 🔹 Specialized Agents
+### 🛠️ Hands-on
 
-#### 🧮 RiskAgent
+* Prompt versioning
+* Prompt unit tests
+* Deterministic outputs
 
-* Computes volatility and Value at Risk
-* Uses deterministic Python tools
-* Produces structured numeric analysis
+### 📦 Deliverable
 
-#### 📊 StrategyAgent
-
-* Interprets risk analysis
-* Uses LLM reasoning
-* Proposes high-level strategies
-
-#### 📝 ReportAgent
-
-* Aggregates all results
-* Produces an executive-readable report
-* Optimized for clarity and conciseness
+✔ Prompt test suite
 
 ---
 
-## 🛠️ Tools Layer
+## 📅 WEEK 5 — Retrieval-Augmented Generation (RAG)
 
-Tools are **pure Python functions**, fully deterministic.
+### 🎯 Objectives
 
-Examples:
+* Eliminate hallucinations
+* Ground LLMs in data
 
-* Volatility calculation
-* Value at Risk (VaR)
-* Data loading
+### 📚 Topics
 
-Agents **do not compute directly** — they delegate to tools.
+* Embeddings
+* Vector databases
+* Chunking strategies
+* Reranking
 
-This enforces:
+### 🛠️ Hands-on
 
-* Separation of concerns
-* Reproducibility
-* Auditability
+* Build RAG system:
 
----
+  * FAISS
+  * PDF ingestion
+  * Query pipeline
 
-## 🧠 Memory System
+### 📦 Deliverable
 
-### Shared Memory (`memory/memory.py`)
-
-A simple key-value store that allows:
-
-* Inter-agent communication
-* Persistent state
-* Decoupled data exchange
-
-```text
-Memory ≠ Database  
-Memory = Useful Context
-```
+✔ RAG API (documents → answers)
 
 ---
 
-## 🧭 Orchestrator
+## 📅 WEEK 6 — Evaluation & Observability
 
-The orchestrator:
+### 🎯 Objectives
 
-* Instantiates agents
-* Controls execution order
-* Manages shared memory
-* Acts as the system “brain”
+* Measure AI system quality
 
-This pattern allows:
+### 📚 Topics
 
-* Easy scaling to more agents
-* Conditional execution
-* Looping and retries (future extension)
+* Offline vs online eval
+* Metrics for LLMs
+* Cost tracking
+* Drift detection
 
----
+### 🛠️ Hands-on
 
-## 🧪 Evaluation Layer
+* Build evaluation harness
+* Log prompts & outputs
+* Token cost monitoring
 
-The evaluation module validates:
+### 📦 Deliverable
 
-* Presence of key concepts
-* Structural correctness
-* Minimum quality constraints
-
-This is the foundation for:
-
-* Guardrails
-* Automated QA
-* Critic agents
-* Reward models
+✔ AI evaluation dashboard
 
 ---
 
-## ▶️ Running the Project
+## 📅 WEEK 7 — Multi-Agent Systems
 
-```bash
-python main.py
-```
+### 🎯 Objectives
 
-Expected output:
+* Move beyond single LLM calls
 
-* Final generated report
-* Evaluation results (basic quality checks)
+### 📚 Topics
 
----
+* Agent architectures
+* Planning vs execution
+* Agent communication
+* Failure recovery
 
-## 🚀 Extension Roadmap
+### 🛠️ Hands-on
 
-This project is designed to evolve naturally into production systems.
+* Build agents:
 
-### Possible Extensions
+  * Planner
+  * Researcher
+  * Critic
+* Use LangGraph or custom orchestration
 
-✅ Replace mock data with real APIs
-✅ Add vector memory (FAISS / ChromaDB)
-✅ Introduce LangGraph workflows
-✅ Convert agents to CrewAI roles
-✅ Add FastAPI interface
-✅ Add Docker & CI/CD
-✅ Add reinforcement learning loop
-✅ Add human-in-the-loop validation
+### 📦 Deliverable
+
+✔ Multi-agent task solver
 
 ---
 
-## 🧠 Mental Model Summary
+## 📅 WEEK 8 — Tool Use & Function Calling
 
-```
-Single Agent:
-Role + Goal + LLM + Memory + Tools
+### 🎯 Objectives
 
-Multi-Agent System:
-Agents + Orchestrator + Shared Memory + Evaluation
-```
+* Let LLMs interact with the real world
+
+### 📚 Topics
+
+* Function calling
+* Tool routing
+* Validation
+* Sandboxing
+
+### 🛠️ Hands-on
+
+* LLM + tools:
+
+  * DB queries
+  * Python execution
+* Secure tool access
+
+### 📦 Deliverable
+
+✔ Tool-using AI agent
 
 ---
 
-## 📜 License
+## 📅 WEEK 9 — Fine-Tuning & Adaptation
 
-This project is intended for **educational and experimental use**.
-You are free to adapt it for research, teaching, or internal prototypes.
+### 🎯 Objectives
+
+* Customize LLM behavior
+
+### 📚 Topics
+
+* Fine-tuning vs prompting
+* LoRA
+* Embedding tuning
+* Overfitting risks
+
+### 🛠️ Hands-on
+
+* Fine-tune small model
+* Compare with RAG
+
+### 📦 Deliverable
+
+✔ Adapted domain model
 
 ---
 
-## 🤝 Next Steps
+## 📅 WEEK 🔟 — Deployment & Scaling
 
-If you want, I can now:
+### 🎯 Objectives
 
-* 🔹 Convert this into a **LangGraph implementation**
-* 🔹 Rebuild it using **CrewAI**
-* 🔹 Add **real financial data**
-* 🔹 Add **FastAPI deployment**
-* 🔹 Add **Docker + production setup**
-* 🔹 Generate **full LaTeX documentation**
-* 🔹 Add **advanced evaluation & critic agents**
+* Make AI systems production-ready
 
-Just tell me what you want to build next.
+### 📚 Topics
+
+* FastAPI + async
+* Docker
+* Load balancing
+* GPU vs CPU inference
+
+### 🛠️ Hands-on
+
+* Dockerize AI service
+* Add caching
+* Stress test endpoints
+
+### 📦 Deliverable
+
+✔ Scalable AI API
+
+---
+
+## 📅 WEEK 1️⃣1️⃣ — Safety, Security & Governance
+
+### 🎯 Objectives
+
+* Prevent costly AI failures
+
+### 📚 Topics
+
+* Prompt injection defense
+* Bias detection
+* Logging & audit
+* Compliance (finance context)
+
+### 🛠️ Hands-on
+
+* Input validation
+* Safety filters
+* Explainability logs
+
+### 📦 Deliverable
+
+✔ Secure AI system
+
+---
+
+## 📅 WEEK 1️⃣2️⃣ — Capstone Project
+
+### 🎯 Objectives
+
+* Demonstrate AI engineering mastery
+
+### 🛠️ Capstone Options
+
+Choose one:
+
+1️⃣ **Multi-Agent Investment Assistant**
+2️⃣ **Enterprise Knowledge Copilot**
+3️⃣ **Autonomous Research Agent**
+
+### 📦 Final Deliverables
+
+✔ Architecture diagram
+✔ Codebase (clean & modular)
+✔ Evaluation report
+✔ Cost analysis
+
+---
+
+## 🧪 Evaluation Criteria (Real-World)
+
+| Category    | Measure              |
+| ----------- | -------------------- |
+| Reliability | Error rate           |
+| Cost        | Tokens / request     |
+| Latency     | P95 response         |
+| Accuracy    | Eval scores          |
+| Safety      | Injection resistance |
+
+---
+
+## 🚀 After 12 Weeks You Will Be Able To:
+
+* Design AI system architectures
+* Build multi-agent LLM systems
+* Deploy scalable AI services
+* Evaluate & optimize cost/performance
+* Speak **AI engineering fluently** in interviews
+
+---
