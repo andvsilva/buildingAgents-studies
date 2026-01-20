@@ -1,12 +1,12 @@
 # 1. Python Programming & Git
 
 - [x] Python basics, loops, functions, modules
-- [] Error handling and debugging efficiently
-- [] Virtual environments and package management
-- [] Git basics: commit, push, pull, branch
-- [] GitHub collaboration and version control workflows
-- [] Writing clean, readable, modular Python code
-- [] Automating tasks with scripts and CLI tools
+- [x] Error handling and debugging efficiently
+- [x] Virtual environments and package management
+- [x] Git basics: commit, push, pull, branch
+- [x] GitHub collaboration and version control workflows
+- [x] Writing clean, readable, modular Python code
+- [x] Automating tasks with scripts and CLI tools
 
 # 2. Data Manipulation & Preprocessing
 
