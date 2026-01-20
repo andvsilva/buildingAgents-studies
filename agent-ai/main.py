@@ -1,64 +1,38 @@
 from dotenv import load_dotenv
-from pydantic import BaseModel
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import PydanticOutputParser
-from langchain.agents import create_agent
-from langchain_classic.agents import AgentExecutor
-from tools import search_tool, wiki_tool, save_tool
-
 load_dotenv()
 
-# Modelo estruturado
-class ResearchResponse(BaseModel):
-    topic: str
-    summary: str
-    sources: list[str]
-    tools_used: list[str]
+from langchain_openai import ChatOpenAI
+from langchain.agents import create_agent
+from langchain_classic.agents import AgentExecutor
+from langchain_core.prompts import ChatPromptTemplate
 
-# LLM
-parser = PydanticOutputParser(pydantic_object=ResearchResponse)
+from tools import search_tool, wiki_tool, save_tool
 
-# Prompt
-prompt = ChatPromptTemplate.from_messages(
-    [
-        (
-            "system",
-            """
-            You are a research assistant that will help generate a research paper.
-            Answer the user query and use neccessary tools. 
-            Wrap the output in this format and provide no other text\n{format_instructions}
-            """,
-        ),
-        ("placeholder", "{chat_history}"),
-        ("human", "{query}"),
-        ("placeholder", "{agent_scratchpad}"),
-    ]
-).partial(format_instructions=parser.get_format_instructions())
-
+# 2️⃣ Tools list
 tools = [search_tool, wiki_tool, save_tool]
+
+# 3️⃣ Prompt (new format)
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful AI agent."),
+    ("human", "{input}")
+])
+
+# 4️⃣ Create agent (NEW API)
 agent = create_agent(
-    model="claude-sonnet-4-5-20250929",
-    tools=tools,
-    system_prompt="You are a helpful assistant",
+    model="gpt-4o-mini",
+    tools=tools
 )
 
-# Para LangChain 1.2.0, você chama o LLM com as tools diretamente
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-raw_response = agent_executor.invoke({"query": "What is the capital of france?"})
+# 5️⃣ Executor
+agent_executor = AgentExecutor(
+    agent=agent,
+    tools=tools,
+    verbose=True
+)
 
-try:
-    structured_response = parser.parse(raw_response.get("output")[0]["text"])
-    print(structured_response)
-except Exception as e:
-    print("Error parsing response", e, "Raw Response - ", raw_response)
+# 6️⃣ Run
+response = agent_executor.invoke({
+    "input": "Search Python agents and save a summary"
+})
 
-
-# Exemplo básico de chamada com tools
-#response = llm(
-#    prompt.format(query=query)
-#)
-
-#print("Raw response:")
-#print(response)
-
-
+print(response)
