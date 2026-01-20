@@ -1,11 +1,9 @@
 from dotenv import load_dotenv
 load_dotenv()
 
-from langchain_openai import ChatOpenAI
 from langchain.agents import create_agent
-from langchain_classic.agents import AgentExecutor
+from langchain.agents.executor import AgentExecutor
 from langchain_core.prompts import ChatPromptTemplate
-
 from tools import search_tool, wiki_tool, save_tool
 
 # 2️⃣ Tools list
