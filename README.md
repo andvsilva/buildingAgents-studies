@@ -10,13 +10,13 @@
 
 # 2. Data Manipulation & Preprocessing
 
-- [] Pandas: filtering, merging, reshaping datasets
-- [] Data cleaning and missing value imputation
-- [] Feature engineering and encoding techniques
-- [] Scaling and normalization of features
-- [] Handling outliers and skewed distributions
-- [] Text preprocessing (tokenization, stemming, lemmatization)
-- [] Working with time series data
+- [x] Pandas: filtering, merging, reshaping datasets
+- [x] Data cleaning and missing value imputation
+- [x] Feature engineering and encoding techniques
+- [x] Scaling and normalization of features
+- [x] Handling outliers and skewed distributions
+- [x] Text preprocessing (tokenization, stemming, lemmatization)
+- [x] Working with time series data
 
 # 3. Machine Learning
 
