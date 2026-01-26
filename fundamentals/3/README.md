@@ -711,7 +711,8 @@ For a regression problem, the expected prediction error at a point ( x ) can be 
 
 $$
 \mathbb{E}\big[(y - \hat{f}(x))^2\big]
-=
+= $$
+$$
 \underbrace{\text{Bias}^2}_{\text{systematic error}}
 +
 \underbrace{\text{Variance}}_{\text{model sensitivity}}
