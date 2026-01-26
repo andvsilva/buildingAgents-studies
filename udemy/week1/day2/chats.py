@@ -22,8 +22,6 @@ payload = {
         {"role": "user", "content": "Tell me a fun fact"}]
 }
 
-print(payload)
-
 response = requests.post(
     "https://api.openai.com/v1/chat/completions",
     headers=headers,

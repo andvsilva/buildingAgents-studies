@@ -20,13 +20,13 @@
 
 # 3. Machine Learning
 
-- [] Supervised vs. unsupervised learning concepts
-- [] Model selection and performance metrics
-- [] Cross-validation and hyperparameter tuning
-- [] Regression, classification, clustering models
-- [] Decision trees, SVMs, KNN, Random Forests
-- [] Bias-variance tradeoff and overfitting
-- [] Scikit-learn pipelines and model evaluation
+- [x] Supervised vs. unsupervised learning concepts
+- [x] Model selection and performance metrics
+- [x] Cross-validation and hyperparameter tuning
+- [x] Regression, classification, clustering models
+- [x] Decision trees, SVMs, KNN, Random Forests
+- [x] Bias-variance tradeoff and overfitting
+- [x] Scikit-learn pipelines and model evaluation
 
 # 4. Deep Learning
 
