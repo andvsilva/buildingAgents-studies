@@ -709,16 +709,16 @@ The objective is to find a model that **generalizes well** by balancing both.
 
 For a regression problem, the expected prediction error at a point ( x ) can be decomposed as:
 
-[
+$$
 \mathbb{E}\big[(y - \hat{f}(x))^2\big]
-======================================
-
-\underbrace{\text{Bias}^2}*{\text{systematic error}}
+=
+\underbrace{\text{Bias}^2}_{\text{systematic error}}
 +
-\underbrace{\text{Variance}}*{\text{model sensitivity}}
+\underbrace{\text{Variance}}_{\text{model sensitivity}}
 +
 \underbrace{\sigma^2}_{\text{irreducible noise}}
-]
+$$
+
 
 Where:
 
@@ -758,10 +758,10 @@ This indicates **high bias and low variance**.
 
 Assume the true relationship is:
 
-[
+$$
 y = x^2 + \epsilon,
 \quad \epsilon \sim \mathcal{N}(0, \sigma^2)
-]
+$$
 
 A small dataset is sampled from this process.
 
@@ -769,9 +769,10 @@ A small dataset is sampled from this process.
 
 ### Case 1: Linear Model (Underfitting)
 
-[
+$$
 \hat{y} = ax + b
-]
+$$
+
 
 * Cannot represent curvature
 * Strong model assumption
@@ -787,9 +788,10 @@ A small dataset is sampled from this process.
 
 ### Case 2: Quadratic Model (Good Fit)
 
-[
+$$
 \hat{y} = ax^2 + bx + c
-]
+$$
+
 
 * Matches the true structure
 * Captures signal without noise
@@ -805,9 +807,10 @@ A small dataset is sampled from this process.
 
 ### Case 3: High-Degree Polynomial (Overfitting)
 
-[
-\hat{y} = a_7x^7 + a_6x^6 + \cdots + a_0
-]
+$$
+\hat{y} = a_7 x^7 + a_6 x^6 + \cdots + a_0
+$$
+
 
 * Fits almost all training points exactly
 * Learns noise
@@ -841,9 +844,9 @@ A small dataset is sampled from this process.
 
 Regularization penalizes model complexity:
 
-[
+$$
 \mathcal{L}(\theta) = \text{Loss}(\theta) + \lambda \lVert \theta \rVert^2
-]
+$$
 
 * Reduces variance
 * Slightly increases bias
