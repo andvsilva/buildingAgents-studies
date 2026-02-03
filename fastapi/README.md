@@ -1,4 +1,5 @@
 ## FastAPI Tutorial
 
-- Python FastAPI Tutorial (Part 1): Getting Started - Web App + REST API - [Github](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbG5fTjNqdW5yb08zZE82NHZEaTZfMEZGcEhEQXxBQ3Jtc0ttbUdabzlKd2ZtcEN4THlJRi1SRkNseERhclpNNDVHUW5yMWUzdTRNWUgwSXp0aUdSMmFHZVk0WC1UMFhpSEtDVjRVR1kzZmtkTXF6ZTFxd2gzeTlYWENEenhFRnhyWVh5T1JxUjZEaC1SdEdPQUdTTQ&q=https%3A%2F%2Fgithub.com%2FCoreyMSchafer%2FFastAPI-01-Getting-Started&v=7AMjmCTumuo)
-- Python FastAPI Tutorial (Part 2): HTML Frontend for Your API - Jinja2 Templates - [Github](https://github.com/CoreyMSchafer/FastAPI-02-Templates/tree/main)
+- Python FastAPI Tutorial (Part 1): Getting Started - Web App + REST API - [Github](https://github.com/CoreyMSchafer/FastAPI-01-Getting-Started)
+- Python FastAPI Tutorial (Part 2): HTML Frontend for Your API - Jinja2 Templates - [Github](https://github.com/CoreyMSchafer/FastAPI-02-Templates)
+- Python FastAPI Tutorial (Part 3): Path Parameters - Validation and Error Handling - [Github](https://github.com/CoreyMSchafer/FastAPI-03-Path-Parameters)
