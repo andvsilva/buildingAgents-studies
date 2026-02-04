@@ -1,8 +1,8 @@
-### SQL studies
+## SQL studies
 
 I’ll structure this like a mini data analyst bootcamp using SQL, and we’ll build skills incrementally. Since you already touch Python/Pandas, this will feel very natural.
 
-🧠 What “Analysis with SQL” really means
+### 🧠 What “Analysis with SQL” really means
 
 You’re using SQL to:
 
@@ -10,6 +10,32 @@ You’re using SQL to:
 - Answer business questions
 - Summarize, group, filter, compare
 - Prepare data for dashboards / ML
+
+What is Analysis with SQL?
+
+``` Analysis with SQL means using SQL to understand data.```
+
+Instead of just storing or retrieving data, you use SQL to ask questions like:
+
+ - How much did we sell?
+ - What is happening over time?
+ - Which products perform better?
+ - Where are the problems?
+
+```SQL becomes a thinking tool, not just a database language.```
+
+Think of SQL like questions to data
+Imagine the database is a big spreadsheet.
+
+SQL lets you ask:
+
+```sql
+SELECT → What do I want to see?
+FROM → From which table?
+WHERE → Apply filters
+GROUP BY → Group similar things
+SUM / AVG / COUNT → Calculate numbers
+```
 
 ### Install 
 
@@ -141,7 +167,7 @@ db_connection.close()
 
 ![](/pngs/table-customers.png)
 
-### 💰 Basic revenue analysis (single table)
+### 1️⃣ 💰 Total Revenue Analysis (single table)
 
 ```python
 import sqlite3
@@ -170,6 +196,179 @@ $ python analysis.py
    total_revenue
 0    16008872.12
 
+```
+
+### 2️⃣ Revenue per month (classic time-series analysis)
+
+Query:
+```sql
+SELECT
+    substr(o.order_purchase_timestamp, 1, 7) AS month,
+    SUM(p.payment_value) AS revenue
+FROM orders o
+JOIN order_payments p
+  ON o.order_id = p.order_id
+GROUP BY month
+ORDER BY month;
+```
+
+### Output:
+
+```sql
+$ python analysis.py 
+      month     revenue
+0   2016-09      252.24
+1   2016-10    59090.48
+2   2016-12       19.62
+3   2017-01   138488.04
+4   2017-02   291908.01
+5   2017-03   449863.60
+6   2017-04   417788.03
+7   2017-05   592918.82
+8   2017-06   511276.38
+9   2017-07   592382.92
+10  2017-08   674396.32
+11  2017-09   727762.45
+12  2017-10   779677.88
+13  2017-11  1194882.80
+14  2017-12   878401.48
+15  2018-01  1115004.18
+16  2018-02   992463.34
+17  2018-03  1159652.12
+18  2018-04  1160785.48
+19  2018-05  1153982.15
+20  2018-06  1023880.50
+21  2018-07  1066540.75
+22  2018-08  1022425.32
+23  2018-09     4439.54
+24  2018-10      589.67
+```
+
+### 📌 Insight típico:
+
+ - crescimento
+ - sazonalidade
+ - quedas suspeitas
+
+## Por que essa query é “nível profissional”?
+
+Ela combina:
+
+ - 📅 dimensão temporal
+ - 💰 métrica de negócio
+ - 🔗 junção de tabelas
+ - 📊 agregação
+ - 🧠 clareza analítica
+
+É exatamente o tipo de SQL esperado em:
+
+ - Data Analyst
+ - Data Scientist
+ - Analytics Engineer
+
+### 3️⃣ Revenue by product category
+
+```sql
+SELECT
+    t.product_category_name_english AS category,
+    SUM(oi.price) AS revenue
+FROM order_items oi
+JOIN products p
+  ON oi.product_id = p.product_id
+JOIN product_category_name_translation t
+  ON p.product_category_name = t.product_category_name
+GROUP BY category
+ORDER BY revenue DESC
+LIMIT 10;
+```
+
+#### 🔥 Excelente para storytelling:
+
+- Top 10 categorias que geram mais receita
+
+```
+SQL query that calculates total revenue by product category, ranks categories by revenue in descending order, and returns the top 10 highest-performing categories.
+```
+
+#### STOP HERE!
+### 4️⃣ Average order value (AOV)
+
+```sql
+SELECT
+    AVG(order_total) AS avg_ticket
+FROM (
+    SELECT
+        order_id,
+        SUM(payment_value) AS order_total
+    FROM order_payments
+    GROUP BY order_id
+);
+
+```
+
+
+### 5️⃣ Average order rating
+
+```sql
+SELECT
+    AVG(review_score) AS avg_review
+FROM order_reviews;
+```
+
+Ou por categoria 👀:
+
+```sql
+SELECT
+    t.product_category_name_english AS category,
+    AVG(r.review_score) AS avg_score
+FROM order_reviews r
+JOIN order_items oi ON r.order_id = oi.order_id
+JOIN products p ON oi.product_id = p.product_id
+JOIN product_category_name_translation t
+  ON p.product_category_name = t.product_category_name
+GROUP BY category
+ORDER BY avg_score DESC;
+```
+
+### 6️⃣ Average delivery time
+
+```sql
+SELECT
+    AVG(
+        julianday(order_delivered_customer_date) -
+        julianday(order_purchase_timestamp)
+    ) AS avg_delivery_days
+FROM orders
+WHERE order_delivered_customer_date IS NOT NULL;
+```
+
+### 7️⃣ Top sellers by revenue
+
+```sql
+SELECT
+    s.seller_id,
+    SUM(oi.price) AS revenue
+FROM sellers s
+JOIN order_items oi
+  ON s.seller_id = oi.seller_id
+GROUP BY s.seller_id
+ORDER BY revenue DESC
+LIMIT 10;
+```
+
+### 8️⃣ Simple churn analysis (customers with only one order)
+
+```sql
+SELECT
+    COUNT(*) AS one_time_customers
+FROM (
+    SELECT
+        customer_id,
+        COUNT(order_id) AS total_orders
+    FROM orders
+    GROUP BY customer_id
+)
+WHERE total_orders = 1;
 ```
 
 ✅ Perfect for learning and practicing
