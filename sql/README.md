@@ -286,9 +286,9 @@ LIMIT 10;
 
 - Top 10 categorias que geram mais receita
 
-```
-SQL query that calculates total revenue by product category, ranks categories by revenue in descending order, and returns the top 10 highest-performing categories.
-```
+
+- SQL query that calculates total revenue by product category, ranks categories by revenue in descending order, and returns the top 10 highest-performing categories.
+
 
 #### STOP HERE!
 ### 4️⃣ Average order value (AOV)
