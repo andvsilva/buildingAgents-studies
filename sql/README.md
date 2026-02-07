@@ -165,9 +165,26 @@ db_connection.close()
 
 ### Output:
 
-![](/pngs/table-customers.png)
+```bash
+~/repo/buildingAgents-studies/sql on  main! ⌚ 10:31:21
+$ python analysis.py
+                        customer_id  ... customer_state
+0  06b8999e2fba1a1fbc88172c00ba8bc7  ...             SP
+1  18955e83d337fd6b2def6b18a428ac77  ...             SP
+2  4e7b3e00288586ebd08712fdd0374a03  ...             SP
+3  b2b6027bc5c5109e529d4dc6358b12c3  ...             SP
+4  4f2d8ab171c80ec8364f7c12e35b23ad  ...             SP
+5  879864dab9bc3047522c92c82e1212b8  ...             SC
+6  fd826e7cf63160e536e0908c76c3f441  ...             SP
+7  5e274e7a0c3809e14aba7ad5aae0d407  ...             MG
+8  5adf08e34b2e993982a47070956c5c65  ...             PR
+9  4b7139f34592b3a31687243a302fa75b  ...             MG
 
-### 1️⃣ 💰 Total Revenue Analysis (single table)
+[10 rows x 5 columns]
+
+```
+
+### 1️⃣ 💰 Query: Total Revenue Analysis (single table)
 
 ```python
 import sqlite3
@@ -198,9 +215,8 @@ $ python analysis.py
 
 ```
 
-### 2️⃣ Revenue per month (classic time-series analysis)
+### 2️⃣ Query: Revenue per month (classic time-series analysis)
 
-Query:
 ```sql
 SELECT
     substr(o.order_purchase_timestamp, 1, 7) AS month,
@@ -266,7 +282,13 @@ Ela combina:
  - Data Scientist
  - Analytics Engineer
 
-### 3️⃣ Revenue by product category
+### 3️⃣ Query: Revenue by product category
+
+🎯 What does this query answer?
+
+“Which are the top 10 product categories by revenue?”
+
+In this context, revenue means the sum of product prices sold, grouped by category.
 
 ```sql
 SELECT
@@ -282,6 +304,21 @@ ORDER BY revenue DESC
 LIMIT 10;
 ```
 
+```sql
+$ python analysis.py
+                category     revenue
+0          health_beauty  1258681.34
+1          watches_gifts  1205005.68
+2         bed_bath_table  1036988.68
+3         sports_leisure   988048.97
+4  computers_accessories   911954.32
+5        furniture_decor   729762.49
+6             cool_stuff   635290.85
+7             housewares   632248.66
+8                   auto   592720.11
+9           garden_tools   485256.46
+```
+
 #### 🔥 Excelente para storytelling:
 
 - Top 10 categorias que geram mais receita
@@ -290,8 +327,7 @@ LIMIT 10;
 - SQL query that calculates total revenue by product category, ranks categories by revenue in descending order, and returns the top 10 highest-performing categories.
 
 
-#### STOP HERE!
-### 4️⃣ Average order value (AOV)
+### 4️⃣ Query: Average order value (AOV)
 
 ```sql
 SELECT
@@ -303,11 +339,17 @@ FROM (
     FROM order_payments
     GROUP BY order_id
 );
+```
+### Output:
 
+```bash
+$ python analysis.py
+   avg_ticket
+0  160.990267
 ```
 
 
-### 5️⃣ Average order rating
+### 5️⃣ Query: Average order rating
 
 ```sql
 SELECT
@@ -315,7 +357,21 @@ SELECT
 FROM order_reviews;
 ```
 
+### Output:
+
+```bash
+$ python analysis.py
+   avg_review
+0    4.086421
+```
+
 Ou por categoria 👀:
+
+🎯 What does this query answer?
+
+“What is the average customer review score for each product category?”
+
+It ranks product categories by customer satisfaction, from highest to lowest average rating.
 
 ```sql
 SELECT
@@ -330,7 +386,31 @@ GROUP BY category
 ORDER BY avg_score DESC;
 ```
 
-### 6️⃣ Average delivery time
+### Output:
+
+```bash
+$ python analysis.py
+                     category  avg_score
+0           cds_dvds_musicals   4.642857
+1   fashion_childrens_clothes   4.500000
+2      books_general_interest   4.446266
+3     costruction_tools_tools   4.444444
+4                     flowers   4.419355
+..                        ...        ...
+66      fashion_male_clothing   3.641221
+67             home_comfort_2   3.629630
+68           office_furniture   3.493183
+69        diapers_and_hygiene   3.256410
+70      security_and_services   2.500000
+
+[71 rows x 2 columns]
+```
+
+### 6️⃣ Query: Average delivery time
+
+🎯 What does this query answer?
+
+“On average, how many days does it take for an order to be delivered after it is purchased?”
 
 ```sql
 SELECT
@@ -342,7 +422,21 @@ FROM orders
 WHERE order_delivered_customer_date IS NOT NULL;
 ```
 
+### Output:
+
+```bash
+$ python analysis.py
+   avg_delivery_days
+0          12.558702
+```
+
 ### 7️⃣ Top sellers by revenue
+
+🎯 What does this query answer?
+
+“Which sellers generated the highest total product revenue?”
+
+Revenue here is defined as the sum of product prices sold by each seller.
 
 ```sql
 SELECT
@@ -356,7 +450,30 @@ ORDER BY revenue DESC
 LIMIT 10;
 ```
 
-### 8️⃣ Simple churn analysis (customers with only one order)
+### Output:
+
+```bash
+$ python analysis.py
+                          seller_id    revenue
+0  4869f7a5dfa277a7dca6462dcf3b52b2  229472.63
+1  53243585a1d6dc2643021fd1853d8905  222776.05
+2  4a3ca9315b744ce9f8e9374361493884  200472.92
+3  fa1c13f2614d7b5c4749cbc52fecda94  194042.03
+4  7c67e1448b00f6e969d365cea6b010ab  187923.89
+5  7e93a43ef30c4f03f38b393420bc753a  176431.87
+6  da8622b14eb17ae2831f4ac5b9dab84a  160236.57
+7  7a67c85e85bb2ce8582c35f2203ad736  141745.53
+8  1025f0e2d44d7041d6cf58b6550e0bfa  138968.55
+9  955fee9216a65b617aa5c0531780ce60  135171.70
+```
+
+### 8️⃣ Query: Simple churn analysis (customers with only one order)
+
+🎯 What does this query answer?
+
+“How many customers made only one purchase?”
+
+This is a classic customer retention / repeat-purchase metric
 
 ```sql
 SELECT
@@ -370,6 +487,16 @@ FROM (
 )
 WHERE total_orders = 1;
 ```
+
+### Output:
+
+```bash
+$ python analysis.py
+   one_time_customers
+0               99441
+
+```
+
 
 ✅ Perfect for learning and practicing
 
