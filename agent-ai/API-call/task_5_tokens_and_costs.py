@@ -2,23 +2,23 @@
 """
 Task 5: Understanding Tokens and Business Costs
 Learn how tokens work and calculate real business costs for AI usage.
+(Updated for the Responses API)
 """
 
-import openai
+from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
 load_dotenv(override=True)
-openai_api_key = os.getenv('OPENAI_API_KEY')
 
-# Initialize the OpenAI client
-client = openai.OpenAI()
+client = OpenAI()
 
 # Make an API call with a business-relevant prompt
 prompt = "Explain the benefits of using AI for customer support in a business"
-response = client.chat.completions.create(
+
+response = client.responses.create(
     model="gpt-4.1-mini",
-    messages=[{"role": "user", "content": prompt}]
+    input=prompt
 )
 
 # ==========================================
@@ -32,17 +32,18 @@ response = client.chat.completions.create(
 #
 # The response.usage object tells you EXACTLY how many tokens you used:
 # ┌────────────────────────────────────┐
-# │ response.usage                      │
+# │ response.usage                     │
 # │  ├── prompt_tokens      (input)    │ ← What you asked
 # │  ├── completion_tokens  (output)   │ ← What AI answered
 # │  └── total_tokens       (sum)      │ ← What you pay for
 # └────────────────────────────────────┘
 # ==========================================
 
-# TODO: Extract the token counts from response.usage
-input_tokens = response.usage.prompt_tokens    # TODO: prompt_tokens
-output_tokens = response.usage.completion_tokens   # TODO: completion_tokens
-total_tokens = response.usage.total_tokens    # TODO: total_tokens
+usage = response.usage
+
+input_tokens = usage.input_tokens
+output_tokens = usage.output_tokens
+total_tokens = usage.total_tokens
 
 print("📊 Token Usage Report:")
 print("="*50)

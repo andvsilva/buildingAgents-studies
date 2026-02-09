@@ -7,78 +7,87 @@ Learning Goal: Understand why LangChain simplifies AI development.
 """
 
 import os
+from dotenv import load_dotenv
+from openai import OpenAI
+from langchain_openai import ChatOpenAI
 
+# -------------------------------------------------------------------
+# 🔴 RAW OPENAI SDK APPROACH (Modern Responses API)
+# -------------------------------------------------------------------
 def raw_openai_approach():
-    """Raw OpenAI SDK - complex and verbose"""
+    """Raw OpenAI SDK - explicit and verbose"""
     print("\n🔴 RAW OPENAI SDK APPROACH")
 
-    import openai
+    load_dotenv(override=True)
 
-    # TODO 1: Create OpenAI client
-    client = openai.OpenAI(
-        api_key=os.getenv("___"),   # Replace ___ with: "OPENAI_API_KEY"
-        base_url=os.getenv("___")   # Replace ___ with: "OPENAI_API_BASE"
+    client = OpenAI(
+        api_key=os.getenv("OPENAI_API_KEY"),
+        base_url=os.getenv("OPENAI_API_BASE")  # optional
     )
 
-    # TODO 2: Make API call (notice the complexity!)
-    response = client.chat.completions.create(
-        model="___",  # Replace ___ with: "openai/gpt-4.1-mini"
-        messages=[
-            {"role": "___", "content": "___"}  # Replace ___ with: "user", "Explain machine learning in one sentence"
-        ]
+    response = client.responses.create(
+        model="gpt-4.1-mini",
+        input="Explain machine learning in one sentence."
     )
 
-    # TODO 3: Extract text (notice nested structure)
-    if response:
-        text = response.choices[___].message.___  # Replace ___ with: 0, content
-        print(f"Response: {text[:100]}...")
+    if response and response.output_text:
+        text = response.output_text
+        print(f"Response: {text[:-1]}...")
         return text
 
+    print("No response from OpenAI SDK.")
     return None
 
+
+# -------------------------------------------------------------------
+# 🟢 LANGCHAIN APPROACH (Clean abstraction)
+# -------------------------------------------------------------------
 def langchain_approach():
     """LangChain - clean and simple"""
     print("\n🟢 LANGCHAIN APPROACH")
 
-    from langchain_openai import ChatOpenAI
-
-    # TODO 4: Initialize model (so simple!)
     llm = ChatOpenAI(
-        model="___",                    # Replace ___ with: "openai/gpt-4.1-mini"
-        api_key=os.getenv("___"),      # Replace ___ with: "OPENAI_API_KEY"
-        base_url=os.getenv("___")      # Replace ___ with: "OPENAI_API_BASE"
+        model="gpt-4.1-mini",
+        api_key=os.getenv("OPENAI_API_KEY"),
+        base_url=os.getenv("OPENAI_API_BASE"),  # optional
+        temperature=0.2
     )
 
-    # TODO 5: Make the call (one line!)
-    response = llm.invoke("___")  # Replace ___ with: "Explain machine learning in one sentence"
+    response = llm.invoke("Explain machine learning in one sentence.")
 
     if response:
-        print(f"Response: {response.content[:100]}...")
+        print(f"Response: {response.content[:-1]}...")
         return response.content
 
+    print("No response from LangChain.")
     return None
 
+# -------------------------------------------------------------------
+# 🚀 MAIN
+# -------------------------------------------------------------------
 def main():
     print("🎯 Task 1: OpenAI SDK vs LangChain Comparison")
     print("=" * 50)
 
-    # Run both approaches
     raw_result = raw_openai_approach()
     langchain_result = langchain_approach()
 
-    # Show the difference
     if raw_result and langchain_result:
-        print("\n📊 COMPARISON:")
-        print("✅ Both approaches work, but LangChain is:")
-        print("  - 70% less code")
-        print("  - Cleaner response handling")
-        print("  - Provider agnostic")
+        print("\n📊 COMPARISON RESULT")
+        print("✅ Both approaches work!")
+        print("LangChain advantages:")
+        print("  • Less boilerplate code")
+        print("  • Cleaner response handling")
+        print("  • Easier configuration")
+        print("  • Provider-agnostic design")
 
-        # Create marker
-        os.makedirs("/root/markers", exist_ok=True)
-        with open("/root/markers/task1_complete.txt", "w") as f:
+        # Marker file
+        os.makedirs("markers", exist_ok=True)
+        with open("markers/task1_complete.txt", "w") as f:
             f.write("COMPLETED")
-        print("\n✅ Task 1 completed!")
+
+        print("\n✅ Task 1 completed successfully!")
+
 
 if __name__ == "__main__":
     main()

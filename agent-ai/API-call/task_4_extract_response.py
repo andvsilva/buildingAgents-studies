@@ -2,73 +2,56 @@
 """
 Task 4: Extracting the AI's Response
 Learn the EXACT path to get the AI's answer from the response object.
+(Updated for the Responses API)
 """
 
-import openai
+from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
 load_dotenv(override=True)
-openai_api_key = os.getenv('OPENAI_API_KEY')
 
-# Initialize the OpenAI client
-client = openai.OpenAI()
+client = OpenAI()
 
-# Make a simple API call to get a response
-response = client.chat.completions.create(
+# Make a simple API call
+response = client.responses.create(
     model="gpt-4.1-mini",
-    messages=[{"role": "user", "content": "What is Python in one sentence?"}]
+    input="What is Python in one sentence?"
 )
 
 # ==========================================
-# THE MAGIC PATH TO THE AI'S ANSWER
+# THE MAGIC PATH TO THE AI'S ANSWER (MODERN)
 # ==========================================
 #
-# After making an API call, the AI's text is ALWAYS at:
-# response.choices[0].message.content
+# The easiest and recommended way:
 #
-# Let's understand each part:
-# ┌─────────┐     response: The complete response object from OpenAI
-# │response │
-# └────┬────┘
-#      │
-#      ▼
-# ┌─────────┐     .choices: List of possible responses (usually just one)
-# │.choices │
-# └────┬────┘
-#      │
-#      ▼
-# ┌─────────┐     [0]: Get the first (and typically only) choice
-# │  [0]    │
-# └────┬────┘
-#      │
-#      ▼
-# ┌─────────┐     .message: The message object containing the response
-# │.message │
-# └────┬────┘
-#      │
-#      ▼
-# ┌─────────┐     .content: The actual text string from the AI!
-# │.content │
-# └─────────┘
+#   response.output_text
+#
+# Under the hood, the full structure is:
+#
+# response
+# └── output
+#     └── [0]
+#         └── content
+#             └── [0]
+#                 └── text   ← AI's actual answer
+#
 # ==========================================
 
-# Extract the AI's text response using the exact path
-# Fill in each part of the path:
-ai_text = response.choices[0].message.content
+# Golden path (simple and safe)
+ai_text = response.output_text
 
 # Display what we extracted
 print("🎯 Successfully extracted the AI's response!")
-print("\n" + "="*60)
+print("\n" + "=" * 60)
 print("Question: What is Python in one sentence?")
 print("\nAI's Answer:")
 print(ai_text)
-print("="*60)
+print("=" * 60)
 
-# Show the magic path one more time
-print("\n🔑 THE GOLDEN PATH - Memorize this:")
-print("   response.choices[0].message.content")
-print("\n   This path works for EVERY chat completion response!")
+# Show the new golden path
+print("\n🔑 THE GOLDEN PATH (MODERN API):")
+print("   response.output_text")
 
 # Create marker for completion tracking
 os.makedirs("markers", exist_ok=True)

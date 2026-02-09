@@ -1,0 +1,23 @@
+artifact_path: /home/andvsilva/repo/buildingAgents-studies/mlflow/mlruns/1/models/m-04964d0026b0484587cbcce4ea7abcb8/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.9.0
+model_id: m-04964d0026b0484587cbcce4ea7abcb8
+model_size_bytes: 436315
+model_uuid: m-04964d0026b0484587cbcce4ea7abcb8
+prompts: null
+run_id: f0a7c68163f1406ab56250df93dbeb8f
+utc_time_created: '2026-02-08 13:39:08.642247'

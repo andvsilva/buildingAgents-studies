@@ -4,7 +4,7 @@ Task 2: Initialize the OpenAI Client
 Learn how to connect to OpenAI's servers.
 """
 
-import openai
+from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
@@ -20,12 +20,11 @@ if openai_api_key:
 else:
     print("OpenAI API Key not set")
 
-# TODO: Initialize the OpenAI client
-client = openai.OpenAI()
+client = OpenAI()
 
 print("✅ Step 2 Complete: Connected to OpenAI!")
 print(f"- API Key: {os.getenv('OPENAI_API_KEY')[:20]}...")
-#print(f"- Base URL: {os.getenv('OPENAI_API_BASE')}")
+print(f"- Base URL: {os.getenv('OPENAI_API_BASE')}")
 
 # Create marker
 os.makedirs("markers", exist_ok=True)

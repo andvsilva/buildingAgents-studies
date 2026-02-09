@@ -7,6 +7,7 @@ Verify that the LangChain lab environment is properly configured.
 import sys
 import os
 import subprocess
+from dotenv import load_dotenv
 
 def verify_environment():
     """Verify that all required packages and environment variables are available."""
@@ -22,10 +23,10 @@ def verify_environment():
     if hasattr(sys, 'real_prefix') or (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix):
         print("✅ Running in virtual environment")
     else:
-        venv_path = "/root/venv"
+        venv_path = ".venv"
         if os.path.exists(venv_path):
             print(f"⚠️  Virtual environment exists at {venv_path}")
-            print("   Please activate it with: source /root/venv/bin/activate")
+            print("   Please activate it with: source .venv/bin/activate")
             print("   Then run this script again!")
             return False
         else:
@@ -52,6 +53,8 @@ def verify_environment():
             missing_packages.append(package)
 
     # Check environment variables
+    load_dotenv(override=True)
+    
     print("\n🔑 API Configuration:")
     api_key = os.getenv('OPENAI_API_KEY')
     api_base = os.getenv('OPENAI_API_BASE')
@@ -68,7 +71,7 @@ def verify_environment():
 
     # Check directories
     print("\n📁 Required Directories:")
-    directories = ['/root/markers', '/root/code']
+    directories = ['markers']
     for directory in directories:
         if os.path.exists(directory):
             print(f"✅ {directory} - Exists")
@@ -82,7 +85,7 @@ def verify_environment():
         print("❌ ENVIRONMENT INCOMPLETE")
         print(f"\nMissing packages: {', '.join(missing_packages)}")
         print("\nTo fix, run:")
-        print("  source /root/venv/bin/activate")
+        print("  source .venv/bin/activate")
         print("  pip install openai langchain langchain-openai")
         return False
     else:
@@ -95,11 +98,11 @@ def verify_environment():
         print("  - Task 5: Complete chain composition")
 
         # Create verification marker
-        with open("/root/markers/environment_verified.txt", "w") as f:
+        with open("markers/environment_verified.txt", "w") as f:
             f.write("VERIFIED")
 
         print("\n💡 Remember to activate the virtual environment:")
-        print("   source /root/venv/bin/activate")
+        print("   source .venv/bin/activate")
 
         return True
 

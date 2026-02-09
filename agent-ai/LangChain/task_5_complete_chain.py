@@ -6,106 +6,146 @@ Build complete AI pipelines using LangChain's chain composition.
 Learning Goal: Master chain composition with the pipe operator (|).
 """
 
+# =========================
+# Standard library imports
+# =========================
 import os
+
+# =========================
+# Third-party imports
+# =========================
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.output_parsers import CommaSeparatedListOutputParser
+from langchain_core.output_parsers import (
+    StrOutputParser,
+    CommaSeparatedListOutputParser,
+)
 
-def main():
+# =========================
+# Environment setup
+# =========================
+load_dotenv(override=True)
+
+MODEL_NAME = "gpt-4.1-mini"
+TEMPERATURE = 0.3
+MARKERS_DIR = "markers"
+
+
+# =========================
+# Utility functions
+# =========================
+def ensure_api_key() -> None:
+    """Fail fast if the API key is missing."""
+    if not os.getenv("OPENAI_API_KEY"):
+        raise RuntimeError("OPENAI_API_KEY not set")
+
+def create_markers_dir() -> None:
+    os.makedirs(MARKERS_DIR, exist_ok=True)
+
+# =========================
+# Chain builders
+# =========================
+def build_analysis_chain(llm: ChatOpenAI):
+    prompt = PromptTemplate(
+        template=(
+            "Analyze {technology} and provide pros and cons "
+            "in 2-3 sentences."
+        ),
+        input_variables=["technology"],
+    )
+    return prompt | llm | StrOutputParser()
+
+
+def build_list_chain(llm: ChatOpenAI):
+    prompt = PromptTemplate(
+        template="List 3 use cases for {technology} (comma-separated):",
+        input_variables=["technology"],
+    )
+    return prompt | llm | CommaSeparatedListOutputParser()
+
+
+# =========================
+# Main execution
+# =========================
+def main() -> None:
     print("🎯 Task 5: Chain Composition with |")
     print("=" * 50)
 
-    # Initialize LLM once
+    ensure_api_key()
+    create_markers_dir()
+
+    # Initialize LLM once (reads API key from env)
     llm = ChatOpenAI(
-        model="openai/gpt-4.1-mini",
-        api_key=os.getenv("OPENAI_API_KEY"),
-        base_url=os.getenv("OPENAI_API_BASE"),
-        temperature=0.3
+        model=MODEL_NAME,
+        temperature=TEMPERATURE,
     )
 
-    # Chain 1: Simple Analysis Chain
+    # -------------------------
+    # Chain 1: Analysis
+    # -------------------------
     print("\n⛓️ Chain 1: Simple Analysis")
     print("=" * 50)
 
-    # Create analysis prompt
-    analysis_prompt = PromptTemplate(
-        template="Analyze {technology} and provide pros and cons in 2-3 sentences",
-        input_variables=["technology"]
+    analysis_chain = build_analysis_chain(llm)
+
+    analysis_result = analysis_chain.invoke(
+        {"technology": "blockchain"}
     )
 
-    # String parser for text output
-    str_parser = StrOutputParser()
+    print("📝 Input: Analyze blockchain")
+    print(f"✅ Output: {analysis_result}")
 
-    # TODO 1: Build analysis chain using pipe operator
-    analysis_chain = ___ | ___ | ___  # Replace ___ with: analysis_prompt, llm, str_parser
-
-    # Test the analysis chain
-    if analysis_chain:
-        result = analysis_chain.invoke({
-            "technology": "blockchain"
-        })
-        print(f"📝 Input: 'Analyze blockchain'")
-        print(f"✅ Output: {result}")
-
-    # Chain 2: List Generation Chain
+    # -------------------------
+    # Chain 2: List generation
+    # -------------------------
     print("\n⛓️ Chain 2: List Generation with Parser")
     print("=" * 50)
 
-    # Create list prompt
-    list_prompt = PromptTemplate(
-        template="List 3 use cases for {technology} (comma-separated):",
-        input_variables=["technology"]
+    list_chain = build_list_chain(llm)
+
+    list_result = list_chain.invoke(
+        {"technology": "blockchain"}
     )
 
-    # List parser for structured output
-    list_parser = CommaSeparatedListOutputParser()
+    print("📝 Input: List use cases for blockchain")
+    print(f"✅ Output: {list_result}")
+    print(f"✅ Type: {type(list_result)} — Python list!")
 
-    # TODO 2: Build list chain with different parser
-    list_chain = ___ | ___ | ___  # Replace ___ with: list_prompt, llm, list_parser
-
-    # Test the list chain
-    if list_chain:
-        result = list_chain.invoke({
-            "technology": "blockchain"
-        })
-        print(f"📝 Input: 'List use cases for blockchain'")
-        print(f"✅ Output: {result}")
-        print(f"✅ Type: {type(result)} - Python list!")
-
-    # Demonstrate the power of chains
+    # -------------------------
+    # Full pipeline demo
+    # -------------------------
     print("\n🎉 Complete Pipeline Example")
     print("=" * 50)
 
     test_tech = "artificial intelligence"
     print(f"Technology: {test_tech}\n")
 
-    # Run both chains on the same input
-    if analysis_chain and list_chain:
-        # Chain 1: Get analysis
-        analysis = analysis_chain.invoke({"technology": test_tech})
-        print(f"1️⃣ Analysis:\n   {analysis}")
+    analysis = analysis_chain.invoke({"technology": test_tech})
+    use_cases = list_chain.invoke({"technology": test_tech})
 
-        # Chain 2: Get use cases
-        use_cases = list_chain.invoke({"technology": test_tech})
-        print(f"\n2️⃣ Use Cases:")
-        for i, use_case in enumerate(use_cases, 1):
-            print(f"   {i}. {use_case}")
+    print("1️⃣ Analysis:")
+    print(f"   {analysis}")
 
-    # Show the magic
+    print("\n2️⃣ Use Cases:")
+    for i, use_case in enumerate(use_cases, start=1):
+        print(f"   {i}. {use_case}")
+
+    # -------------------------
+    # Final notes
+    # -------------------------
     print("\n💡 Chain Composition Magic:")
-    print("  ✓ The pipe | operator connects everything")
+    print("  ✓ The | operator connects everything")
     print("  ✓ prompt | llm | parser = complete pipeline")
     print("  ✓ Different parsers = different output formats")
     print("  ✓ Same LLM, infinite possibilities!")
 
-    # Create marker for completion
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task5_complete.txt", "w") as f:
+    with open(os.path.join(MARKERS_DIR, "task5_complete.txt"), "w") as f:
         f.write("COMPLETED")
 
     print("\n✅ Task 5 completed! You've mastered LangChain chains!")
-    print("🏆 You can now build any AI pipeline with the | operator!")
+    print("🏆 You can now build AI pipelines with confidence!")
+
 
 if __name__ == "__main__":
     main()

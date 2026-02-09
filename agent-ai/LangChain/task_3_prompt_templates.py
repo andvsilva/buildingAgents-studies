@@ -6,9 +6,35 @@ Show how ONE template can be reused with different variables.
 Learning Goal: Master prompt templates for consistent, reusable prompts.
 """
 
+# ============================================================
+# Imports
+# ============================================================
+
 import os
+
+from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
+
+# ============================================================
+# Environment
+# ============================================================
+
+load_dotenv(override=True)
+
+# ============================================================
+# Utilities
+# ============================================================
+
+def get_api_key() -> str:
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY not set")
+    return api_key
+
+# ============================================================
+# Main Execution
+# ============================================================
 
 def main():
     print("🎯 Task 3: Dynamic Prompt Templates")
@@ -17,51 +43,58 @@ def main():
     print("\n📝 Creating a Reusable Template")
     print("=" * 50)
 
-    # TODO 1: Create a versatile template
     template = PromptTemplate(
-        input_variables=["___", "___"],  # Replace ___ with: "topic", "style"
-        template="___"  # Replace ___ with: "Explain {topic} in {style}"
+        input_variables=["topic", "stype"],
+        template="Explain {topic} in {style}"
     )
 
-    # Test with actual LLM to show it works
+    # --------------------------------------------------------
+    # Test with actual LLM
+    # --------------------------------------------------------
+
     print("\n🤖 Testing Template with AI")
     print("=" * 50)
 
-    # Initialize LLM
     llm = ChatOpenAI(
-        model="openai/gpt-4.1-mini",
-        api_key=os.getenv("OPENAI_API_KEY"),
-        base_url=os.getenv("OPENAI_API_BASE"),
+        model="gpt-4.1-mini",
+        api_key=get_api_key,
         temperature=0.7
     )
 
-    # TODO 2: Use the template with LLM
     if template and llm:
-        # Format the template with specific values
         test_prompt = template.format(
-            topic="___",  # Replace ___ with: "artificial intelligence"
-            style="___"   # Replace ___ with: "exactly 5 words"
+            topic="artificial intelligence",
+            style="exactly 5 words"
         )
 
         print(f"📝 Sending to AI: {test_prompt}")
 
-        # Get AI response
         response = llm.invoke(test_prompt)
         print(f"\n🤖 AI Response: {response.content}")
 
-    # Show the benefits
+    # --------------------------------------------------------
+    # Benefits Summary
+    # --------------------------------------------------------
+
     print("\n💡 Template Benefits:")
     print("  ✓ ONE template, INFINITE uses")
     print("  ✓ Variables make it dynamic")
     print("  ✓ Consistent structure across all prompts")
     print("  ✓ Change inputs, not code!")
 
-    # Create marker for completion
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task3_complete.txt", "w") as f:
+    # --------------------------------------------------------
+    # Completion Marker
+    # --------------------------------------------------------
+
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/task3_complete.txt", "w") as f:
         f.write("COMPLETED")
 
     print("\n✅ Task 3 completed! One template, endless possibilities!")
+
+# ============================================================
+# Entrypoint
+# ============================================================
 
 if __name__ == "__main__":
     main()

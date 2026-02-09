@@ -4,11 +4,11 @@
 Making your first AI API call through 5 micro-tasks - each building on the previous one, like climbing stairs one step at a time.
 
 ### Your 5-Step Journey:
-1. **Task 1**: Import the OpenAI library (2 lines)
-2. **Task 2**: Initialize the client with credentials (2 lines)
-3. **Task 3**: Make your first API call (3 lines)
-4. **Task 4**: Extract the AI's response (1 line)
-5. **Task 5**: Understand token costs (2 lines)
+1. **Task 1**: Import the OpenAI library (2 lines) <span style="color:green;">DONE</span>
+2. **Task 2**: Initialize the client with credentials (2 lines) <span style="color:green;">DONE</span>
+3. **Task 3**: Make your first API call (3 lines) <span style="color:green;">DONE</span>
+4. **Task 4**: Extract the AI's response (1 line) <span style="color:green;">DONE</span>
+5. **Task 5**: Understand token costs (2 lines) <span style="color:green;">DONE</span>
 
 ## 🚀 Before You Start
 - You've never coded with AI before? **Perfect!** This lab is for absolute beginners.
@@ -34,6 +34,8 @@ Think of it like ordering food at a restaurant:
 ### The Response Object
 When you call the API, you get back a "package" containing:
 - `choices[0].message.content` → The actual text response
+    - `response.choices[0].message.content` change this to `response.output_text`
+`
 - `usage.prompt_tokens` → Tokens in your question
 - `usage.completion_tokens` → Tokens in AI's answer
 - `usage.total_tokens` → Total tokens (what you pay for)

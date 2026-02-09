@@ -1,22 +1,16 @@
 #!/usr/bin/env python3
 """
 Task 3: Making Your First API Call
-Understand EVERY part of the chat completion call.
+Understand EVERY part of the OpenAI Responses API.
 """
 
-import openai
+from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
-# The OpenAI client needs two things:
-# 1. API Key - Your authentication (like a password)
-# 2. Base URL - Where to send requests (like an address)
-
 load_dotenv(override=True)
-openai_api_key = os.getenv('OPENAI_API_KEY')
 
-client = openai.OpenAI()
-
+client = OpenAI()
 
 # ==========================================
 # UNDERSTANDING THE API CALL STRUCTURE
@@ -24,62 +18,39 @@ client = openai.OpenAI()
 #
 # To make an API call, you MUST provide:
 # 1. model - Which AI model to use (required)
-# 2. messages - Your conversation with the AI (required)
+# 2. input - What you want the AI to respond to (required)
 #
-# The messages parameter is a list of dictionaries, each with:
-# - role: Who is speaking ("user", "assistant", or "system")
-# - content: What they are saying
+# The input can be:
+# - A simple string (most common)
+# - A structured object (advanced use cases)
 # ==========================================
 
-# TODO: Read each line below carefully to understand what it does
-# Then uncomment ALL lines (remove the # symbols) and fill in the blanks:
-
-response = client.chat.completions.create(
-    model="gpt-4.1-mini",  # TODO: Use "openai/gpt-4.1-mini" - which AI model to use
-    messages=[
-        {
-            "role": "user",     # TODO: Use "user" - you're the user speaking
-            "content": "Hello AI, please introduce yourself"   # TODO: Use "Hello AI, please introduce yourself" - your message
-        }
-    ]
+response = client.responses.create(
+    model="gpt-4.1-mini",
+    input="Hello AI, please introduce yourself"
 )
 
 # ==========================================
-# REAL RESPONSE OBJECT STRUCTURE
-# This is an ACTUAL response from OpenAI:
+# REAL RESPONSE OBJECT STRUCTURE (SIMPLIFIED)
 # ==========================================
-"""
-ChatCompletion(
-    id='gen-1758773976-Ek9OxTgdgkP4Mo3ub6qf',
-    choices=[
-        Choice(
-            finish_reason='stop',
-            index=0,
-            message=ChatCompletionMessage(
-                content="Hello! I'm ChatGPT, an AI language model created by OpenAI. I'm here to help with a wide range of tasks such as answering questions, providing explanations, generating creative content, assisting with writing, and much more. How can I assist you today?",
-                role='assistant'
-            )
-        )
-    ],
-    created=1758773976,
-    model='openai/gpt-4.1-mini',
-    object='chat.completion',
-    usage=CompletionUsage(
-        completion_tokens=55,
-        prompt_tokens=13,
-        total_tokens=68
-    )
-)
-"""
+#
+# response
+# ├── id
+# ├── model
+# ├── output_text        ← Shortcut to the AI text
+# ├── output[]           ← Full structured output
+# └── usage
+#     ├── input_tokens
+#     ├── output_tokens
+#     └── total_tokens
+# ==========================================
 
-# Once you uncomment and run the code above, this will execute:
 try:
-    if 'response' in locals() and response:
-        # The AI's text is at: response.choices[0].message.content
-        ai_text = response.choices[0].message.content
+    if response:
+        ai_text = response.output_text
 
         print("✅ API Call Successful!")
-        print(f"\n🤖 AI said: {ai_text}")
+        print(f"\n🤖 AI said:\n{ai_text}")
         print(f"\n📊 Total tokens used: {response.usage.total_tokens}")
 
         # Create marker
@@ -87,13 +58,8 @@ try:
         with open("markers/task3_api_call_complete.txt", "w") as f:
             f.write("SUCCESS")
     else:
-        print("❌ Complete the TODO above to make your first API call")
-        print("\n📚 Required parameters:")
-        print("1. model: 'openai/gpt-4.1-mini'")
-        print("2. messages: [{'role': 'user', 'content': 'your message'}]")
-except NameError:
-    print("❌ Uncomment the code above and fill in the blanks!")
-    print("\n📚 Required values:")
-    print("   - model: 'openai/gpt-4.1-mini'")
-    print("   - role: 'user'")
-    print("   - content: 'Hello AI, please introduce yourself'")
+        print("❌ API call did not return a response")
+
+except Exception as e:
+    print("❌ Error while making API call")
+    print(str(e))
