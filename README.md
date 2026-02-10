@@ -30,8 +30,8 @@
 
 # 4. Deep Learning
 
-- [] Neural network architecture (layers, weights, activations)
-- [] Backpropagation and gradient descent
+- [x] Neural network architecture (layers, weights, activations)
+- [x] Backpropagation and gradient descent
 - [] CNNs for image processing tasks
 - [] RNNs, LSTMs for sequential data
 - [] Dropout, batch normalization, early stopping
