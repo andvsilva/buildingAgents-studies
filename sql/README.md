@@ -643,6 +643,25 @@ Good For:
 
 Small/medium companies
 
+### Preparing Data for Analysis in PostgreSQL
+
+PostgreSQL is more than a relational database. It is:
+
+- An analytical engine
+- A transformation layer
+- A feature engineering tool
+- A semi-structured data processor (JSONB support)
+- A foundation for ML pipelines
+
+Choosing the right type impacts:
+
+- Performance
+- Indexing efficiency
+- Storage
+- Query planning
+- ML feature reliability
+
+
 Up to a few TB
 
 - Moderate concurrency

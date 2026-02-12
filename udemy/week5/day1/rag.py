@@ -32,7 +32,7 @@ for filename in filenames:
 
 knowledge["lancaster"]
 
-filenames = glob.glob("knowledge-base/products/*")
+filenames = glob.glob("../knowledge-base/products/*")
 
 for filename in filenames:
     name = Path(filename).stem
