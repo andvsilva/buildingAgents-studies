@@ -3,3 +3,5 @@
 *.db
 *.sqlite
 *.dump
+*.bin
+*.sqlite3
