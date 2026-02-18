@@ -9,6 +9,9 @@ Learning Goal: Master chain-of-thought prompting for complex reasoning tasks.
 import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
 
 def main():
     print("🎯 Task 4: Chain-of-Thought Prompting")
@@ -16,9 +19,8 @@ def main():
 
     # Initialize LLM
     llm = ChatOpenAI(
-        model="openai/gpt-4.1-mini",
+        model="gpt-4.1-mini",
         api_key=os.getenv("OPENAI_API_KEY"),
-        base_url=os.getenv("OPENAI_API_BASE"),
         temperature=0.7
     )
 
@@ -26,7 +28,7 @@ def main():
     print("-" * 40)
 
     # Direct prompt without reasoning steps
-    direct_prompt = """Our current data retention policy states:\n- Customer personal data is stored indefinitely\n- There is no documented data deletion or review process\n- System backups are retained forever and include personal data\- No distinction is made between active and inactive users\nFix this policy to comply with GDPR."""
+    direct_prompt = """Our current data retention policy states:\n- Customer personal data is stored indefinitely\n- There is no documented data deletion or review process\n- System backups are retained forever and include personal data\n- No distinction is made between active and inactive users\nFix this policy to comply with GDPR."""
 
     print(f"❌ Direct prompt: {direct_prompt}")
     direct_response = llm.invoke(direct_prompt)
@@ -36,13 +38,11 @@ def main():
     print("\n📝 Part 2: Chain-of-Thought Approach")
     print("-" * 40)
 
-    # TODO 1: Create reasoning steps for the AI to follow
-    reasoning_steps = """___"""  # Replace ___ with: "Step 1: Review GDPR requirements related to data retention and storage limitation\nStep 2: Identify compliance gaps in the current data retention policy\nStep 3: Reference industry best practices for data retention and deletion\nStep 4: Draft specific, GDPR-compliant policy changes\nStep 5: Propose an implementation and enforcement timeline"
+    reasoning_steps = """Step 1: Review GDPR requirements related to data retention and storage limitation\nStep 2: Identify compliance gaps in the current data retention policy\nStep 3: Reference industry best practices for data retention and deletion\nStep 4: Draft specific, GDPR-compliant policy changes\nStep 5: Propose an implementation and enforcement timeline"""
 
     print("🧠 Reasoning steps defined:")
     print(reasoning_steps)
 
-    # TODO 2: Build chain-of-thought prompt template
     cot_template = PromptTemplate(
         template="""To solve this problem, think through it step-by-step:
 
@@ -51,13 +51,12 @@ def main():
 Problem: {problem}
 
 Now, let's work through each step systematically:""",
-        input_variables=["___", "___"]  # Replace ___ with: "steps", "problem"
+        input_variables=["steps", "problem"]
     )
 
-    # TODO 3: Apply chain-of-thought to the problem
     cot_prompt = cot_template.format(
         steps=reasoning_steps,
-        problem="___"  # Replace ___ with: "Fix our data retention policy to comply with GDPR"
+        problem="Fix our data retention policy to comply with GDPR"
     )
 
     print("\n🔄 Applying Chain-of-Thought Reasoning")
@@ -90,8 +89,8 @@ Now, let's work through each step systematically:""",
     print("  ✓ Get detailed, reasoned responses")
 
     # Create marker for completion
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task4_complete.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/task4_complete.txt", "w") as f:
         f.write("COMPLETED")
 
     print("\n✅ Task 4 completed! Chain-of-thought prompting mastered!")

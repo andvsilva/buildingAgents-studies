@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Prompt engineering is not about “writing good prompts” — 
+it's about controlling model behavior with structured information.
+
 Task 1: Zero-Shot Prompting - Direct Instructions Without Examples
 Learn how to write clear, specific prompts that work without providing examples.
 
@@ -8,7 +11,9 @@ Learning Goal: Master zero-shot prompting for immediate AI responses.
 
 import os
 from langchain_openai import ChatOpenAI
-from langchain_core.prompts import PromptTemplate
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
 
 def main():
     print("🎯 Task 1: Zero-Shot Prompting")
@@ -19,14 +24,12 @@ def main():
 
     # Initialize LLM
     llm = ChatOpenAI(
-        model="openai/gpt-4.1-mini",
+        model="gpt-4.1-mini",
         api_key=os.getenv("OPENAI_API_KEY"),
-        base_url=os.getenv("OPENAI_API_BASE"),
         temperature=0.7
     )
 
-    # TODO 1: Create a vague zero-shot prompt (see the problem!)
-    vague_prompt = "___"  # Replace ___ with: "write a data privacy policy"
+    vague_prompt = "write a data privacy policy"
 
     print(f"❌ Vague prompt: {vague_prompt}")
 
@@ -38,8 +41,7 @@ def main():
     print("\n📝 Part 2: Specific Zero-Shot Prompting")
     print("-" * 40)
 
-    # TODO 2: Create a specific zero-shot prompt (see the improvement!)
-    specific_prompt = "___"  # Replace ___ with: "Write a 200-word data privacy policy for European customers covering GDPR requirements, data retention periods of 30 days, and user rights to deletion and portability"
+    specific_prompt = "Write a 200-word data privacy policy for European customers covering GDPR requirements, data retention periods of 30 days, and user rights to deletion and portability"
 
     print(f"✅ Specific prompt: {specific_prompt[:50]}...")
 
@@ -62,8 +64,8 @@ def main():
     print("  ✓ Specify requirements (retention, rights)")
 
     # Create marker for completion
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task1_complete.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/task1_complete.txt", "w") as f:
         f.write("COMPLETED")
 
     print("\n✅ Task 1 completed! Zero-shot prompting mastered!")

@@ -177,13 +177,15 @@ Upon completing all 5 tasks, you will have:
 - ✅ Gained practical experience with real scenarios
 - ✅ Built a foundation for advanced AI applications
 
-## 🚀 Next Steps
+## 🔥 Big Picture Understanding
 
-After mastering prompt engineering:
-1. **Build AI Agents**: Combine techniques for autonomous systems
-2. **Create Templates**: Design reusable prompt patterns
-3. **Optimize Performance**: Fine-tune prompts for your domain
-4. **Scale Solutions**: Apply techniques to production systems
+| Technique        | Strength          | Weakness               |
+| ---------------- | ----------------- | ---------------------- |
+| Zero-shot        | Fast              | Unstructured           |
+| One-shot         | Better formatting | Limited generalization |
+| Few-shot         | High consistency  | Uses more tokens       |
+| Chain-of-thought | Best reasoning    | Longer responses       |
+
 
 ---
 
