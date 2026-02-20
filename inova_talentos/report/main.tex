@@ -1,0 +1,274 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[brazil, english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-2.5pt}
+\usepackage{xcolor}
+\usepackage{amsmath, amssymb, bm}
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage{tikz}
+\usepackage{newunicodechar}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{tikz-3dplot} % Necessário para coordenadas 3D
+\usetikzlibrary{intersections}
+\usepackage{siunitx}
+\usetikzlibrary{3d, arrows.meta}
+\usepackage{booktabs}
+
+
+\usepackage{color}
+\definecolor{myblue}{rgb}{.8, .8, 1}
+
+\usepackage{amsmath}
+\usepackage{empheq}
+
+\newlength\mytemplen
+\newsavebox\mytempbox
+
+\makeatletter
+\newcommand\mybluebox{%
+    \@ifnextchar[%]
+       {\@mybluebox}%
+       {\@mybluebox[0pt]}}
+
+\def\@mybluebox[#1]{%
+    \@ifnextchar[%]
+       {\@@mybluebox[#1]}%
+       {\@@mybluebox[#1][0pt]}}
+
+\def\@@mybluebox[#1][#2]#3{
+    \sbox\mytempbox{#3}%
+    \mytemplen\ht\mytempbox
+    \advance\mytemplen #1\relax
+    \ht\mytempbox\mytemplen
+    \mytemplen\dp\mytempbox
+    \advance\mytemplen #2\relax
+    \dp\mytempbox\mytemplen
+    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+\makeatother
+
+\usepackage[most]{tcolorbox}
+
+\newtcbox{\mymath}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=blue!30!black,
+    colback=blue!30, boxrule=1pt,
+    #1}
+
+\tcbset{
+    highlight math style={
+        enhanced,
+        colframe=red!60!black,
+        colback=yellow!50,
+        arc=4pt,
+        boxrule=1pt,
+        drop fuzzy shadow
+    }
+    }
+
+\usepackage{physics}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+\linespread{1.5}
+
+\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
+\definecolor{byzantium}{rgb}{0.44, 0.16, 0.39}
+\newunicodechar{∘}{\circ}
+
+\input{commands.tex}
+
+\hypersetup{
+    colorlinks=true,% make the links colored
+    linkcolor=blue
+}
+
+\usepackage{setspace}
+\addbibresource{bibliography.bib}
+
+\newcommand{\printingbibliography}{%
+
+    \pagestyle{myheadings}
+    \markright{}
+    \sloppy
+    \printbibliography[heading=bibintoc, % add to table of contents
+                   title=Refer\^encias % Chapter name
+                  ]
+    \fussy%
+}
+\PassOptionsToPackage{table}{xcolor}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[R]{\thepage}
+
+\geometry{a4paper,top=30mm,bottom=20mm,left=30mm,right=20mm}
+
+\titleformat*{\section}{\bfseries\large}
+\titleformat*{\subsection}{\bfseries\normalsize}
+
+\title{\LARGE \textbf{Preparation Plan -- Tech 3 (Master's Level)
+\large Instituto Itaú de Ciência, Tecnologia e Inovação \\
+\large Inova Talentos}}
+\author{Andr\'e Vieira da Silva}
+\date{\today}
+
+\begin{document}
+
+\noindent\textbf{Key Objective:} \\
+Combine strong analytical skills in data with the practical ability to design and deploy AI agents that generate measurable business impact.
+
+\vspace{0.5cm}
+
+\section*{1. Understanding the ``Tech 3 -- Master'' Profile}
+
+\begin{itemize}
+\item[] Advanced analytical reasoning
+\item[] Technical autonomy
+\item[] Strategic business thinking
+\item[] Ability to propose leverage points
+\item[] Capability to design end-to-end solutions
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{2. Data Analysis \& Business Levers (Critical)}
+
+\subsection*{Advanced SQL}
+
+\begin{itemize}
+\item[] CTEs
+\item[] Window functions
+\item[] Complex aggregations
+\item[] Correlated subqueries
+\item[] Query optimization
+\item[] Dimensional modeling (Star Schema)
+\end{itemize}
+
+\subsection*{Business Metrics and Levers}
+
+\begin{itemize}
+\item[] Conversion funnels
+\item[] Cohort analysis
+\item[] Retention metrics
+\item[] LTV (Lifetime Value)
+\item[] CAC (Customer Acquisition Cost)
+\item[] ROI (Return on Investment)
+\item[] Price elasticity
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{3. AI Development -- Agents}
+
+\subsection*{Core Knowledge}
+
+\begin{itemize}
+\item[] LLM fundamentals
+\item[] RAG (Retrieval-Augmented Generation)
+\item[] Tool integration
+\item[] Orchestration
+\item[] Memory strategies
+\item[] Multi-agent systems
+\item[] Observability and monitoring
+\end{itemize}
+
+\subsection*{Technical Foundations}
+
+\begin{itemize}
+\item[] Embeddings
+\item[] Vectorization
+\item[] Vector databases (FAISS, Pinecone)
+\item[] Chunking strategies
+\item[] LLM evaluation frameworks
+\item[] Cost vs performance trade-offs
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{4. Generative AI Depth}
+
+\begin{itemize}
+\item[] Frontier models
+\item[] Context windows
+\item[] Hallucination causes
+\item[] Alignment principles
+\item[] Safety mechanisms
+\item[] Temperature / top-p
+\item[] Prompt chaining
+\item[] Structured outputs
+\item[] Ability to justify technical decisions
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{5. Large-Scale Data Systems (Desirable)}
+
+\begin{itemize}
+\item[] Partitioning strategies
+\item[] Indexing techniques
+\item[] Query execution plans
+\item[] Distributed systems concepts
+\item[] Spark fundamentals
+\item[] ETL vs ELT
+\item[] Data warehouse vs Data lake
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{6. 3-Week Intensive Study Plan}
+
+\subsection*{Week 1 -- SQL \& Business Analytics}
+
+\begin{itemize}
+\item[] Advanced SQL practice
+\item[] Data modeling
+\item[] Business metrics deep dive
+\item[] Churn case study
+\end{itemize}
+
+\subsection*{Week 2 -- Generative AI \& Agents}
+
+\begin{itemize}
+\item[] Build an agent with tool calling
+\item[] Implement a RAG pipeline
+\item[] Evaluate model outputs
+\item[] Measure inference cost
+\end{itemize}
+
+\subsection*{Week 3 -- Architecture \& Strategy}
+
+\begin{itemize}
+\item[] Design an end-to-end solution
+\item[] Address scalability concerns
+\item[] Simulate a technical interview
+\item[] Prepare a project pitch
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{7. Interview Preparation}
+
+Be ready to answer:
+
+\begin{itemize}
+\item[] How would you measure the impact of an AI agent?
+\item[] How do you ensure reliability?
+\item[] How do you reduce hallucinations?
+\item[] How do you scale an LLM-based system?
+\item[] How do you justify cost vs benefit?
+\end{itemize}
+
+\end{document}
