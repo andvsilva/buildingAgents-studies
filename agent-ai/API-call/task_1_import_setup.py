@@ -9,13 +9,14 @@ Learn what libraries we need for AI API calls.
 import openai
 import os
 from pathlib import Path
+import snoop
 
 
 print("✅ Step 1 Complete: Libraries imported!")
 print("- openai: For making API calls")
 print("- os: For accessing environment variables")
 
-
+@snoop
 def setup_directories():
     """
     Create required directories for the agent.
@@ -23,6 +24,7 @@ def setup_directories():
     """
 
     # Option 1: project-relative directory (recommended for repos)
+    # root directory of the current script.
     BASE_DIR = Path(__file__).resolve().parent
     markers_dir = BASE_DIR / "markers"
 
