@@ -12,12 +12,11 @@ Learning Goal: Extract structured data from unstructured AI responses.
 
 import os
 import json
-
+from pydantic import SecretStr
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import (
-    StrOutputParser,
     JsonOutputParser,
     CommaSeparatedListOutputParser,
 )
@@ -49,7 +48,7 @@ def main():
 
     llm = ChatOpenAI(
         model="gpt-4.1-mini",
-        api_key=get_api_key,
+        api_key=SecretStr(get_api_key()),
         temperature=0
     )
 

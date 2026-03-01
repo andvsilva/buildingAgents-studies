@@ -27,7 +27,7 @@ def raw_openai_approach():
 
     response = client.responses.create(
         model="gpt-4.1-mini",
-        input="Explain machine learning in one sentence."
+        input="Explain machine learning in one sentence." # prompt to the LLM
     )
 
     if response and response.output_text:

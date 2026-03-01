@@ -15,6 +15,7 @@ import os
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
+from pydantic import SecretStr
 
 # ============================================================
 # Environment
@@ -57,7 +58,7 @@ def main():
 
     llm = ChatOpenAI(
         model="gpt-4.1-mini",
-        api_key=get_api_key,
+        api_key=SecretStr(get_api_key()),
         temperature=0.7
     )
 

@@ -7,6 +7,8 @@ with logical provider aliases (OpenAI, Google-style, XAI-style).
 Learning Goal: Provider flexibility without changing code structure.
 """
 
+#FIXME: this use only API openai.
+
 # ============================================================
 # Imports
 # ============================================================
@@ -56,7 +58,7 @@ def create_llm(provider: str, temperature: float = 0.2) -> ChatOpenAI:
     return ChatOpenAI(
         model=model,
         temperature=temperature,
-        api_key=get_api_key
+        api_key=SecretStr(get_api_key())
     )
 
 

@@ -7,6 +7,9 @@ Verifies that all required packages and configurations are properly set up.
 import os
 import sys
 import subprocess
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
 
 def check_virtual_environment():
     """Check if virtual environment is active"""
@@ -27,7 +30,6 @@ def check_langchain_import():
     except ImportError as e:
         print(f"❌ LangChain import failed: {e}")
         return False
-
 def check_openai_configuration():
     """Check OpenAI API configuration"""
     api_key = os.getenv("OPENAI_API_KEY")
@@ -41,31 +43,36 @@ def check_openai_configuration():
         print("❌ OpenAI configuration missing")
         return False
 
+#import snoop
+#@snoop
 def test_basic_llm_call():
     """Test basic LLM functionality"""
     try:
         from langchain_openai import ChatOpenAI
         from langchain_core.messages import HumanMessage
 
-        # Create client with environment variables
         llm = ChatOpenAI(
-            model="openai/gpt-4.1-mini",
+            model="gpt-4.1-mini",  # fixed model name
             temperature=0
         )
 
-        # Simple test message
-        messages = [HumanMessage(content="Say 'Environment test successful' and nothing else.")]
+        messages = [
+            HumanMessage(
+                content="Say 'Environment test successful' and nothing else."
+            )
+        ]
+
         response = llm.invoke(messages)
 
-        if "successful" in response.content.lower():
+        if response and "environment test successful" in response.content.lower():
             print("✅ LLM connection test passed")
             return True
         else:
-            print(f"❌ LLM test failed - unexpected response: {response.content}")
+            print(f"❌ Unexpected response: {response.content}")
             return False
 
     except Exception as e:
-        print(f"❌ LLM connection test failed: {str(e)}")
+        print(f"❌ LLM connection test failed: {e}")
         return False
 
 def main():
@@ -94,8 +101,8 @@ def main():
         print("Your prompt engineering lab environment is ready.")
 
         # Create success marker
-        os.makedirs("/root/markers", exist_ok=True)
-        with open("/root/markers/environment_verified.txt", "w") as f:
+        os.makedirs("markers", exist_ok=True)
+        with open("markers/environment_verified.txt", "w") as f:
             f.write("ENVIRONMENT_VERIFIED")
 
         return True

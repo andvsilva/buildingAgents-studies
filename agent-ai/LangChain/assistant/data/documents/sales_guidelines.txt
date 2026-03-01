@@ -1,0 +1,14 @@
+Sales Department Guidelines
+
+Sales Metrics:
+- Monthly Revenue
+- Revenue by Region
+- Revenue by Product
+- Average Revenue per Product
+
+Regional Performance:
+US and EU are primary revenue drivers.
+APAC is considered emerging market.
+
+Data Analysis:
+All sales data queries should be performed using SQL-based analytics systems.

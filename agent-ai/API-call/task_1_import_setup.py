@@ -7,16 +7,14 @@ Learn what libraries we need for AI API calls.
 # Step 1: Import the OpenAI library
 # This library helps us talk to AI models
 import openai
-import os
 from pathlib import Path
 import snoop
 
-
 print("✅ Step 1 Complete: Libraries imported!")
-print("- openai: For making API calls")
+print(f"- {openai.__name__}: For making API calls")
 print("- os: For accessing environment variables")
 
-@snoop
+@snoop # snoop is a python library for debugging.
 def setup_directories():
     """
     Create required directories for the agent.
