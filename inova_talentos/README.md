@@ -5,11 +5,11 @@
 
 Expected level:
 
-- [ ] Advanced analytical reasoning
-- [ ] Technical autonomy
-- [ ] Strategic business thinking
-- [ ] Ability to propose leverage points
-- [ ] Capability to design end-to-end solutions
+- [x] Advanced analytical reasoning
+- [x] Technical autonomy
+- [x] Strategic business thinking
+- [x] Ability to propose leverage points
+- [x] Capability to design end-to-end solutions
 
 This is not a junior execution role — it’s innovation-driven.
 
