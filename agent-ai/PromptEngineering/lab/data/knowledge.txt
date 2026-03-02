@@ -1,0 +1,4 @@
+Return on Investment (ROI) measures profitability relative to cost.
+EBITDA means Earnings Before Interest, Taxes, Depreciation and Amortization.
+Net Present Value (NPV) evaluates discounted future cash flows.
+Internal Rate of Return (IRR) is the discount rate that makes NPV equal zero.

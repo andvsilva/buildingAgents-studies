@@ -1,0 +1,6 @@
+Return on Investment (ROI) measures the profitability of an investment.
+
+Formula:
+ROI = (Net Profit / Investment Cost) × 100
+
+ROI is used to evaluate investment efficiency.

@@ -1,0 +1,4 @@
+Internal Rate of Return (IRR) is the discount rate that makes NPV equal to zero.
+
+IRR is used to compare investment opportunities.
+Higher IRR generally indicates better investment.
