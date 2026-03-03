@@ -1,6 +1,0 @@
-Net Present Value (NPV) calculates the present value of future cash flows.
-
-Formula:
-NPV = Σ (Cash Flow / (1 + r)^t) - Initial Investment
-
-If NPV > 0 → investment is profitable.

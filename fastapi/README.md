@@ -8,3 +8,4 @@
 - Python FastAPI Tutorial (Part 6): Completing CRUD - Update and Delete (PUT, PATCH, DELETE) - [Github](https://github.com/CoreyMSchafer/FastAPI-06-Complete-Crud/blob/main/database.py)
 - Python FastAPI Tutorial (Part 7): Sync vs Async - Converting Your App to Asynchronous - [Github](https://github.com/CoreyMSchafer/FastAPI-07-Async-Await)
 - Python FastAPI Tutorial (Part 8): Routers - Organizing Routes into Modules with APIRouter - [Github](https://github.com/CoreyMSchafer/FastAPI-08-Routers)
+- Python FastAPI Tutorial (Part 9): Frontend Forms - Connecting JavaScript to Your API - [Github](https://github.com/CoreyMSchafer/FastAPI-09-Frontend-Forms)

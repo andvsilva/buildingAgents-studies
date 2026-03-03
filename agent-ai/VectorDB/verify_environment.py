@@ -8,6 +8,7 @@ import os
 import sys
 import tempfile
 import shutil
+from config import get_api_key
 
 def check_virtual_environment():
     """Check if virtual environment is active"""
@@ -98,12 +99,10 @@ def check_langchain_integration():
 
 def check_openai_configuration():
     """Check OpenAI configuration for comparison"""
-    api_key = os.getenv("OPENAI_API_KEY")
-    api_base = os.getenv("OPENAI_API_BASE")
+    api_key = get_api_key()
 
-    if api_key and api_base:
+    if api_key:
         print(f"✅ OpenAI configuration found")
-        print(f"   API Base: {api_base}")
         return True
     else:
         print("⚠️  OpenAI configuration missing (optional for this lab)")
@@ -200,12 +199,12 @@ def main():
         status = "FAILED"
 
     # Create success marker
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/vector_env_verified.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/vector_env_verified.txt", "w") as f:
         f.write(f"VECTOR_ENV_VERIFIED_{status}")
 
     print(f"\n📊 Environment Status: {status}")
-    print(f"📁 Results saved to: /root/markers/environment_verified.txt")
+    print(f"📁 Results saved to: /markers/environment_verified.txt")
 
     return successful >= len(checks) - 1  # Allow one optional check to fail
 

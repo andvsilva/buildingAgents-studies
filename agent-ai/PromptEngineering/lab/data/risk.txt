@@ -1,7 +1,0 @@
-Financial risk refers to the possibility of losing money.
-
-Types:
-- Market risk
-- Credit risk
-- Liquidity risk
-- Operational risk
