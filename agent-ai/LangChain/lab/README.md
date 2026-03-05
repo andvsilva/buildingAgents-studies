@@ -238,3 +238,9 @@ Designed for:
 * Accuracy depends on document quality and chunking strategy.
 
 ---
+
+```
+python generate_database.py --prompt_folder data/base --quantity 10
+
+python ingest.py
+```
