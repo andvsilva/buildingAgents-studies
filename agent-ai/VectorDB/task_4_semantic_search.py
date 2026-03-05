@@ -4,9 +4,12 @@
 Build a complete semantic search system that understands meaning!
 """
 
+from transformers import logging
+
+logging.set_verbosity_error()
+
 import os
 import tempfile
-from typing import List
 from langchain_community.vectorstores import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.documents import Document
@@ -54,13 +57,11 @@ def build_search_engine():
 
         print("✅ Vector store ready!\n")
 
-        # TODO 1: Set search query
-        # Replace ___ with: "work from home policy"
-        search_query = "___"
+        # Set search query
+        search_query = "work from home policy"
 
-        # TODO 2: Set number of results
-        # Replace ___ with: 3
-        k = ___
+        # Set number of results
+        k = 3
 
         print(f"🔎 Searching for: '{search_query}'")
         print(f"   Returning top {k} results")
@@ -73,9 +74,8 @@ def build_search_engine():
         for i, doc in enumerate(results, 1):
             print(f"\n{i}. {doc.page_content}")
 
-        # TODO 3: Similarity search with scores
-        # Replace ___ with: 1.3
-        score_threshold = ___
+        # Similarity search with scores
+        score_threshold = 1.3
 
         print(f"\n🎯 Filtered Search (threshold > {score_threshold}):")
         print("-" * 40)
@@ -120,8 +120,8 @@ def build_search_engine():
     print("• Ready for production deployment!")
 
     # Create completion marker
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task4_search_complete.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/task4_search_complete.txt", "w") as f:
         f.write("COMPLETED")
 
     print("\n✅ Task 4 completed! Semantic search mastered!")

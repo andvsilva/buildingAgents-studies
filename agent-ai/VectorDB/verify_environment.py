@@ -9,6 +9,8 @@ import sys
 import tempfile
 import shutil
 from config import get_api_key
+from transformers import logging
+logging.set_verbosity_error()
 
 def check_virtual_environment():
     """Check if virtual environment is active"""
@@ -46,7 +48,7 @@ def check_embedding_models():
 
         # Test with a lightweight model
         print("🔄 Loading embedding model (this may take a moment)...")
-        model = SentenceTransformer('all-MiniLM-L6-v2')
+        model = SentenceTransformer('all-MiniLM-L6-v2', device="cpu")
 
         # Test embedding generation
         test_text = "This is a test sentence for embedding."
@@ -71,7 +73,7 @@ def check_langchain_integration():
         print("✅ LangChain vector store components available")
 
         # Test basic integration
-        embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+        embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2", device="cpu")
         test_texts = ["Test document one", "Test document two"]
 
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -118,7 +120,7 @@ def test_vector_operations():
         print("🔄 Testing vector similarity operations...")
 
         # Load model and create embeddings
-        model = SentenceTransformer('all-MiniLM-L6-v2')
+        model = SentenceTransformer('all-MiniLM-L6-v2', device="cpu")
 
         # Test documents with varying similarity
         docs = [

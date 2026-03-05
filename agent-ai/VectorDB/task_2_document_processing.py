@@ -5,11 +5,9 @@ Learn how to split documents intelligently for vector embedding.
 """
 
 import os
-from typing import List
 
-# TODO 1: Import the text splitter
-# Replace ___ with: RecursiveCharacterTextSplitter
-from langchain_text_splitters import ___
+# Import the text splitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 def process_documents():
     print("📄 Task 2: Smart Document Chunking")
@@ -53,10 +51,10 @@ def process_documents():
     print(f"📋 Original Document Length: {len(long_document)} characters")
     print("-" * 40)
 
-    # TODO 2 & 3: Configure the text splitter
+    # Configure the text splitter
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=___,      # Replace ___ with: 500
-        chunk_overlap=___,   # Replace ___ with: 200
+        chunk_size = 500,
+        chunk_overlap = 200,
         length_function=len,
         separators=[" "]
     )
@@ -64,10 +62,10 @@ def process_documents():
     # Split the document
     chunks = splitter.split_text(long_document)
 
-    print(f"\n✂️ Chunking Results:")
+    print("\n✂️ Chunking Results:")
     print(f"• Created {len(chunks)} chunks")
-    print(f"• Chunk size: ~500 characters")
-    print(f"• Overlap: 100 characters\n")
+    print("• Chunk size: ~500 characters")
+    print("• Overlap: 100 characters\n")
 
     # Display chunks
     for i, chunk in enumerate(chunks[:3], 1):  # Show first 3 chunks
@@ -95,8 +93,8 @@ def process_documents():
     print("• Improves retrieval accuracy by 40%!")
 
     # Create completion marker
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task2_chunking_complete.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/task2_chunking_complete.txt", "w") as f:
         f.write("COMPLETED")
 
     print("\n✅ Task 2 completed! Document chunking mastered.")

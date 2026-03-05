@@ -5,11 +5,12 @@
 
 import os
 from sentence_transformers import SentenceTransformer, util
+from transformers import logging
+logging.set_verbosity_error()
 
 def main():
-    # TODO 1: Initialize model that converts text → meaningful numbers
-    # Replace ___ with: "all-MiniLM-L6-v2"
-    model = SentenceTransformer("___")
+    # Initialize model that converts text → meaningful numbers
+    model = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
 
     # Scenario: User searching documentation
     query = "forgot my password"
@@ -21,15 +22,12 @@ def main():
         "Login help: Contact IT if you cannot access your account"
     ]
 
-    # TODO 2: Convert query and docs to embeddings
-    # Replace ___ with: model.encode(query)
-    query_emb = ___
-    # Replace ___ with: model.encode(docs)
-    doc_embs = ___
+    # Convert query and docs to embeddings
+    query_emb = model.encode(query)
+    doc_embs = model.encode(docs)
 
-    # TODO 3: Find semantic matches
-    # Replace ___ with: util.cos_sim(query_emb, doc_embs)[0]
-    scores = ___
+    # Find semantic matches
+    scores = util.cos_sim(query_emb, doc_embs)[0]
 
     print(f"Query: '{query}'\n")
     print("Results (score > 0.3 = relevant):")
@@ -40,8 +38,8 @@ def main():
     print("\n💡 Notice: Found 'Password recovery' and 'Login help'")
     print("   Even though query didn't contain those exact words!")
 
-    os.makedirs("/root/markers", exist_ok=True)
-    open("/root/markers/task1_embeddings_complete.txt", "w").write("DONE")
+    os.makedirs("markers", exist_ok=True)
+    open("markers/task1_embeddings_complete.txt", "w").write("DONE")
 
 if __name__ == "__main__":
     main()

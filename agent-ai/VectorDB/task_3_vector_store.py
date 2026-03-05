@@ -6,16 +6,15 @@ Create a production-ready vector database using LangChain and ChromaDB.
 
 import os
 import tempfile
-from typing import List
+from transformers import logging
 
-# TODO 1: Import Chroma vector store
-# Replace ___ with: Chroma
-from langchain_community.vectorstores import ___
+logging.set_verbosity_error()
 
-# TODO 2: Import HuggingFace embeddings
-# Replace ___ with: HuggingFaceEmbeddings
-from langchain_huggingface import ___
+# Import Chroma vector store
+from langchain_community.vectorstores import Chroma
 
+# Import HuggingFace embeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
@@ -23,10 +22,9 @@ def main():
     print("🗄️ Task 3: Building Vector Store with ChromaDB")
     print("=" * 55)
 
-    # TODO 3: Initialize embeddings
-    # Replace ___ with: "all-MiniLM-L6-v2"
+    # Initialize embeddings
     embeddings = HuggingFaceEmbeddings(
-        model_name="___",
+        model_name="all-MiniLM-L6-v2",
         model_kwargs={'device': 'cpu'},
         encode_kwargs={'normalize_embeddings': True}
     )
@@ -115,8 +113,8 @@ def main():
     print("• Ready for RAG applications!")
 
     # Create completion marker
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task3_vectorstore_complete.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/task3_vectorstore_complete.txt", "w") as f:
         f.write("COMPLETED")
 
     print("\n✅ Task 3 completed! Vector store built successfully.")
