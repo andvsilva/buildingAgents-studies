@@ -9,3 +9,4 @@
 - Python FastAPI Tutorial (Part 7): Sync vs Async - Converting Your App to Asynchronous - [Github](https://github.com/CoreyMSchafer/FastAPI-07-Async-Await)
 - Python FastAPI Tutorial (Part 8): Routers - Organizing Routes into Modules with APIRouter - [Github](https://github.com/CoreyMSchafer/FastAPI-08-Routers)
 - Python FastAPI Tutorial (Part 9): Frontend Forms - Connecting JavaScript to Your API - [Github](https://github.com/CoreyMSchafer/FastAPI-09-Frontend-Forms)
+- Python FastAPI Tutorial (Part 10): Authentication - Registration and Login with JWT - [Github](https://github.com/CoreyMSchafer/FastAPI-10-Authentication)
