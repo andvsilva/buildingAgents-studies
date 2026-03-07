@@ -6,3 +6,4 @@
 *.bin
 *.sqlite3
 *.txt
+agent-ai/VectorDB/books/*.pdf

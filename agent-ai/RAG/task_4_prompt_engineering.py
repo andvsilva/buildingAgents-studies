@@ -6,17 +6,15 @@ Build the RAG prompt template that ensures accurate, context-based answers
 
 import os
 from langchain_openai import ChatOpenAI
+from config import get_api_key
 
 print("📝 Task 4: Prompt Engineering")
 print("=" * 50)
 
 # Initialize LangChain ChatOpenAI client
-api_base = os.getenv("OPENAI_API_BASE")
-api_key = os.getenv("OPENAI_API_KEY")
 client = ChatOpenAI(
-    api_key=api_key,
-    base_url=api_base,
-    model="openai/gpt-4.1-mini",
+    api_key=get_api_key(),
+    model="gpt-4.1-mini",
     temperature=0.3,
     max_tokens=200
 )
@@ -26,27 +24,24 @@ print("✅ OpenAI client ready")
 def create_rag_prompt(context_chunks, user_question):
     """Create the RAG prompt with context and question"""
 
-    # TODO 1: Complete the system prompt for context-based answers
-    # Hint: The AI should answer "ONLY" based on provided context
+    # Complete the system prompt for context-based answers
     system_prompt = """You are TechCorp's helpful AI assistant.
 Answer ___ based on the provided context.
 If the answer is not in the context, say: 'I don't have that information in the provided documents.'
 Be concise and accurate."""  # Replace ___ with "ONLY"
 
-    # TODO 2: Build context section from retrieved chunks
-    # Hint: Format each chunk as [Document N] followed by content
+    # Build context section from retrieved chunks
     context_text = "Context from TechCorp documents:\n\n"
     for i, chunk in enumerate(context_chunks, 1):
-        context_text += f"[Document {i}]\n{___}\n\n"  # Replace ___ with chunk
+        context_text += f"[Document {i}]\n{chunk}\n\n"
 
-    # TODO 3: Create the user prompt with context and question
-    # Hint: Include context_text and user_question
+    # Create the user prompt with context and question
     user_prompt = f"""
 {context_text}
 
-Question: {___}
+Question: {user_question}
 
-Answer:"""  # Replace ___ with user_question
+Answer:"""
 
     return system_prompt, user_prompt
 
@@ -100,8 +95,8 @@ try:
     print("=" * 50)
 
     # Create marker file
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task4_prompt_complete.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/task4_prompt_complete.txt", "w") as f:
         f.write("TASK4_COMPLETE:PROMPT_READY")
 
 except Exception as e:

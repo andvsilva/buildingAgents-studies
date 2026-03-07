@@ -6,6 +6,10 @@ Checks all dependencies and configurations
 
 import os
 import sys
+from config import get_api_key
+from transformers import logging
+
+logging.set_verbosity_error()
 
 def check_virtual_environment():
     """Check if virtual environment is active"""
@@ -39,12 +43,10 @@ def check_imports():
 
 def check_openai_config():
     """Check OpenAI API configuration"""
-    api_base = os.getenv("OPENAI_API_BASE")
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = get_api_key()
 
-    if api_base and api_key:
+    if api_key:
         print(f"✅ OpenAI configuration found")
-        print(f"   API Base: {api_base}")
         return True
     else:
         print("❌ OpenAI configuration missing")
@@ -53,7 +55,7 @@ def check_openai_config():
 
 def check_documents():
     """Check if TechCorp documents exist"""
-    doc_dir = "/root/techcorp-docs"
+    doc_dir = "techcorp-docs"
     if os.path.exists(doc_dir):
         doc_count = sum(1 for root, dirs, files in os.walk(doc_dir) for file in files if file.endswith('.md'))
         print(f"✅ TechCorp documents found: {doc_count} files")
@@ -96,8 +98,8 @@ def main():
         status = "INCOMPLETE"
 
     # Create marker file
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/environment_verified.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/environment_verified.txt", "w") as f:
         f.write(f"ENV_STATUS:{status}")
 
     print(f"\n📊 Status: {status}")

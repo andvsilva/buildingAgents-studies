@@ -8,6 +8,10 @@ import os
 import chromadb
 from sentence_transformers import SentenceTransformer
 from langchain_openai import ChatOpenAI
+from config import get_api_key
+from transformers import logging
+
+logging.set_verbosity_error()
 
 print("🚀 Task 5: Complete RAG Pipeline")
 print("=" * 50)
@@ -15,14 +19,13 @@ print("=" * 50)
 # Initialize all components
 client_db = chromadb.PersistentClient(path="./chroma_db")
 collection = client_db.get_or_create_collection("techcorp_rag")
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
 
 api_base = os.getenv("OPENAI_API_BASE")
 api_key = os.getenv("OPENAI_API_KEY")
 client_llm = ChatOpenAI(
-    api_key=api_key,
-    base_url=api_base,
-    model="openai/gpt-4.1-mini",
+    api_key=get_api_key(),
+    model="gpt-4.1-mini",
     temperature=0.3,
     max_tokens=500
 )
@@ -39,11 +42,10 @@ def rag_pipeline(user_question):
     print("1️⃣ RETRIEVE: Converting to embedding...")
     query_embedding = model.encode(user_question).tolist()
 
-    # TODO 1: Perform semantic search to find relevant chunks
-    # Hint: Use collection.query(query_embeddings=[...], n_results=3)
+    # Perform semantic search to find relevant chunks
     results = collection.query(
-        query_embeddings=[___],  # Replace ___ with query_embedding
-        n_results=___  # Replace ___ with 3
+        query_embeddings=[query_embedding],
+        n_results = 3  
     )
 
     retrieved_chunks = results['documents'][0]
@@ -56,8 +58,7 @@ def rag_pipeline(user_question):
     # Step 2: AUGMENT
     print("\n2️⃣ AUGMENT: Building context...")
 
-    # TODO 2: Define system prompt for context-aware answers
-    # Hint: Already complete - review the prompt below
+    # Define system prompt for context-aware answers
     system_prompt = """You are TechCorp's helpful AI assistant.
 Answer ONLY based on the provided context.
 If the answer is not in the context, say: 'I don't have that information in the provided documents.'"""
@@ -66,31 +67,29 @@ If the answer is not in the context, say: 'I don't have that information in the 
     for i, chunk in enumerate(retrieved_chunks, 1):
         context_text += f"[Document {i}]\n{chunk}\n\n"
 
-    # TODO 3: Complete the user prompt with question
-    # Hint: Add user_question after "Question:"
-    user_prompt = f"{context_text}\nQuestion: {___}\n\nAnswer:"  # Replace ___ with user_question
+    # Complete the user prompt with question
+    user_prompt = f"{context_text}\nQuestion: {user_question}\n\nAnswer:"
 
     print("   ✅ Context prepared with retrieved documents")
 
     # Step 3: GENERATE
     print("\n3️⃣ GENERATE: Creating answer...")
 
-    # TODO 4: Create messages for LLM with system and user prompts
+    # Create messages for LLM with system and user prompts
     # Hint: Use system_prompt and user_prompt
     messages = [
-        {"role": "system", "content": ___},  # Replace ___ with system_prompt
-        {"role": "user", "content": ___}     # Replace ___ with user_prompt
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_prompt}
     ]
 
     response = client_llm.invoke(messages)
     answer = response.content
 
-    # TODO 5: Format response with source citations
-    # Hint: Use ', '.join(unique_sources) to list sources
+    # Format response with source citations
     sources = [meta['source'] for meta in metadatas]
     unique_sources = list(set(sources))
 
-    final_response = f"{answer}\n\n📎 Sources: {', '.join(___)}"  # Replace ___ with unique_sources
+    final_response = f"{answer}\n\n📎 Sources: {', '.join(unique_sources)}"
 
     return final_response
 
@@ -129,8 +128,8 @@ try:
         print("=" * 50)
 
         # Create marker file
-        os.makedirs("/root/markers", exist_ok=True)
-        with open("/root/markers/task5_rag_complete.txt", "w") as f:
+        os.makedirs("markers", exist_ok=True)
+        with open("markers/task5_rag_complete.txt", "w") as f:
             f.write("TASK5_COMPLETE:RAG_PIPELINE_READY")
 
 except Exception as e:

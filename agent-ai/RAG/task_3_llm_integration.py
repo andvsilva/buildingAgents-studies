@@ -6,42 +6,34 @@ Configure the AI generation engine using pre-configured OpenAI API
 
 import os
 from langchain_openai import ChatOpenAI
-
-print("🤖 Task 3: LLM Integration")
-print("=" * 50)
-
-# Get environment variables
-api_base = os.getenv("OPENAI_API_BASE")
-api_key = os.getenv("OPENAI_API_KEY")
-
-# TODO 1: Initialize LangChain ChatOpenAI client
-# Hint: Use ChatOpenAI(api_key=api_key, base_url=api_base, model="openai/gpt-4.1-mini")
-client = ChatOpenAI(
-    api_key=___,  # Replace ___ with api_key
-    base_url=___,  # Replace ___ with api_base
-    model="___"  # Replace ___ with openai/gpt-4.1-mini
-)
-
-print("✅ OpenAI client initialized")
-print(f"   Using API: {api_base}")
+from config import get_api_key
 
 # Test the LLM with a simple generation
 def test_generation():
     """Test basic LLM generation"""
 
-    # TODO 2: Set temperature for focused answers
-    # Hint: Use 0.3 for deterministic responses
-    temperature = ___  # Replace ___ with 0.3
+    print("🤖 Task 3: LLM Integration")
+    print("=" * 50)
 
-    # TODO 3: Set max tokens for concise responses
-    # Hint: Use 500 to limit response length
-    max_tokens = ___  # Replace ___ with 500
+    print("✅ OpenAI client initialized")
+
+    # Initialize LangChain ChatOpenAI client
+    client = ChatOpenAI(
+        model="gpt-4.1-mini",
+        api_key=get_api_key()
+    )
+
+    # Set temperature for focused answers
+    temperature = 0.3
+
+    # Set max tokens for concise responses
+    max_tokens = 500
 
     # Update client with temperature and max_tokens
     client.temperature = temperature
     client.max_tokens = max_tokens
 
-    print(f"\n📝 Testing openai/gpt-4.1-mini with temperature={temperature}")
+    print(f"\n📝 Testing gpt-4.1-mini with temperature={temperature}")
 
     # Create messages for the query
     messages = [
@@ -70,8 +62,8 @@ try:
     print("=" * 50)
 
     # Create marker file
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task3_llm_complete.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/task3_llm_complete.txt", "w") as f:
         f.write("TASK3_COMPLETE:LLM_READY")
 
 except Exception as e:
