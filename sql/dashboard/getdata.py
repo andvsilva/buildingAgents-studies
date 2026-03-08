@@ -15,9 +15,9 @@ engine = create_engine(
 )
 
 # dataset size
-n_customers = 100000
-n_products = 100
-n_orders = 2000000
+n_customers = 1000
+n_products = 10
+n_orders = 2000
 
 # -----------------------------
 # CUSTOMERS TABLE (15 columns)
