@@ -10,3 +10,4 @@
 - Python FastAPI Tutorial (Part 8): Routers - Organizing Routes into Modules with APIRouter - [Github](https://github.com/CoreyMSchafer/FastAPI-08-Routers)
 - Python FastAPI Tutorial (Part 9): Frontend Forms - Connecting JavaScript to Your API - [Github](https://github.com/CoreyMSchafer/FastAPI-09-Frontend-Forms)
 - Python FastAPI Tutorial (Part 10): Authentication - Registration and Login with JWT - [Github](https://github.com/CoreyMSchafer/FastAPI-10-Authentication)
+- Python FastAPI Tutorial (Part 11): Authorization - Protecting Routes and Verifying Current User [Github](https://github.com/CoreyMSchafer/FastAPI-11-Authorization)

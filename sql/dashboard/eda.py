@@ -1,7 +1,6 @@
 import pandas as pd
 from sqlalchemy import create_engine
 import plotly.express as px
-import seaborn as sns
 
 engine = create_engine(
     "postgresql+psycopg2://andrevsilva:andrevsilva@localhost:5432/datasql"
