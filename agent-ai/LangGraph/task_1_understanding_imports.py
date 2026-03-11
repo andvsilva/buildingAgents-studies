@@ -8,31 +8,28 @@ import os
 # ╠════════════════════════════════════════╣
 # ║                                        ║
 # ║  langgraph.graph                       ║
-# ║      ├── StateGraph (Class)           ║
-# ║      │    └─ Creates workflow graphs  ║
-# ║      └── END (Constant)               ║
-# ║           └─ Marks graph termination  ║
+# ║      ├── StateGraph (Class)            ║
+# ║      │    └─ Creates workflow graphs   ║
+# ║      └── END (Constant)                ║
+# ║           └─ Marks graph termination   ║
 # ║                                        ║
 # ║  typing.TypedDict                      ║
-# ║      └── For defining State structure ║
-# ║           └─ Type-safe state schema   ║
+# ║      └── For defining State structure  ║
+# ║           └─ Type-safe state schema    ║
 # ║                                        ║
 # ╚════════════════════════════════════════╝
 
 print("📚 Task 1: Understanding Imports\n")
 
-# TODO 1: Import StateGraph and END from langgraph.graph
-# Hint: from langgraph.graph import StateGraph, END
-from langgraph.graph import ___, ___  # Replace with StateGraph, END
+# Import StateGraph and END from langgraph.graph
+from langgraph.graph import StateGraph, END
 
-# TODO 2: Import TypedDict from typing
-# Hint: from typing import TypedDict
-from ___ import TypedDict  # Replace with typing
+# Import TypedDict from typing
+from typing import TypedDict
 
-# TODO 3: Define State with messages list
-# Hint: messages should be type list
+# Define State with messages list
 class State(TypedDict):
-    messages: ___  # Replace with list
+    messages: list
     next_step: str
 
 # Test that imports work
@@ -54,8 +51,8 @@ print("- TypedDict: Defines the structure of our state")
 print("- State: Data that flows through all nodes")
 print("=" * 60)
 
-os.makedirs("/root/markers", exist_ok=True)
-with open("/root/markers/task1_imports_complete.txt", "w") as f:
+os.makedirs("markers", exist_ok=True)
+with open("markers/task1_imports_complete.txt", "w") as f:
     f.write("TASK1_COMPLETE")
 
 print("\n✅ Task 1 completed!")

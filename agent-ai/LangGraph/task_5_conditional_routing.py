@@ -58,11 +58,10 @@ def analyze_node(state: State):
     length = "short" if len(state["query"]) < 20 else "long"
     return {"query_length": length}
 
-# TODO 1: Complete the router function
-# Hint: Return "quick" for short queries, "detailed" for long
+# Complete the router function
 def router(state: State):
     """Decides which path to take based on query length"""
-    if state["query_length"] == "___":  # Replace ___ with "short"
+    if state["query_length"] == "short":
         return "quick"
     return "detailed"
 
@@ -92,19 +91,16 @@ workflow.add_node("analyze", analyze_node)
 workflow.add_node("quick", quick_response_node)
 workflow.add_node("detailed", detailed_response_node)
 
-# TODO 2: Set the entry point
-# Hint: Start with "analyze" node
-workflow.___("analyze")  # Replace ___ with set_entry_point
+# Set the entry point
+workflow.set_entry_point("analyze")
 
-# TODO 3: Add conditional edges based on router
-# Hint: Map router outputs to node names
-# IMPORTANT: Keys must match what router() returns!
+# Add conditional edges based on router
 workflow.add_conditional_edges(
     "analyze",
     router,
     {
-        "quick": "quick",      # When router returns "quick" → go to "quick" node
-        "___": "detailed"  # Replace ___ with "detailed" - router returns this string!
+        "quick": "quick",
+        "detailed": "detailed"
     }
 )
 
@@ -150,8 +146,8 @@ print("- add_conditional_edges maps returns to nodes")
 print("- Different inputs → Different paths")
 print("=" * 60)
 
-os.makedirs("/root/markers", exist_ok=True)
-with open("/root/markers/task5_routing_complete.txt", "w") as f:
+os.makedirs("markers", exist_ok=True)
+with open("markers/task5_routing_complete.txt", "w") as f:
     f.write("TASK5_COMPLETE")
 
 print("\n✅ Task 5 completed!")

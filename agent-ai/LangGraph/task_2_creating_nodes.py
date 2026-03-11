@@ -58,23 +58,21 @@ class State(TypedDict):
     name: str
     greeting: str
 
-# TODO 1: Complete the greet_node function
-# Hint: Return a dictionary with "greeting" key
+# Complete the greet_node function
 def greet_node(state: State):
     """A node that creates a greeting from the name"""
     print("  🔄 Processing in greet_node...")
     time.sleep(2)  # Simulate processing time
     greeting = f"Hello, {state['name']}!"
-    return {"___": greeting}  # Replace ___ with "greeting"
+    return {"greeting": greeting}
 
-# TODO 2: Complete the enhance_node function
-# Hint: Add "How are you?" to the existing greeting
+# Complete the enhance_node function
 def enhance_node(state: State):
     """A node that enhances the greeting"""
     print("  🔄 Processing in enhance_node...")
     time.sleep(2)  # Simulate processing time - helps visualize flow
     enhanced = state["greeting"] + " How are you?"
-    return {"greeting": ___}  # Replace ___ with enhanced
+    return {"greeting": enhanced}
 
 # Test nodes directly (no graph needed yet!)
 print("Testing nodes manually:\n")
@@ -109,8 +107,8 @@ print("- In Task 3, we'll add these functions to a StateGraph")
 print("- LangGraph will handle state merging automatically in a real graph")
 print("=" * 60)
 
-os.makedirs("/root/markers", exist_ok=True)
-with open("/root/markers/task2_nodes_complete.txt", "w") as f:
+os.makedirs("markers", exist_ok=True)
+with open("markers/task2_nodes_complete.txt", "w") as f:
     f.write("TASK2_COMPLETE")
 
 print("\n✅ Task 2 completed!")

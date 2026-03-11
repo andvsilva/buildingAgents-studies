@@ -6,6 +6,7 @@ import time
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
+from config import get_api_key
 
 # Try new package name first, fall back to old one
 try:
@@ -64,15 +65,13 @@ class State(TypedDict):
 
 # Initialize LLM
 llm = ChatOpenAI(
-    model=os.getenv("OPENAI_MODEL", "openai/gpt-4.1-mini"),
-    base_url=os.getenv("OPENAI_API_BASE"),
-    api_key=os.getenv("OPENAI_API_KEY"),
+    model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
+    api_key=get_api_key(),
     temperature=0.7
 )
 
-# TODO 1: Initialize DuckDuckGo search
-# Hint: Create DDGS() instance
-ddgs = ___()  # Replace ___ with DDGS
+# Initialize DuckDuckGo search
+ddgs = DDGS()
 
 # Classify query type
 def classify_query(state: State):
@@ -104,8 +103,7 @@ def router(state: State):
         return "calculator_tool"
     return "search_tool"
 
-# TODO 2: Complete the calculator_tool
-# Hint: Return result with "result" key
+# Complete the calculator_tool
 def calculator_tool(state: State):
     """Calculator for math queries"""
     print("  🔄 Processing with calculator...")
@@ -120,8 +118,7 @@ def calculator_tool(state: State):
 
     return {"___": f"Calculation result: {answer}"}  # Replace ___ with "result"
 
-# TODO 3: Complete the search_tool
-# Hint: Use ddgs.text() to search
+# Complete the search_tool
 def search_tool(state: State):
     """Web search for information queries"""
     print("  🔄 Searching the web...")
@@ -130,7 +127,7 @@ def search_tool(state: State):
 
     try:
         # Perform the search
-        results = ___.text(state["query"], max_results=2)  # Replace ___ with ddgs
+        results = ddgs.text(state["query"], max_results=2)
 
         if results:
             print(f"  ✅ Found {len(results)} results")
@@ -220,8 +217,8 @@ print("- All powered by LangGraph!")
 print("\n💡 This is a production-ready pattern for multi-tool agents!")
 print("=" * 60)
 
-os.makedirs("/root/markers", exist_ok=True)
-with open("/root/markers/task7_agent_complete.txt", "w") as f:
+os.makedirs("markers", exist_ok=True)
+with open("markers/task7_agent_complete.txt", "w") as f:
     f.write("TASK7_COMPLETE")
 
 print("\n✅ Task 7 completed!")

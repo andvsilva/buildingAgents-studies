@@ -7,6 +7,7 @@ from typing import TypedDict
 from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
+from config import get_api_key
 
 # ╔═══════════════════════════════════╗
 # ║      Tool Selection Flow          ║
@@ -73,9 +74,8 @@ def calculator_tool(expression: str) -> str:
 
 # Initialize LLM (first time using it!)
 llm = ChatOpenAI(
-    model=os.getenv("OPENAI_MODEL", "openai/gpt-4.1-mini"),
-    base_url=os.getenv("OPENAI_API_BASE"),
-    api_key=os.getenv("OPENAI_API_KEY"),
+    model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
+    api_key=get_api_key(),
     temperature=0  # Low temperature for math accuracy
 )
 
@@ -100,16 +100,14 @@ def classify_node(state: State):
 
     return {"is_math": is_math}
 
-# TODO 1: Complete the router function
-# Hint: Route to "calculator" if is_math is True
+# Complete the router function
 def router(state: State):
     """Routes to calculator or general response"""
-    if state["___"]:  # Replace ___ with "is_math"
+    if state["is_math"]:
         return "calculator"
     return "general"
 
-# TODO 2: Complete the calculator_node
-# Hint: Return the result with key "result"
+# Complete the calculator_node
 def calculator_node(state: State):
     """Uses LLM with calculator tool"""
     print("  🔄 Processing mathematical query...")
@@ -137,7 +135,7 @@ def calculator_node(state: State):
     print("  ✅ Calculator returned result")
     time.sleep(1)  # Show result processing
 
-    return {"___": f"Answer: {answer}"}  # Replace ___ with "result"
+    return {"result": f"Answer: {answer}"}
 
 # General response for non-math queries
 def general_response_node(state: State):
@@ -157,14 +155,13 @@ workflow.add_node("classify", classify_node)
 workflow.add_node("calculator", calculator_node)
 workflow.add_node("general", general_response_node)
 
-# TODO 3: Set up routing with conditional edges
-# Hint: Route from "classify" based on router function
+# Set up routing with conditional edges
 workflow.set_entry_point("classify")
 workflow.add_conditional_edges(
     "classify",
     router,
     {
-        "___": "calculator",  # Replace ___ with "calculator"
+        "calculator": "calculator",
         "general": "general"
     }
 )
@@ -210,8 +207,8 @@ print("- Routing directs queries to appropriate tool nodes")
 print("- Conditional edges enable dynamic tool selection")
 print("=" * 60)
 
-os.makedirs("/root/markers", exist_ok=True)
-with open("/root/markers/task6_calculator_complete.txt", "w") as f:
+os.makedirs("markers", exist_ok=True)
+with open("markers/task6_calculator_complete.txt", "w") as f:
     f.write("TASK6_COMPLETE")
 
 print("\n✅ Task 6 completed!")

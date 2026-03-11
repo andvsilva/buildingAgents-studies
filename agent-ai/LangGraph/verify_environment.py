@@ -6,6 +6,7 @@ Checks all required packages and configurations
 
 import os
 import sys
+from config import get_api_key
 
 print("🔧 Verifying LangGraph Lab Environment")
 print("=" * 50)
@@ -48,12 +49,12 @@ for package, description in packages_to_check.items():
 
 # Check environment variables
 print("\n🔑 Checking environment variables:")
-env_vars = ["OPENAI_API_KEY", "OPENAI_API_BASE"]
+env_vars = ["OPENAI_API_KEY"]
 missing_env = []
 
 for var in env_vars:
     if os.getenv(var):
-        masked_value = os.getenv(var)[:8] + "..." if len(os.getenv(var)) > 8 else "***"
+        masked_value = get_api_key()[:8] + "..." if len(get_api_key()) > 8 else "***"
         print(f"  ✓ {var}: {masked_value}")
     else:
         print(f"  ✗ {var}: NOT SET")
@@ -87,9 +88,9 @@ else:
     print("🎉 All requirements satisfied - ready for LangGraph!")
 
     # Create marker file
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/environment_verified.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/environment_verified.txt", "w") as f:
         f.write("ENVIRONMENT_VERIFIED")
-    print("\n📝 Marker file created: /root/markers/environment_verified.txt")
+    print("\n📝 Marker file created: markers/environment_verified.txt")
 
 print("=" * 50)

@@ -73,19 +73,16 @@ def enhance_node(state: State):
 # NOW we build a graph!
 print("Building your first graph:\n")
 
-# TODO 1: Create a StateGraph with our State
-# Hint: StateGraph takes State as parameter
-workflow = ___(State)  # Replace ___ with StateGraph
+# Create a StateGraph with our State
+workflow = StateGraph(State)
 
-# TODO 2: Add nodes to the graph
-# Hint: Use add_node method
+# Add nodes to the graph
 workflow.add_node("greet", greet_node)
-workflow.___("enhance", enhance_node)  # Replace ___ with add_node
+workflow.add_node("enhance", enhance_node)
 
-# TODO 3: Connect nodes with edges
-# Hint: The flow should be: START → greet → enhance → END
+# Connect nodes with edges
 workflow.set_entry_point("greet")
-workflow.add_edge("greet", "___")  # Replace ___ with "enhance"
+workflow.add_edge("greet", "enhance")
 workflow.add_edge("enhance", END)
 
 # Compile the graph
@@ -109,8 +106,8 @@ print("- END: Special marker for final node")
 print("- compile: Converts graph to executable app")
 print("=" * 60)
 
-os.makedirs("/root/markers", exist_ok=True)
-with open("/root/markers/task3_edges_complete.txt", "w") as f:
+os.makedirs("markers", exist_ok=True)
+with open("markers/task3_edges_complete.txt", "w") as f:
     f.write("TASK3_COMPLETE")
 
 print("\n✅ Task 3 completed!")

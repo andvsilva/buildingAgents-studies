@@ -66,38 +66,35 @@ def draft_node(state: State):
     draft = f"Draft: Expanding on the outline for '{state['topic']}'..."
     return {"draft": draft}
 
-# TODO 1: Complete the review_node function
-# Hint: Create final version and return {"final": ...}
+# Complete the review_node function
 def review_node(state: State):
     """Reviews and finalizes the content"""
     print("  🔄 Reviewing and finalizing...")
     time.sleep(2)  # Visualize processing time
     final = f"Final: Reviewed and polished content about '{state['topic']}'. Ready to publish!"
-    return {"___": final}  # Replace ___ with "final"
+    return {"final": final}
 
 print("Building multi-step workflow:\n")
 
 # Build the complete workflow
 workflow = StateGraph(State)
 
-# TODO 2: Add all three nodes to the graph
-# Hint: Use add_node for each node
+# Add all three nodes to the graph
 workflow.add_node("outline", outline_node)
 workflow.add_node("draft", draft_node)
-workflow.add_node("___", ___)  # Replace ___ with "review", review_node
+workflow.add_node("review", review_node)
 
-# TODO 3: Connect all nodes in sequence
-# Hint: outline → draft → review → END
+# Connect all nodes in sequence
 workflow.set_entry_point("outline")
 workflow.add_edge("outline", "draft")
-workflow.add_edge("draft", "___")  # Replace ___ with "review"
+workflow.add_edge("draft", "review")
 workflow.add_edge("review", END)
 
 # Compile and run
 app = workflow.compile()
 print("Graph compiled! Running workflow...\n")
 
-# Execute the complete flow
+# Execute the complete flow/pipeline
 result = app.invoke({
     "topic": "LangGraph Basics",
     "outline": "",
@@ -108,8 +105,8 @@ result = app.invoke({
 print("\n" + "=" * 60)
 print("WORKFLOW RESULTS:")
 print(f"Topic: {result['topic']}")
-print(f"Outline: {result['outline'][:50]}...")
-print(f"Draft: {result['draft'][:50]}...")
+print(f"Outline: {result['outline'][:100]}...")
+print(f"Draft: {result['draft'][:100]}...")
 print(f"Final: {result['final']}")
 print("=" * 60)
 
@@ -119,8 +116,8 @@ print("- State accumulates data from each node")
 print("- Each node focuses on one transformation")
 print("- Edges define the execution order")
 
-os.makedirs("/root/markers", exist_ok=True)
-with open("/root/markers/task4_flow_complete.txt", "w") as f:
+os.makedirs("markers", exist_ok=True)
+with open("markers/task4_flow_complete.txt", "w") as f:
     f.write("TASK4_COMPLETE")
 
 print("\n✅ Task 4 completed!")
