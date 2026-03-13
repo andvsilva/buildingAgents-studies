@@ -324,3 +324,36 @@ client = MultiServerMCPClient({
 **Happy Learning!** 🕸️
 
 *Remember: MCP is the bridge between AI and the world - master it to build powerful agents!*
+
+
+![](/images/1.png)
+
+```bash
+cd /root && source /root/venv/bin/activate
+
+pip install langgraph langchain langchain-openai langchain-mcp-adapters
+
+python3 /root/code/verify_environment.py
+```
+
+![](/images/2.png)
+
+![](/images/3.png)
+
+```bash
+python3 /root/code/task_1_mcp_basics.py
+```
+
+![](/images/4.png)
+
+```bash
+python3 /root/code/task_2_mcp_langgraph.py
+```
+
+![](/images/5.png)
+
+```bash
+python3 /root/code/task_3_multi_servers.py
+```
+
+![](/images/6.png)

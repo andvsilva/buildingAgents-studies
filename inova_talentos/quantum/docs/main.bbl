@@ -1,0 +1,115 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{none/global//global/global/global}
+  \entry{drinko2024variational}{thesis}{}{}
+    \name{author}{1}{}{%
+      {{hash=DA}{%
+         family={Drinko},
+         familyi={D\bibinitperiod},
+         given={Alexandre},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DA1}
+    \strng{fullhash}{DA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.11606/T.76.2024.tde-12122024-091207
+    \endverb
+    \field{title}{Algoritmos quânticos variacionais e sistemas de muitos
+  corpos}
+    \verb{url}
+    \verb https://www.teses.usp.br/teses/disponiveis/76/76134/tde-12122024-0912
+    \verb 07/
+    \endverb
+    \list{location}{1}{%
+      {São Carlos}%
+    }
+    \list{institution}{1}{%
+      {Universidade de São Paulo}%
+    }
+    \field{type}{Tese de Doutorado}
+    \field{year}{2024}
+  \endentry
+
+  \entry{cohen2019quantum}{book}{}{}
+    \name{author}{3}{}{%
+      {{hash=CTC}{%
+         family={Cohen-Tannoudji},
+         familyi={C\bibinithyphendelim T\bibinitperiod},
+         given={Claude},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=DB}{%
+         family={Diu},
+         familyi={D\bibinitperiod},
+         given={Bernard},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=LF}{%
+         family={Lalo{\"e}},
+         familyi={L\bibinitperiod},
+         given={Franck},
+         giveni={F\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {John Wiley \& Sons}%
+    }
+    \strng{namehash}{CTC+1}
+    \strng{fullhash}{CTCDBLF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Quantum mechanics, volume 3: fermions, bosons, photons,
+  correlations, and entanglement}
+    \field{year}{2019}
+  \endentry
+
+  \entry{sakurai2020modern}{book}{}{}
+    \name{author}{2}{}{%
+      {{hash=SJ}{%
+         family={Sakurai},
+         familyi={S\bibinitperiod},
+         given={J.J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=NJ}{%
+         family={Napolitano},
+         familyi={N\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Cambridge University Press}%
+    }
+    \strng{namehash}{SJNJ1}
+    \strng{fullhash}{SJNJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{isbn}{9781108473224}
+    \field{title}{Modern Quantum Mechanics}
+    \verb{url}
+    \verb https://books.google.com.br/books?id=GdX7DwAAQBAJ
+    \endverb
+    \field{year}{2020}
+  \endentry
+\enddatalist
+\endinput

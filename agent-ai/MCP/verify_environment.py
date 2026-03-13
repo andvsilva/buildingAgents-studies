@@ -4,6 +4,7 @@
 import os
 import sys
 import importlib
+from config import get_api_key
 
 def check_package(package_name, import_name=None):
     """Check if a package is installed and can be imported"""
@@ -21,7 +22,7 @@ def check_package(package_name, import_name=None):
 
 def check_env_var(var_name):
     """Check if an environment variable is set"""
-    value = os.getenv(var_name)
+    value = get_api_key()
     if value:
         # Mask sensitive values
         if "KEY" in var_name or "TOKEN" in var_name:
@@ -79,7 +80,6 @@ def main():
     # Check environment variables
     print("\n🔐 Environment Variables:")
     env_vars = [
-        "OPENAI_API_BASE",
         "OPENAI_API_KEY",
         "OPENAI_MODEL"
     ]
@@ -92,10 +92,10 @@ def main():
     # Check directories
     print("\n📁 Directory Structure:")
     directories = [
-        "/root/code",
-        "/root/code/mcp_servers",
-        "/root/markers",
-        "/root/mcp-project"
+        "code",
+        "mcp_servers",
+        "markers",
+        "mcp-project"
     ]
 
     for dir_path in directories:
@@ -108,9 +108,9 @@ def main():
     # Check task files
     print("\n📄 Task Files:")
     task_files = [
-        "/root/code/task_1_mcp_basics.py",
-        "/root/code/task_2_mcp_langgraph.py",
-        "/root/code/task_3_multi_servers.py"
+        "task_1_mcp_basics.py",
+        "task_2_mcp_langgraph.py",
+        "task_3_multi_servers.py"
     ]
 
     for file_path in task_files:
