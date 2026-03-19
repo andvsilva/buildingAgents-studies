@@ -1,5 +1,12 @@
 '''
 Quantum Approximate Optimization Algorithm (QAOA)
+
+--> Define o Hamiltoniano do problema (MaxCut)
+--> Escolhe um otimizador clássico
+--> Define o sampler quântico
+--> Cria o algoritmo QAOA
+--> Executa a otimização
+--> Retorna a energia mínima e os parâmetros ótimos
 '''
 
 import numpy as np
@@ -14,9 +21,10 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # --------------------------------------
-# 1. Hamiltonian for MaxCut (2 nodes)
+# 1. Hamiltoniano for MaxCut (2 nodes)
 # --------------------------------------
 
+# Hamiltoniano de custo.
 cost_hamiltonian = SparsePauliOp.from_list([
     ("ZZ", 1.0)
 ])
@@ -26,13 +34,14 @@ cost_hamiltonian = SparsePauliOp.from_list([
 # 2. Classical optimizer
 # --------------------------------------
 
-optimizer = COBYLA(maxiter=200)
+# O algoritmo clássico utilizado é COBYLA.
+optimizer = COBYLA(maxiter=200) 
 
 
 # --------------------------------------
 # 3. Sampler primitive
 # --------------------------------------
-
+# O Sampler executa o circuito e retorna probabilidades de medição.
 sampler = StatevectorSampler()
 
 

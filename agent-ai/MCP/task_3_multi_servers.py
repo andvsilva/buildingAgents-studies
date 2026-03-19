@@ -5,6 +5,7 @@ import os
 import asyncio
 from langchain.agents import create_agent
 from langchain_openai import ChatOpenAI
+from config import get_api_key
 
 # ╔════════════════════════════════════════════╗
 # ║     Multiple MCP Servers Architecture      ║
@@ -40,27 +41,25 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 
 # Initialize the LLM
 model = ChatOpenAI(
-    model=os.getenv("OPENAI_MODEL", "openai/gpt-4.1-mini"),
-    base_url=os.getenv("OPENAI_API_BASE"),
-    api_key=os.getenv("OPENAI_API_KEY"),
+    model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
+    api_key=get_api_key(),
     temperature=0
 )
 
 print("Configuring multiple MCP servers:\n")
 
-# TODO 1: Initialize MultiServerMCPClient with both servers
-# Hint: Add both calculator and weather server configurations
+# Initialize MultiServerMCPClient with both servers
 client = MultiServerMCPClient(
     {
-        ___: {  # Replace ___ with "calculator"
+        "calculator": {
             "command": "python",
-            "args": ["/root/code/mcp_servers/calculator_server.py"],
+            "args": ["mcp_servers/calculator_server.py"],
             "transport": "stdio",
         },
         "weather": {
             "command": "python",
-            "args": ["/root/code/mcp_servers/weather_server.py"],
-            "transport": ___,  # Replace ___ with "stdio"
+            "args": ["mcp_servers/weather_server.py"],
+            "transport": "stdio",  # Replace ___ with "stdio"
         }
     }
 )
@@ -70,15 +69,14 @@ async def run_multi_server_agent():
 
     print("📦 Loading tools from multiple servers...")
 
-    # TODO 2: Get all tools from both servers
-    # Hint: Use client.get_tools()
-    tools = await ___  # Replace ___ with client.get_tools()
+    # Get all tools from both servers
+    tools = await client.get_tools()
 
     print(f"✅ Loaded {len(tools) if hasattr(tools, '__len__') else 'multiple'} tools from MCP servers")
 
-    # TODO 3: Create react agent with all tools
+    # Create react agent with all tools
     # Hint: Pass model and tools to create_agent
-    agent = create_agent(___, ___)  # Replace both ___ with model, tools
+    agent = create_agent(model, tools)  # Replace both ___ with model, tools
 
     print("\n" + "=" * 60)
     print("TESTING MULTI-SERVER ORCHESTRATION:")
@@ -137,6 +135,6 @@ if __name__ == "__main__":
     print("=" * 60)
 
     # Create marker file
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task3_multi_servers_complete.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/task3_multi_servers_complete.txt", "w") as f:
         f.write("TASK3_COMPLETE")

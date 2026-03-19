@@ -1,5 +1,13 @@
-\babel@toc {english}{}\relax 
-\babel@toc {brazil}{}\relax 
-\babel@toc {english}{}\relax 
 \babel@toc {brazil}{}\relax 
 \contentsline {section}{\numberline {1}Introdução}{3}{section.1}%
+\contentsline {section}{\numberline {2}Circuitos Quânticos Parametrizados}{4}{section.2}%
+\contentsline {section}{\numberline {3}Variational Quantum Eigensolver (VQE)}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Etapas do VQE}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Decomposição do Hamiltoniano}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Por que o VQE é importante?}{6}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Quantum Approximate Optimization Algorithm (QAOA)}{6}{section.4}%
+\contentsline {section}{\numberline {5}Quantum Whale Optimization Algorithm (QWOA)}{7}{section.5}%
+\contentsline {section}{\numberline {6}Bias-Field Digitized Counterdiabatic Quantum Optimization (BF-DCQO)}{8}{section.6}%
+\contentsline {section}{\numberline {7}Benefícios e Desafios}{9}{section.7}%
+\contentsline {section}{\numberline {8}Conclusão}{10}{section.8}%
+\contentsline {section}{Refer\^encias}{10}{section.8}%

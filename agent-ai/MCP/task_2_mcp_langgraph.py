@@ -60,9 +60,8 @@ except ImportError:
             print(f"🚀 {self.name} MCP Server would run with {transport} transport")
             print(f"📦 Available tools: {[t['name'] for t in self.tools]}")
 
-# TODO 1: Initialize the MCP server
-# Hint: Pass server name to FastMCP with double quotes
-mcp = FastMCP("___")  # Replace ___ with Calculator
+# Initialize the MCP server
+mcp = FastMCP("Calculator")
 
 # Create calculator tools using FastMCP decorators
 @mcp.tool()
@@ -73,9 +72,8 @@ def add(a: float, b: float) -> float:
     print(f"  ➕ Result: {result}")
     return result
 
-# TODO 2: Create the multiply tool
-# Hint: Use @mcp.tool() decorator
-___  # Replace ___ with @mcp.tool()
+# Create the multiply tool
+@mcp.tool()
 def multiply(a: float, b: float) -> float:
     """Multiply two numbers"""
     result = a * b
@@ -129,8 +127,8 @@ test_tools()
 
 if __name__ == "__main__":
     # Create marker file (must happen before server starts)
-    os.makedirs("/root/markers", exist_ok=True)
-    with open("/root/markers/task1_mcp_basics_complete.txt", "w") as f:
+    os.makedirs("markers", exist_ok=True)
+    with open("markers/task1_mcp_basics_complete.txt", "w") as f:
         f.write("TASK1_COMPLETE")
 
     print("\n" + "=" * 60)

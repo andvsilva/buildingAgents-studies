@@ -15,6 +15,9 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{bm}
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+
 
 \input{commands.tex}
 
@@ -39,50 +42,114 @@
 \PassOptionsToPackage{table}{xcolor}
 \renewcommand{\baselinestretch}{1.5}
 
-\pagestyle{fancy}
 \fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\fancyhead[R]{\thepage}
+\fancyhead[L]{Andr\'e Vieira da Silva}
+\fancyhead[R]{Algoritmos de Otimização em Computação Quântica \thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\pagestyle{fancy}
+
+\usepackage{cleveref}
+\newtcbtheorem{Theorem}{Theorem}{
+  enhanced,
+  sharp corners,
+  attach boxed title to top left={
+    yshifttext=-1mm
+  },
+  colback=white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  boxed title style={
+    sharp corners,
+    size=small,
+    colback=blue!75!black,
+    colframe=blue!75!black,
+  } 
+}{thm}
+\newtcbtheorem[no counter]{Proof}{}{
+  enhanced,
+  sharp corners,
+  attach boxed title to top left={
+    yshifttext=-1mm
+  },
+  colback=white,
+  colframe=blue!25,
+  fonttitle=\bfseries,
+  coltitle=black,
+  boxed title style={
+    sharp corners,
+    size=small,
+    colback=blue!25,
+    colframe=blue!25,
+  } 
+}{prf}
 
 \geometry{a4paper,top=30mm,bottom=20mm,left=30mm,right=20mm}
 
 \titleformat*{\section}{\bfseries\large}
 \titleformat*{\subsection}{\bfseries\normalsize}
 
-\title{Algoritmos Variacionais e de Otimização em Computação Quântica}
-\author{Andr\'e V. Silva}
+\title{Algoritmos Variacionais e de Otimização em Computação Quântica \\ Andr\'e V. Silva}
+\author{\textcolor{blue}{DESAFIO PROCESSO SELETIVO ITAÚ} \\ \textcolor{blue}{BOLSISTA TECH 3 MESTRE PROJ1220120573}}
 \date{\today}
 
 \begin{document}
 
-\maketitle
+\begin{Proof}{Desafio}{}
+"Explicar em detalhes a construção e o funcionamento do algoritmo de VQE e QAOA, QWOA, BF-DCQO.
+Explicando todas as etapas e a influência dos Gates na construção desses algoritmos. 
+Discutir os benefícios e desafios no contexto desses algoritmos."
+\end{Proof}
 
+\maketitle
+\thispagestyle{fancy}
+
+\tableofcontents
+
+\newpage
 
 \section{Introdução}
 
-A computação quântica\cite{drinko2024variational} tem se desenvolvido rapidamente nas últimas décadas 
-como uma nova forma de processamento de informação baseada nos princípios 
-fundamentais da mecânica quântica\cite{cohen2019quantum, sakurai2020modern}. Diferentemente dos computadores clássicos, 
-que utilizam bits que assumem valores binários ($0$ ou $1$), os computadores 
-quânticos utilizam \textit{qubits}, que podem existir em superposição de estados.
+A \colorbox{yellow!30}{computação quântica}\cite{drinko2024variational} tem se desenvolvido rapidamente nas últimas décadas 
+como uma nova forma de \colorbox{blue!20}{processamento de informação} baseada nos princípios 
+fundamentais da \colorbox{blue!20}{mecânica quântica}\cite{cohen2019quantum, sakurai2020modern}. Diferentemente dos \colorbox{green!20}{computadores clássicos}, 
+que utilizam bits que assumem valores \colorbox{green!20}{binários ($0$ ou $1$)}, os \colorbox{red!20}{computadores 
+quânticos} utilizam \colorbox{red!20}{\textit{qubits}}(Quantum Bits), que podem existir em \colorbox{yellow!20}{superposição de estados}.
 
 Um qubit pode ser descrito pelo estado
 
 \begin{equation}
-|\psi\rangle = \alpha |0\rangle + \beta |1\rangle
+|\psi\rangle = \alpha |0\rangle + \beta |1\rangle = 
+\alpha
+\begin{pmatrix}
+1 \\
+0
+\end{pmatrix}
++
+\beta
+\begin{pmatrix}
+0 \\
+1
+\end{pmatrix}
+=
+\begin{pmatrix}
+\alpha \\
+\beta
+\end{pmatrix}
 \end{equation}
 
-onde $\alpha$ e $\beta$ são amplitudes complexas que satisfazem a condição de normalização
+onde $\alpha$ e $\beta$ são amplitudes complexas que satisfazem a \colorbox{yellow!20}{condição de normalização}
 
 \begin{equation}
+\boxed{
 |\alpha|^2 + |\beta|^2 = 1
+}
 \end{equation}
 
-Além da superposição, sistemas quânticos também podem apresentar \textit{emaranhamento} 
-e \textit{interferência}, propriedades que permitem novas formas de processamento 
+Além da superposição, sistemas quânticos também podem apresentar \colorbox{red!20}{\textit{emaranhamento}}
+e \colorbox{red!20}{\textit{interferência}}, propriedades que permitem novas formas de processamento 
 de informação.
 
-Entretanto, os computadores quânticos atuais pertencem à chamada era \textit{NISQ} 
+Entretanto, os \colorbox{blue!20}{computadores quânticos atuais pertencem à chamada era \textit{NISQ}} 
 (\textit{Noisy Intermediate-Scale Quantum}), caracterizada por:
 
 \begin{itemize}
@@ -91,62 +158,92 @@ Entretanto, os computadores quânticos atuais pertencem à chamada era \textit{N
 \item profundidade limitada de circuitos quânticos
 \end{itemize}
 
-Devido a essas limitações, foram desenvolvidos algoritmos híbridos quântico-clássicos 
-que combinam circuitos quânticos parametrizados com otimização clássica. Entre esses algoritmos destacam-se:
+Devido a essas \colorbox{red!20}{limitações}, foram desenvolvidos \colorbox{blue!20}{algoritmos híbridos quântico-clássicos}
+que combinam \colorbox{blue!20}{circuitos quânticos parametrizados} com \colorbox{green!20}{otimização clássica}. 
+Entre esses algoritmos destacam-se:
 
 \begin{itemize}
-\item Variational Quantum Eigensolver (VQE)
-\item Quantum Approximate Optimization Algorithm (QAOA)
-\item Quantum Whale Optimization Algorithm (QWOA)
-\item Bias-Field Digitized Counterdiabatic Quantum Optimization (BF-DCQO)
+\item \colorbox{yellow!30}{Variational Quantum Eigensolver (VQE)}
+\item \colorbox{yellow!30}{Quantum Approximate Optimization Algorithm (QAOA)}
+\item \colorbox{yellow!30}{Quantum Whale Optimization Algorithm (QWOA)}
+\item \colorbox{yellow!30}{Bias-Field Digitized Counterdiabatic Quantum Optimization (BF-DCQO)}
 \end{itemize}
 
-Esses algoritmos exploram circuitos quânticos parametrizados para resolver problemas 
-de otimização, simulação quântica e busca por estados fundamentais.
+Esses \colorbox{green!20}{algoritmos exploram circuitos quânticos parametrizados} para resolver problemas 
+de \colorbox{green!20}{otimização, simulação quântica e busca por estados fundamentais.}
 
 \section{Circuitos Quânticos Parametrizados}
 
-Os algoritmos variacionais utilizam circuitos chamados \textit{Parameterized 
-Quantum Circuits} (PQC). Esses circuitos possuem portas quânticas dependentes de 
-parâmetros contínuos, geralmente ângulos de rotação.
+Os algoritmos variacionais utilizam circuitos chamados \colorbox{blue!20}{\textit{Parameterized 
+Quantum Circuits}} (PQC). Esses circuitos possuem \colorbox{blue!20}{portas quânticas dependentes de 
+parâmetros contínuos}, geralmente \colorbox{blue!20}{ângulos de rotação}.
 
 Um exemplo típico de porta parametrizada é
 
 \begin{equation}
+\boxed{
 R_y(\theta) = e^{-i\theta Y/2}
+}
 \end{equation}
 
-onde $Y$ é a matriz de Pauli.
-
-O estado produzido por um circuito parametrizado pode ser escrito como
+onde $Y$ é a matriz de Pauli:
 
 \begin{equation}
-|\psi(\theta)\rangle = U(\theta)|0\rangle^{\otimes n}
+\sigma_x =
+\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix},
+\quad
+\sigma_y =
+\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix},
+\quad
+\sigma_z =
+\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}.
 \end{equation}
 
-onde $U(\theta)$ representa o circuito quântico dependente do vetor de parâmetros $\theta$.
 
-O objetivo é encontrar valores ótimos desses parâmetros minimizando uma função custo.
+O estado produzido por um \colorbox{blue!20}{circuito parametrizado} pode ser escrito como
+
+\begin{equation}
+|\psi(\textcolor{red}{\theta})\rangle = \textcolor{blue}{U}(\textcolor{red}{\theta})|0\rangle^{\otimes n} = \textcolor{blue}{U}(\textcolor{red}{\theta})|\underbrace{000...00}_{n}\rangle
+\end{equation}
+
+onde $\textcolor{blue}{U}(\textcolor{red}{\theta})$ representa o circuito quântico dependente do vetor de 
+parâmetros $\textcolor{red}{\theta}$.
+
+\colorbox{green!30}{O objetivo é encontrar valores ótimos desses parâmetros minimizando uma função}\newline 
+\colorbox{green!30}{custo}.
 
 \section{Variational Quantum Eigensolver (VQE)}
 
-O algoritmo VQE foi desenvolvido para calcular autovalores de Hamiltonianos, 
-especialmente a energia fundamental de sistemas quânticos.
+\begin{tcolorbox}[colback=red!10,colframe=red!70!black,title=VQE]
+Algoritmo usado principalmente para 
+encontrar o estado de menor energia de um sistema quântico.
+\end{tcolorbox}
 
-Considere um Hamiltoniano $H$ que descreve um sistema físico. O problema 
-consiste em encontrar o menor autovalor da equação
+O \colorbox{green!30}{algoritmo VQE} foi desenvolvido para \colorbox{green!30}{calcular autovalores de Hamiltonianos}, 
+especialmente a \colorbox{green!30}{energia fundamental de sistemas quânticos}.
+
+Considere um \colorbox{blue!30}{Hamiltoniano $H$ que descreve um sistema físico}. O problema 
+consiste em \colorbox{red!30}{encontrar o menor autovalor da equação}
 
 \begin{equation}
-H|\psi\rangle = E|\psi\rangle
+H|\psi\rangle = E|\psi\rangle,
 \end{equation}
 
-O VQE baseia-se no princípio variacional da mecânica quântica, que afirma que
+onde:
+
+\begin{itemize}
+\item $H$ → Hamiltoniano do sistema
+\item $E$ → energia
+\item $|\psi \rangle$ → estado quântico
+\end{itemize}
+
+O \colorbox{green!30}{VQE} baseia-se no \colorbox{green!30}{princípio variacional da mecânica quântica}, que afirma que
 
 \begin{equation}
 E(\theta) = \langle \psi(\theta)|H|\psi(\theta)\rangle \geq E_0
 \end{equation}
 
-onde $E_0$ é a energia do estado fundamental.
+onde \colorbox{green!30}{$E_0$ é a energia do estado fundamental}.
 
 \subsection{Etapas do VQE}
 
@@ -188,9 +285,24 @@ onde $P_i$ são produtos de matrizes de Pauli.
 
 Cada termo é medido separadamente no computador quântico.
 
+\subsection{Por que o VQE é importante?}
+
+Ele é um dos algoritmos mais promissores para computadores NISQ.
+
+Aplicações:
+\begin{itemize}
+\item química quântica
+\item estrutura eletrônica molecular
+\item otimização combinatória
+\item física do estado sólido.
+\end{itemize}
+
 \section{Quantum Approximate Optimization Algorithm (QAOA)}
 
-O QAOA é um algoritmo desenvolvido para resolver problemas de otimização combinatória.
+\begin{tcolorbox}[colback=red!10,colframe=red!70!black,title=QAOA]
+O QAOA foi criado para resolver problemas de otimização combinatória usando 
+computadores qu\^anticos.
+\end{tcolorbox}
 
 Ele utiliza dois Hamiltonianos principais:
 
@@ -218,10 +330,14 @@ Os parâmetros $\gamma_k$ e $\beta_k$ são ajustados por um otimizador clássico
 
 O valor esperado do Hamiltoniano de custo é então minimizado.
 
+
+
 \section{Quantum Whale Optimization Algorithm (QWOA)}
 
+\begin{tcolorbox}[colback=red!10,colframe=red!70!black,title=QWOA]
 O QWOA é uma adaptação quântica do algoritmo clássico Whale Optimization Algorithm, 
-inspirado no comportamento de caça das baleias jubarte.
+inspirado no comportamento de caça das baleias jubarte. 
+\end{tcolorbox}
 
 Nesse algoritmo, a população de soluções é representada por estados quânticos 
 em superposição
@@ -246,10 +362,16 @@ probabilidade de observar soluções ótimas.
 
 \section{Bias-Field Digitized Counterdiabatic Quantum Optimization (BF-DCQO)}
 
+\begin{tcolorbox}[colback=red!10,colframe=black!70!black,title=BF-DCQO]
+O BF-DCQO é um algoritmo baseado em evolução adiabática digitalizada.
+\textbf{Ideia simples}: Ele tenta guiar o sistema quântico até o estado de menor 
+energia evitando erros durante a evolução.
+\end{tcolorbox}
+
 O BF-DCQO é um algoritmo inspirado em métodos de otimização baseados em 
 \textit{quantum annealing}.
 
-Nesse tipo de algoritmo, o sistema evolui sob um Hamiltoniano dependente do tempo
+Nesse tipo de algoritmo, o sistema evolui sob um \colorbox{yellow!20}{Hamiltoniano dependente do tempo}
 
 \begin{equation}
 H(t)=A(t)H_i + B(t)H_p
@@ -310,9 +432,32 @@ Entretanto, ainda existem desafios importantes, tais como:
 
 \section{Conclusão}
 
-Algoritmos variacionais e de otimização quântica representam uma das abordagens mais 
-promissoras para explorar o potencial da computação quântica em hardware atual. 
-Métodos como VQE, QAOA, QWOA e BF-DCQO utilizam circuitos parametrizados e otimização 
+\begin{tcolorbox}[colback=blue!10,colframe=blue!70!black,title=Algoritmos]
+\begin{itemize}
+
+\item São algoritmos de otimização
+    \begin{itemize}
+        \item Todos procuram minimizar ou maximizar uma função custo
+    \end{itemize}
+
+\item Usam circuitos quânticos parametrizados
+    \begin{itemize}
+        \item Eles usam portas quânticas com parâmetros ajustáveis
+    \end{itemize}
+
+\item São algoritmos híbridos (clássico + quântico)
+
+\item Funcionam bem em computadores quânticos atuais (NISQ)
+    \begin{itemize}
+        \item poucos qubits
+        \item muito ruído
+        \item circuitos curtos
+    \end{itemize}
+
+\end{itemize}
+\end{tcolorbox}
+
+Os métodos \colorbox{green!20}{VQE, QAOA, QWOA e BF-DCQO utilizam circuitos parametrizados} e otimização 
 híbrida para resolver problemas complexos em física, química e ciência da computação.
 
 Apesar das limitações impostas pelo ruído e pela escalabilidade dos dispositivos 

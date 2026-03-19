@@ -41,6 +41,7 @@ from langgraph.graph import StateGraph, END
 # - Each node adds its contribution
 # - Final state has ALL the data
 
+
 print("🎯 Task 4: Complete LangGraph Flow\n")
 
 # More complex state for our workflow
@@ -121,3 +122,4 @@ with open("markers/task4_flow_complete.txt", "w") as f:
     f.write("TASK4_COMPLETE")
 
 print("\n✅ Task 4 completed!")
+
