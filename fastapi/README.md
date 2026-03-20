@@ -12,3 +12,4 @@
 - Python FastAPI Tutorial (Part 10): Authentication - Registration and Login with JWT - [Github](https://github.com/CoreyMSchafer/FastAPI-10-Authentication)
 - Python FastAPI Tutorial (Part 11): Authorization - Protecting Routes and Verifying Current User [Github](https://github.com/CoreyMSchafer/FastAPI-11-Authorization)
 - Python FastAPI Tutorial (Part 12): File Uploads - Image Processing, Validation, and Storage [Github](https://github.com/CoreyMSchafer/FastAPI-12-File-Uploads)
+- Python FastAPI Tutorial (Part 13): Pagination - Loading More Data with Query Parameters - [Github](https://github.com/CoreyMSchafer/FastAPI-13-Pagination)
