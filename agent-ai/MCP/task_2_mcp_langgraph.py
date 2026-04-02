@@ -1,45 +1,29 @@
 #!/usr/bin/env python3
-"""Task 1: Understanding MCP Basics - Your first MCP server"""
+"""Task 1: Understanding MCP Basics - Final Clean MCP Server"""
 
 import os
-import asyncio
-from typing import Any
+import logging
 
-# ╔════════════════════════════════════════╗
-# ║     Model Context Protocol (MCP)      ║
-# ╚════════════════════════════════════════╝
-#
-# What is MCP?
-# ------------
-# MCP is like a USB port for AI - a standard way for
-# AI models to connect to external tools and data sources.
-#
-# ┌─────────────────┐     MCP Protocol    ┌─────────────────┐
-# │   AI Assistant  │◄────────────────────►│   MCP Server    │
-# │   (LangGraph)   │   stdio/SSE/HTTP    │  (Your Tools)   │
-# └─────────────────┘                      └─────────────────┘
-#
-# MCP Server Components:
-# ┌──────────────────────────────────────┐
-# │          MCP Server                  │
-# ├──────────────────────────────────────┤
-# │ 1. Tools (Functions)                 │
-# │    └─ add, multiply, divide          │
-# │ 2. Resources (Optional)              │
-# │    └─ Files, data, configs           │
-# │ 3. Prompts (Optional)                │
-# │    └─ Pre-defined templates          │
-# └──────────────────────────────────────┘
+# =========================
+# LOGGING CONFIG
+# =========================
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+)
+logger = logging.getLogger(__name__)
 
-print("📡 Task 1: Understanding MCP Basics\n")
+logger.info("📡 Starting MCP Calculator Server")
 
-# Import MCP SDK components
+# =========================
+# MCP IMPORT (REAL OR MOCK)
+# =========================
 try:
     from mcp.server.fastmcp import FastMCP
+    logger.info("✅ Using real MCP SDK")
 except ImportError:
-    print("⚠️ Creating mock FastMCP for learning (install 'pip install mcp' for real implementation)")
+    logger.warning("⚠️ Using mock FastMCP (install with 'pip install mcp')")
 
-    # Mock implementation for learning purposes
     class FastMCP:
         """Mock FastMCP server for learning"""
         def __init__(self, name):
@@ -47,7 +31,6 @@ except ImportError:
             self.tools = []
 
         def tool(self):
-            """Mock tool decorator"""
             def decorator(func):
                 self.tools.append({
                     'name': func.__name__,
@@ -57,99 +40,143 @@ except ImportError:
             return decorator
 
         def run(self, transport="stdio"):
-            print(f"🚀 {self.name} MCP Server would run with {transport} transport")
-            print(f"📦 Available tools: {[t['name'] for t in self.tools]}")
+            logger.info(f"🚀 {self.name} MCP Server running (mock)")
+            logger.info(f"📦 Available tools: {[t['name'] for t in self.tools]}")
+            logger.info("🔁 Waiting for requests...\n")
 
-# Initialize the MCP server
+
+# =========================
+# INITIALIZE SERVER
+# =========================
 mcp = FastMCP("Calculator")
 
-# Create calculator tools using FastMCP decorators
+
+# =========================
+# VALIDATION HELPER
+# =========================
+def validate_numbers(*args):
+    for arg in args:
+        if not isinstance(arg, (int, float)):
+            raise TypeError("All inputs must be numbers")
+
+
+# =========================
+# TOOLS
+# =========================
+
 @mcp.tool()
 def add(a: float, b: float) -> float:
-    """Add two numbers together"""
+    """Add two numbers"""
+    validate_numbers(a, b)
     result = a + b
-    print(f"  🔧 Tool 'add' called with a={a}, b={b}")
-    print(f"  ➕ Result: {result}")
+    logger.info(f"add({a}, {b}) = {result}")
     return result
 
-# Create the multiply tool
+
 @mcp.tool()
 def multiply(a: float, b: float) -> float:
     """Multiply two numbers"""
+    validate_numbers(a, b)
     result = a * b
-    print(f"  🔧 Tool 'multiply' called with a={a}, b={b}")
-    print(f"  ✖️ Result: {result}")
+    logger.info(f"multiply({a}, {b}) = {result}")
     return result
 
+
 @mcp.tool()
-def divide(a: float, b: float) -> str:
-    """Divide two numbers with zero check"""
-    print(f"  🔧 Tool 'divide' called with a={a}, b={b}")
+def divide(a: float, b: float) -> float:
+    """Divide two numbers (raises error if division by zero)"""
+    validate_numbers(a, b)
 
     if b == 0:
-        print("  ❌ Error: Division by zero!")
-        return "Error: Cannot divide by zero"
+        logger.error("Division by zero attempted")
+        raise ValueError("Cannot divide by zero")
 
     result = a / b
-    print(f"  ➗ Result: {result}")
-    return f"{a} ÷ {b} = {result}"
+    logger.info(f"divide({a}, {b}) = {result}")
+    return result
 
-# Test the tools directly (simulating MCP calls)
-print("\n" + "=" * 60)
-print("TESTING MCP TOOLS:")
-print("=" * 60)
 
+@mcp.tool()
+def power(a: float, b: float) -> float:
+    """Raise a to the power of b"""
+    validate_numbers(a, b)
+    result = a ** b
+    logger.info(f"power({a}, {b}) = {result}")
+    return result
+
+
+@mcp.tool()
+def get_env_variable(name: str) -> str:
+    """Get environment variable value"""
+    if not isinstance(name, str):
+        raise TypeError("Environment variable name must be a string")
+
+    value = os.getenv(name)
+    if value is None:
+        raise ValueError(f"Environment variable '{name}' not found")
+
+    logger.info(f"get_env_variable({name}) = {value}")
+    return value
+
+
+# =========================
+# TESTING (LOCAL SIMULATION)
+# =========================
 def test_tools():
-    """Test our MCP tools directly"""
+    logger.info("=" * 60)
+    logger.info("🧪 TESTING MCP TOOLS")
+    logger.info("=" * 60)
 
-    # Test addition
-    print("\nTest 1: Addition")
-    result = add(5, 3)
-    print(f"Response: {result}")
+    try:
+        logger.info("Test 1: Addition")
+        logger.info(f"Response: {add(5, 3)}")
 
-    # Test multiplication
-    print("\nTest 2: Multiplication")
-    result = multiply(4, 7)
-    print(f"Response: {result}")
+        logger.info("Test 2: Multiplication")
+        logger.info(f"Response: {multiply(4, 7)}")
 
-    # Test division
-    print("\nTest 3: Division")
-    result = divide(10, 2)
-    print(f"Response: {result}")
+        logger.info("Test 3: Division")
+        logger.info(f"Response: {divide(10, 2)}")
 
-    # Test division by zero
-    print("\nTest 4: Division by zero")
-    result = divide(5, 0)
-    print(f"Response: {result}")
+        logger.info("Test 4: Power")
+        logger.info(f"Response: {power(2, 3)}")
 
-# Run the tests
-test_tools()
+        logger.info("Test 5: Division by zero (expected error)")
+        try:
+            divide(5, 0)
+        except Exception as e:
+            logger.info(f"Expected error: {e}")
 
+    except Exception as e:
+        logger.error(f"❌ Unexpected error during tests: {e}")
+
+
+# =========================
+# MAIN ENTRYPOINT
+# =========================
 if __name__ == "__main__":
-    # Create marker file (must happen before server starts)
+
+    # Run tests ONLY when executed directly
+    test_tools()
+
+    # Create marker file safely
     os.makedirs("markers", exist_ok=True)
     with open("markers/task1_mcp_basics_complete.txt", "w") as f:
         f.write("TASK1_COMPLETE")
 
-    print("\n" + "=" * 60)
-    print("💡 KEY CONCEPTS:")
-    print("- FastMCP creates MCP servers easily")
-    print("- @mcp.tool() decorator exposes functions")
-    print("- Tools have type hints for parameters")
-    print("- Servers can run via stdio, SSE, or HTTP")
-    print("- AI models call tools through MCP protocol")
-    print("=" * 60)
+    logger.info("=" * 60)
+    logger.info("💡 KEY CONCEPTS")
+    logger.info("- FastMCP creates MCP servers easily")
+    logger.info("- @mcp.tool() exposes functions to AI")
+    logger.info("- Type hints are critical for tool usage")
+    logger.info("- Errors should raise exceptions")
+    logger.info("- MCP servers run continuously")
+    logger.info("=" * 60)
 
-    print("\n✅ Task 1 complete! MCP tools tested successfully.")
-    print("\n" + "=" * 60)
-    print("🚀 STARTING MCP SERVER")
-    print("=" * 60)
-    print("The calculator MCP server is now starting...")
-    print("Keep this terminal open - the server will run continuously.")
-    print("Use Ctrl+C to stop the server when you're done.")
-    print("\nServer ready! Waiting for client connections...")
-    print("=" * 60 + "\n")
+    logger.info("🚀 STARTING MCP SERVER")
+    logger.info("Server running... Press Ctrl+C to stop")
 
-    # Start the MCP server (blocks indefinitely)
-    # This is the production pattern - servers run continuously
-    mcp.run(transport="stdio")
+    # Start MCP server (safe for multiple versions)
+    try:
+        mcp.run()
+    except KeyboardInterrupt:
+        logger.info("🛑 Server stopped by user")

@@ -6,6 +6,7 @@ import sys
 import importlib
 from config import get_api_key
 
+
 def check_package(package_name, import_name=None):
     """Check if a package is installed and can be imported"""
     if import_name is None:
@@ -19,6 +20,7 @@ def check_package(package_name, import_name=None):
     except ImportError:
         print(f"  ❌ {package_name}: Not installed")
         return False
+
 
 def check_env_var(var_name):
     """Check if an environment variable is set"""
@@ -34,6 +36,7 @@ def check_env_var(var_name):
     else:
         print(f"  ⚠️ {var_name}: Not set")
         return False
+
 
 def main():
     print("=" * 60)
@@ -79,10 +82,7 @@ def main():
 
     # Check environment variables
     print("\n🔐 Environment Variables:")
-    env_vars = [
-        "OPENAI_API_KEY",
-        "OPENAI_MODEL"
-    ]
+    env_vars = ["OPENAI_API_KEY", "OPENAI_MODEL"]
 
     for var in env_vars:
         if not check_env_var(var):
@@ -91,12 +91,7 @@ def main():
 
     # Check directories
     print("\n📁 Directory Structure:")
-    directories = [
-        "code",
-        "mcp_servers",
-        "markers",
-        "mcp-project"
-    ]
+    directories = ["code", "mcp_servers", "markers", "mcp-project"]
 
     for dir_path in directories:
         if os.path.exists(dir_path):
@@ -110,7 +105,7 @@ def main():
     task_files = [
         "task_1_mcp_basics.py",
         "task_2_mcp_langgraph.py",
-        "task_3_multi_servers.py"
+        "task_3_multi_servers.py",
     ]
 
     for file_path in task_files:
@@ -140,6 +135,7 @@ def main():
         sys.exit(1)
 
     print("=" * 60)
+
 
 if __name__ == "__main__":
     main()

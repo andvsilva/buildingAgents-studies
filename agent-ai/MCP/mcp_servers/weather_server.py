@@ -129,7 +129,7 @@ def compare_weather(city1: str = "London", city2: str = "Paris") -> str:
     cond1 = random.choice(weather1["conditions"])
     cond2 = random.choice(weather2["conditions"])
 
-    comparison = f"Weather Comparison:\n\n"
+    comparison = "Weather Comparison:\n\n"
     comparison += f"📍 {city1.title()}:\n"
     comparison += f"  Temperature: {temp1}°C\n"
     comparison += f"  Condition: {cond1}\n\n"
@@ -142,7 +142,7 @@ def compare_weather(city1: str = "London", city2: str = "Paris") -> str:
     elif temp2 > temp1:
         comparison += f"🌡️ {city2.title()} is {temp2-temp1}°C warmer"
     else:
-        comparison += f"🌡️ Both cities have the same temperature"
+        comparison += "🌡️ Both cities have the same temperature"
 
     return comparison
 
