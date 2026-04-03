@@ -514,6 +514,157 @@ Since you are:
  - SQL Server (Power BI)
  - BigQuery (analytics)
 
+SQLite is lightweight and powerful, but it **does have limits**—both theoretical and practical. Here’s a clear breakdown of the most important ones for data analysis.
+
+---
+
+# ⚙️ 1. Database Size Limits
+
+* **Maximum database size:** ~**281 TB**
+* Controlled by:
+
+  * Page size (default: 4 KB)
+  * Max pages: 2³² − 1
+
+👉 In practice: you’ll hit hardware limits (disk/RAM) long before this.
+
+---
+
+# 📏 2. Table & Row Limits
+
+### Columns per table
+
+* Default max: **2000 columns**
+
+### Row size
+
+* Max row size: **~1 GB**
+
+### Rows per table
+
+* **Unlimited (theoretical)**
+* Limited by database size
+
+---
+
+# 🧠 3. SQL Query Limits
+
+### Length of SQL statement
+
+* Default: **1,000,000,000 bytes (~1 GB)**
+
+### Number of tables in a JOIN
+
+* Default: **64 tables**
+
+### Expression depth
+
+* Default: **1000 levels**
+
+---
+
+# 🔢 4. Variables & Parameters
+
+### Max bound parameters
+
+* Default: **999**
+* Can be increased (compile-time) up to **32766**
+
+Example:
+
+```sql
+SELECT * FROM users WHERE id IN (?, ?, ?, ...);
+```
+
+👉 If you pass too many values → error.
+
+---
+
+# 📊 5. Indexes & Performance Limits
+
+* Max indexes per table: **Unlimited (practical limits apply)**
+* Max columns in an index: **64**
+
+⚠️ Important for analysis:
+
+* SQLite has **limited query optimizer** compared to enterprise DBs
+* No parallel query execution
+
+---
+
+# ⏱️ 6. Concurrency (Big Limitation 🚨)
+
+SQLite is not ideal for high concurrency:
+
+* **Single writer at a time**
+* Multiple readers allowed
+* Writes lock the database
+
+👉 This is the **main limitation vs PostgreSQL**
+
+---
+
+# 🧮 7. Missing Features (Compared to PostgreSQL)
+
+SQLite lacks or limits:
+
+* ❌ Advanced window functions (partial support)
+* ❌ Full `ALTER TABLE`
+* ❌ Materialized views
+* ❌ Role-based permissions
+* ❌ Parallel queries
+* ❌ Advanced indexing (GIN, BRIN, etc.)
+
+---
+
+# 📦 8. When SQLite Works Well
+
+✅ Small to medium datasets
+✅ Local analysis
+✅ Prototyping
+✅ Embedded apps
+✅ Single-user environments
+
+---
+
+# 🚫 9. When SQLite Becomes a Problem
+
+❌ Large-scale analytics
+❌ Multiple users writing simultaneously
+❌ Complex queries / heavy joins
+❌ Production data pipelines
+
+👉 In these cases, switch to:
+
+* PostgreSQL
+* MySQL
+* BigQuery
+
+---
+
+# ⚡ Quick Summary
+
+| Category      | Limit       |
+| ------------- | ----------- |
+| DB size       | ~281 TB     |
+| Columns/table | 2000        |
+| Join tables   | 64          |
+| Parameters    | 999         |
+| Row size      | ~1 GB       |
+| Writers       | 1 at a time |
+
+---
+
+# 🎯 Bottom line
+
+SQLite is:
+
+> **Amazing for learning and lightweight analysis**
+> but
+> **Not built for heavy, concurrent, or large-scale analytics**
+
+---
+
 ### Comparing SQL types
 
 | Feature          | SQLite | PostgreSQL | MySQL | SQL Server | BigQuery |
