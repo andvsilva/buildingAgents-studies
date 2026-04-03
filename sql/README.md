@@ -260,23 +260,23 @@ $ python analysis.py
 24  2018-10      589.67
 ```
 
-### 📌 Insight típico:
+### 📌 Typical insight:
 
- - crescimento
- - sazonalidade
- - quedas suspeitas
+* growth
+* seasonality
+* suspicious drops
 
-## Por que essa query é “nível profissional”?
+## Why is this query “professional level”?
 
-Ela combina:
+It combines:
 
- - 📅 dimensão temporal
- - 💰 métrica de negócio
- - 🔗 junção de tabelas
- - 📊 agregação
- - 🧠 clareza analítica
+* 📅 temporal dimension
+* 💰 business metric
+* 🔗 table joins
+* 📊 aggregation
+* 🧠 analytical clarity
 
-É exatamente o tipo de SQL esperado em:
+This is exactly the kind of SQL expected in:
 
  - Data Analyst
  - Data Scientist
@@ -319,10 +319,9 @@ $ python analysis.py
 9           garden_tools   485256.46
 ```
 
-#### 🔥 Excelente para storytelling:
+#### 🔥 Excellent for storytelling:
 
-- Top 10 categorias que geram mais receita
-
+* Top 10 categories that generate the most revenue
 
 - SQL query that calculates total revenue by product category, ranks categories by revenue in descending order, and returns the top 10 highest-performing categories.
 
@@ -496,7 +495,6 @@ $ python analysis.py
 0               99441
 
 ```
-
 
 ✅ Perfect for learning and practicing
 
