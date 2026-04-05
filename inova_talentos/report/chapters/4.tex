@@ -1,0 +1,224 @@
+\chapter{MACHINE LEARNING \& GENERATIVE AI}
+
+This block focuses on modern machine learning frameworks and generative models, with emphasis on deep learning architectures and training methodologies.
+
+\begin{center}
+\textbf{How to design, train, evaluate, and fine-tune advanced machine learning and generative models using state-of-the-art frameworks}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{1. FRAMEWORKS}
+
+\subsection*{1.1 PyTorch}
+
+\begin{itemize}
+\item Dynamic computational graphs
+\item Pythonic design and flexibility
+\item Strong support for research and experimentation
+\end{itemize}
+
+Example:
+
+\begin{minted}{python}
+import torch
+
+x = torch.tensor([1.0, 2.0], requires_grad=True)
+y = x**2
+y.sum().backward()
+\end{minted}
+
+\subsection*{1.2 TensorFlow}
+
+\begin{itemize}
+\item Static and dynamic graph execution
+\item Production-ready deployment
+\item High-level API: Keras
+\end{itemize}
+
+\subsection*{1.3 JAX}
+
+\begin{itemize}
+\item Functional programming paradigm
+\item Just-In-Time (JIT) compilation
+\item Automatic differentiation and vectorization
+\end{itemize}
+
+Key transformation:
+
+\[
+\text{grad}(f(x)) = \frac{df}{dx}
+\]
+
+\vspace{0.5cm}
+
+\section*{2. MODELS}
+
+\subsection*{2.1 Transformers (LLMs)}
+
+Transformers are based on the self-attention mechanism:
+
+\[
+\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\]
+
+Key components:
+
+\begin{itemize}
+\item Self-attention
+\item Multi-head attention
+\item Positional encoding
+\item Feedforward networks
+\end{itemize}
+
+Applications:
+
+\begin{itemize}
+\item Natural language processing
+\item Code generation
+\item Conversational AI
+\end{itemize}
+
+\vspace{0.3cm}
+
+\subsection*{2.2 Variational Autoencoders (VAE)}
+
+Generative models based on probabilistic encoding:
+
+\[
+z \sim q_\phi(z|x), \quad x \sim p_\theta(x|z)
+\]
+
+Loss function:
+
+\[
+\mathcal{L} = \mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)] - D_{KL}(q_\phi(z|x) \| p(z))
+\]
+
+Key ideas:
+
+\begin{itemize}
+\item Latent space representation
+\item Probabilistic inference
+\item Reconstruction + regularization
+\end{itemize}
+
+\vspace{0.3cm}
+
+\subsection*{2.3 Diffusion Models}
+
+Models that learn to reverse a noise process:
+
+Forward process:
+
+\[
+q(x_t | x_{t-1})
+\]
+
+Reverse process:
+
+\[
+p_\theta(x_{t-1} | x_t)
+\]
+
+Training objective:
+
+\[
+\min_\theta \mathbb{E} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
+\]
+
+Applications:
+
+\begin{itemize}
+\item Image generation
+\item Audio synthesis
+\item Scientific data generation
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{3. TECHNIQUES}
+
+\subsection*{3.1 Fine-Tuning}
+
+Adapting a pretrained model to a specific task:
+
+\begin{itemize}
+\item Transfer learning
+\item Domain adaptation
+\item Parameter-efficient methods (LoRA, adapters)
+\end{itemize}
+
+Update rule:
+
+\[
+\theta_{new} = \theta_{old} - \eta \nabla_\theta \mathcal{L}
+\]
+
+\vspace{0.3cm}
+
+\subsection*{3.2 Model Evaluation}
+
+Key metrics depend on the task:
+
+\begin{itemize}
+\item Classification: accuracy, precision, recall, F1-score
+\item Generation: perplexity, BLEU, ROUGE
+\item Image models: FID score
+\end{itemize}
+
+General loss minimization:
+
+\[
+\min_\theta \mathcal{L}(\theta)
+\]
+
+\vspace{0.5cm}
+
+\section*{FINAL CONNECTION}
+
+All components of this block connect through:
+
+\begin{enumerate}
+\item \textbf{Representation:} neural networks and latent spaces
+\item \textbf{Learning:} optimization of parameters
+\item \textbf{Generation:} sampling from learned distributions
+\item \textbf{Evaluation:} measuring performance and generalization
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\section*{STUDY ROADMAP}
+
+\subsection*{Phase 1 --- Frameworks}
+\begin{itemize}
+\item PyTorch fundamentals
+\item TensorFlow/Keras basics
+\item JAX transformations
+\end{itemize}
+
+\subsection*{Phase 2 --- Core Models}
+\begin{itemize}
+\item Transformers
+\item VAEs
+\item Diffusion models
+\end{itemize}
+
+\subsection*{Phase 3 --- Training Techniques}
+\begin{itemize}
+\item Optimization algorithms (SGD, Adam)
+\item Fine-tuning strategies
+\end{itemize}
+
+\subsection*{Phase 4 --- Evaluation}
+\begin{itemize}
+\item Metrics and validation
+\item Model comparison
+\end{itemize}
+
+\subsection*{Phase 5 --- Applications}
+\begin{itemize}
+\item NLP systems
+\item Generative AI pipelines
+\item Hybrid quantum-classical models
+\end{itemize}

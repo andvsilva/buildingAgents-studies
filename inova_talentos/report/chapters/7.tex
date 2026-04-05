@@ -1,0 +1,215 @@
+\chapter{DIFFERENTIALS (ADVANCED AND DESIRABLE SKILLS)}
+
+This block focuses on advanced competencies that enhance performance in machine learning, generative AI, and large-scale experimentation environments.
+
+\begin{center}
+\textbf{These skills are not strictly required, but they significantly increase efficiency, scalability, and impact in real-world AI systems}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{1. ADVANCED GENERATIVE AI}
+
+\subsection*{1.1 Reinforcement Learning from Human Feedback (RLHF)}
+
+RLHF is a technique used to align machine learning models with human preferences.
+
+\subsubsection*{Pipeline Structure}
+
+\begin{enumerate}
+\item Pretrain a base model
+\item Collect human feedback
+\item Train a reward model
+\item Optimize the policy using reinforcement learning
+\end{enumerate}
+
+\subsubsection*{Mathematical Formulation}
+
+The objective is to maximize expected reward:
+
+\[
+\max_{\pi_\theta} \mathbb{E}_{x \sim \pi_\theta} [R(x)]
+\]
+
+where:
+\begin{itemize}
+\item $\pi_\theta$ is the model policy
+\item $R(x)$ is the learned reward function
+\end{itemize}
+
+Policy update (example using policy gradient):
+
+\[
+\nabla_\theta J(\theta) = \mathbb{E} \left[ \nabla_\theta \log \pi_\theta(x) \cdot R(x) \right]
+\]
+
+\subsection*{1.2 Prompt Engineering and Dataset Design}
+
+\subsubsection*{Prompt Engineering}
+
+\begin{itemize}
+\item Designing structured inputs to guide model outputs
+\item Controlling behavior via instructions and context
+\item Few-shot and zero-shot prompting
+\end{itemize}
+
+\subsubsection*{Dataset Engineering}
+
+\begin{itemize}
+\item Data curation and cleaning
+\item Labeling and annotation strategies
+\item Balancing and augmentation
+\end{itemize}
+
+Example of structured prompt:
+
+\begin{minted}{python}
+prompt = """
+Task: Classify the sentiment of the sentence.
+Input: The movie was excellent.
+Output:
+"""
+\end{minted}
+
+\vspace{0.5cm}
+
+\section*{2. INFRASTRUCTURE}
+
+\subsection*{2.1 GPU Computing}
+
+GPU computing accelerates large-scale numerical operations:
+
+\begin{itemize}
+\item Parallel processing of tensors
+\item Efficient training of deep neural networks
+\item Support via CUDA and specialized libraries
+\end{itemize}
+
+Example:
+
+\begin{minted}{python}
+import torch
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+x = torch.randn(1000, 1000).to(device)
+y = torch.matmul(x, x)
+\end{minted}
+
+\subsection*{2.2 Experimental Pipelines}
+
+Structured workflows for running experiments:
+
+\begin{itemize}
+\item Data preprocessing
+\item Model training
+\item Evaluation and logging
+\item Reproducibility
+\end{itemize}
+
+Pipeline abstraction:
+
+\[
+\text{Data} \rightarrow \text{Model} \rightarrow \text{Training} \rightarrow \text{Evaluation}
+\]
+
+\vspace{0.5cm}
+
+\section*{3. MLOPS}
+
+\subsection*{3.1 Overview}
+
+MLOps (Machine Learning Operations) focuses on managing the lifecycle of machine learning models.
+
+\subsection*{3.2 MLflow}
+
+\begin{itemize}
+\item Experiment tracking
+\item Model versioning
+\item Deployment support
+\end{itemize}
+
+Example:
+
+\begin{minted}{python}
+import mlflow
+
+with mlflow.start_run():
+    mlflow.log_param("lr", 0.01)
+    mlflow.log_metric("loss", 0.25)
+\end{minted}
+
+\subsection*{3.3 Weights \& Biases}
+
+\begin{itemize}
+\item Real-time experiment tracking
+\item Visualization dashboards
+\item Hyperparameter tuning
+\end{itemize}
+
+Example:
+
+\begin{minted}{python}
+import wandb
+
+wandb.init(project="example")
+wandb.log({"loss": 0.25})
+\end{minted}
+
+\subsection*{3.4 DVC (Data Version Control)}
+
+\begin{itemize}
+\item Versioning datasets and models
+\item Reproducible pipelines
+\item Integration with Git
+\end{itemize}
+
+Example:
+
+\begin{minted}{python}
+# Command-line usage (conceptual)
+# dvc init
+# dvc add data.csv
+# git add data.csv.dvc
+\end{minted}
+
+\vspace{0.5cm}
+
+\section*{FINAL CONNECTION}
+
+These advanced skills enhance:
+
+\begin{enumerate}
+\item \textbf{Model Alignment:} RLHF and prompt engineering
+\item \textbf{Scalability:} GPU computing and pipelines
+\item \textbf{Reproducibility:} MLOps tools
+\item \textbf{Deployment Readiness:} experiment tracking and versioning
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\section*{STUDY ROADMAP}
+
+\subsection*{Phase 1 --- Generative AI}
+\begin{itemize}
+\item RLHF fundamentals
+\item Prompt engineering techniques
+\end{itemize}
+
+\subsection*{Phase 2 --- Infrastructure}
+\begin{itemize}
+\item GPU acceleration
+\item Experiment pipelines
+\end{itemize}
+
+\subsection*{Phase 3 --- MLOps}
+\begin{itemize}
+\item MLflow
+\item Weights \& Biases
+\item DVC
+\end{itemize}
+
+\subsection*{Phase 4 --- Integration}
+\begin{itemize}
+\item End-to-end ML workflows
+\item Scalable and reproducible systems
+\end{itemize}

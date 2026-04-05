@@ -12,7 +12,7 @@ fake = Faker()
 Faker.seed(42)
 random.seed(42)
 
-engine = create_engine("sqlite:///datasql.db")
+engine = create_engine("sqlite:///../database/datasql.db")
 
 # SQLite performance tuning
 with engine.connect() as conn:

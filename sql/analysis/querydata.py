@@ -4,7 +4,7 @@ from rich import print
 import matplotlib.pyplot as plt
 
 
-db_path = 'database/olist.sqlite'
+db_path = '../database/olist.sqlite'
 db_connection = sqlite3.connect(db_path)
 
 # queries

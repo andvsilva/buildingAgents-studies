@@ -1,0 +1,197 @@
+\chapter{SCIENTIFIC PRODUCTION}
+
+This block focuses on the tools and practices required to document, share, and reproduce scientific work in computational science, physics, and machine learning.
+
+\begin{center}
+\textbf{Scientific production requires clear communication, version control, and reproducibility of experiments}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{1. JUPYTER NOTEBOOKS}
+
+\subsection*{1.1 Overview}
+
+Jupyter Notebooks provide an interactive environment that combines code, text, and visualizations.
+
+\subsection*{1.2 Key Features}
+
+\begin{itemize}
+\item Executable code cells
+\item Markdown for documentation
+\item Inline visualization
+\item Step-by-step experimentation
+\end{itemize}
+
+\subsection*{1.3 Example}
+
+\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+plt.plot(x, y)
+plt.show()
+\end{minted}
+
+\subsection*{1.4 Applications}
+
+\begin{itemize}
+\item Data analysis
+\item Prototyping models
+\item Educational material
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{2. LATEX}
+
+\subsection*{2.1 Overview}
+
+LaTeX is the standard typesetting system for scientific documents.
+
+\subsection*{2.2 Mathematical Representation}
+
+\[
+E = mc^2
+\]
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+\subsection*{2.3 Key Features}
+
+\begin{itemize}
+\item High-quality mathematical typesetting
+\item Structured documents (sections, equations, references)
+\item Bibliography management
+\end{itemize}
+
+\subsection*{2.4 Applications}
+
+\begin{itemize}
+\item Academic papers
+\item Reports and theses
+\item Technical documentation
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{3. GIT AND GITHUB}
+
+\subsection*{3.1 Version Control}
+
+Git enables tracking changes in code and documents over time.
+
+\subsection*{3.2 Core Concepts}
+
+\begin{itemize}
+\item Repository
+\item Commit history
+\item Branching and merging
+\end{itemize}
+
+\subsection*{3.3 Basic Workflow}
+
+\begin{minted}{python}
+# Conceptual commands (executed in terminal)
+git init
+git add .
+git commit -m "Initial commit"
+git push origin main
+\end{minted}
+
+\subsection*{3.4 GitHub}
+
+\begin{itemize}
+\item Remote repository hosting
+\item Collaboration via pull requests
+\item Issue tracking and project management
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{4. EXPERIMENTAL REPRODUCIBILITY}
+
+\subsection*{4.1 Definition}
+
+Reproducibility ensures that experiments can be repeated with consistent results.
+
+\subsection*{4.2 Key Principles}
+
+\begin{itemize}
+\item Fixed random seeds
+\item Versioned datasets
+\item Controlled environments
+\item Documented workflows
+\end{itemize}
+
+\subsection*{4.3 Mathematical Perspective}
+
+Given an experiment:
+
+\[
+y = f(x, \theta)
+\]
+
+Reproducibility requires that for fixed $x$ and $\theta$, the output $y$ remains consistent.
+
+\subsection*{4.4 Example}
+
+\begin{minted}{python}
+import numpy as np
+
+np.random.seed(42)
+data = np.random.rand(5)
+print(data)
+\end{minted}
+
+\vspace{0.5cm}
+
+\section*{FINAL CONNECTION}
+
+Scientific production integrates:
+
+\begin{enumerate}
+\item \textbf{Exploration:} Jupyter Notebooks
+\item \textbf{Documentation:} LaTeX
+\item \textbf{Version Control:} Git/GitHub
+\item \textbf{Reliability:} Reproducibility practices
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\section*{STUDY ROADMAP}
+
+\subsection*{Phase 1 --- Notebooks}
+\begin{itemize}
+\item Jupyter basics
+\item Combining code and text
+\end{itemize}
+
+\subsection*{Phase 2 --- Documentation}
+\begin{itemize}
+\item LaTeX structure
+\item Mathematical writing
+\end{itemize}
+
+\subsection*{Phase 3 --- Version Control}
+\begin{itemize}
+\item Git fundamentals
+\item GitHub collaboration
+\end{itemize}
+
+\subsection*{Phase 4 --- Reproducibility}
+\begin{itemize}
+\item Experiment tracking
+\item Environment management
+\end{itemize}
+
+\subsection*{Phase 5 --- Integration}
+\begin{itemize}
+\item End-to-end scientific workflows
+\item Research project organization
+\end{itemize}

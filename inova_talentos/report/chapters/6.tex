@@ -1,0 +1,250 @@
+\chapter{QUANTUM MACHINE LEARNING (QML)}
+
+This block focuses on the intersection between quantum computing and machine learning, where parametrized quantum circuits are used as trainable models.
+
+\begin{center}
+\textbf{Quantum Machine Learning combines quantum circuits with classical optimization to build models capable of learning from data}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{1. FUNDAMENTAL IDEA}
+
+Quantum Machine Learning relies on hybrid quantum-classical models:
+
+\[
+f(\theta, x) = \langle \psi(x, \theta) | M | \psi(x, \theta) \rangle
+\]
+
+where:
+\begin{itemize}
+\item $x$ is input data
+\item $\theta$ are trainable parameters
+\item $M$ is a measurement operator
+\item $|\psi(x, \theta)\rangle$ is a parametrized quantum state
+\end{itemize}
+
+The learning process consists of minimizing a loss function:
+
+\[
+\min_\theta \mathcal{L}(f(\theta, x), y)
+\]
+
+\vspace{0.5cm}
+
+\section*{2. QUANTUM NEURAL NETWORKS (QNNs)}
+
+\subsection*{2.1 Definition}
+
+Quantum Neural Networks are parametrized quantum circuits that act as function approximators.
+
+\subsection*{2.2 Structure}
+
+\begin{enumerate}
+\item Encoding of classical data into quantum states
+\item Application of parametrized gates
+\item Measurement to extract outputs
+\end{enumerate}
+
+\subsection*{2.3 Mathematical Formulation}
+
+\[
+|\psi(x, \theta)\rangle = U(\theta) U(x) |0\rangle
+\]
+
+Output:
+
+\[
+y = \langle \psi(x, \theta) | M | \psi(x, \theta) \rangle
+\]
+
+\subsection*{2.4 Key Properties}
+
+\begin{itemize}
+\item Nonlinear function approximation via measurement
+\item High-dimensional Hilbert space representation
+\item Potential quantum advantage in specific tasks
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{3. VARIATIONAL QUANTUM EIGENSOLVER (VQE)}
+
+\subsection*{3.1 Objective}
+
+To approximate the ground state energy of a Hamiltonian:
+
+\[
+H |\psi\rangle = E |\psi\rangle
+\]
+
+\subsection*{3.2 Variational Principle}
+
+\[
+E(\theta) = \langle \psi(\theta) | H | \psi(\theta) \rangle
+\]
+
+\[
+E(\theta) \geq E_0
+\]
+
+where $E_0$ is the true ground state energy.
+
+\subsection*{3.3 Algorithm Structure}
+
+\begin{enumerate}
+\item Prepare parametrized state
+\item Measure expectation value
+\item Optimize parameters
+\end{enumerate}
+
+\subsection*{3.4 Applications}
+
+\begin{itemize}
+\item Quantum chemistry
+\item Materials science
+\item Ground state estimation
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{4. QUANTUM APPROXIMATE OPTIMIZATION ALGORITHM (QAOA)}
+
+\subsection*{4.1 Objective}
+
+To solve combinatorial optimization problems.
+
+\subsection*{4.2 State Construction}
+
+\[
+|\gamma, \beta\rangle = e^{-i\beta H_M} e^{-i\gamma H_C} |+\rangle
+\]
+
+\subsection*{4.3 Optimization Problem}
+
+\[
+\max_{\gamma, \beta} \langle \gamma, \beta | H_C | \gamma, \beta \rangle
+\]
+
+\subsection*{4.4 Key Features}
+
+\begin{itemize}
+\item Alternating operator structure
+\item Parameterized depth $p$
+\item Suitable for NISQ devices
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{5. INTEGRATIONS}
+
+\subsection*{5.1 Qiskit Machine Learning}
+
+Provides tools for building hybrid models:
+
+\begin{itemize}
+\item Quantum kernels
+\item Variational classifiers
+\item Neural network interfaces
+\end{itemize}
+
+Example:
+
+\begin{minted}{python}
+from qiskit_machine_learning.neural_networks import EstimatorQNN
+\end{minted}
+
+\subsection*{5.2 PennyLane AI}
+
+Enables seamless integration between quantum circuits and ML frameworks.
+
+\begin{itemize}
+\item Differentiable quantum programming
+\item Integration with PyTorch, TensorFlow, JAX
+\item Hybrid model training
+\end{itemize}
+
+Example:
+
+\begin{minted}{python}
+
+import pennylane as qml
+
+dev = qml.device("default.qubit", wires=1)
+
+@qml.qnode(dev)
+def circuit(theta):
+    qml.RY(theta, wires=0)
+    return qml.expval(qml.PauliZ(0))
+\end{minted}
+
+\vspace{0.5cm}
+
+\section*{6. TRAINING PROCESS}
+
+The hybrid training loop:
+
+\begin{enumerate}
+\item Input data $x$
+\item Prepare quantum state
+\item Measure output
+\item Compute loss
+\item Update parameters using classical optimizer
+\end{enumerate}
+
+Mathematically:
+
+\[
+\theta_{k+1} = \theta_k - \eta \nabla_\theta \mathcal{L}
+\]
+
+\vspace{0.5cm}
+
+\section*{FINAL CONNECTION}
+
+Quantum Machine Learning unifies:
+
+\begin{enumerate}
+\item Quantum state representation
+\item Parametrized circuit design
+\item Classical optimization
+\item Data-driven learning
+\end{enumerate}
+
+It extends classical machine learning into quantum Hilbert spaces.
+
+\vspace{0.5cm}
+
+\section*{STUDY ROADMAP}
+
+\subsection*{Phase 1 --- Foundations}
+\begin{itemize}
+\item Parametrized quantum circuits
+\item Measurement theory
+\end{itemize}
+
+\subsection*{Phase 2 --- Core Models}
+\begin{itemize}
+\item QNNs
+\item VQE
+\item QAOA
+\end{itemize}
+
+\subsection*{Phase 3 --- Integration}
+\begin{itemize}
+\item Qiskit Machine Learning
+\item PennyLane AI
+\end{itemize}
+
+\subsection*{Phase 4 --- Training}
+\begin{itemize}
+\item Loss functions
+\item Optimization methods
+\end{itemize}
+
+\subsection*{Phase 5 --- Applications}
+\begin{itemize}
+\item Classification
+\item Optimization
+\item Quantum simulation
+\end{itemize}

@@ -1,0 +1,245 @@
+\chapter{SCIENTIFIC PROGRAMMING}
+
+This block focuses on the computational tools required to implement mathematical models, simulate physical systems, and support quantum algorithms.
+
+\begin{center}
+\textbf{How to use advanced Python and scientific libraries to model, simulate, and visualize complex systems}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{1. ADVANCED PYTHON}
+
+\subsection*{1.1 Core Concepts}
+
+\begin{itemize}
+\item Dynamic typing and memory management
+\item First-class functions
+\item List, dictionary, and set comprehensions
+\item Lambda functions
+\end{itemize}
+
+\subsection*{1.2 Functional Programming Features}
+
+\begin{itemize}
+\item Higher-order functions
+\item Map, filter, reduce
+\item Immutability concepts
+\end{itemize}
+
+\subsection*{1.3 Modules and Packages}
+
+\begin{itemize}
+\item Code organization
+\item Import system
+\item Virtual environments
+\end{itemize}
+
+\subsection*{1.4 Exception Handling}
+
+\begin{itemize}
+\item Try-except blocks
+\item Custom exceptions
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{2. NUMPY (NUMERICAL COMPUTING)}
+
+\subsection*{2.1 Arrays and Data Structures}
+
+\begin{itemize}
+\item \texttt{ndarray} structure
+\item Multidimensional arrays
+\item Indexing and slicing
+\end{itemize}
+
+\subsection*{2.2 Vectorized Operations}
+
+\begin{itemize}
+\item Element-wise operations
+\item Broadcasting
+\item Performance advantages over loops
+\end{itemize}
+
+\subsection*{2.3 Linear Algebra}
+
+\begin{itemize}
+\item Matrix multiplication
+\item Eigenvalues and eigenvectors
+\item Norms and inner products
+\end{itemize}
+
+\[
+A \vec{v} = \lambda \vec{v}
+\]
+
+\subsection*{2.4 Random Number Generation}
+
+\begin{itemize}
+\item Probability distributions
+\item Sampling methods
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{3. SCIPY (SCIENTIFIC COMPUTING)}
+
+\subsection*{3.1 Optimization}
+
+\begin{itemize}
+\item Minimization methods
+\item Gradient-based algorithms
+\item Constrained optimization
+\end{itemize}
+
+\subsection*{3.2 Integration}
+
+\begin{itemize}
+\item Numerical integration
+\item Quadrature methods
+\end{itemize}
+
+\subsection*{3.3 Differential Equations}
+
+\begin{itemize}
+\item Initial value problems
+\item Solving ODEs numerically
+\end{itemize}
+
+\[
+\frac{dy}{dt} = f(t,y)
+\]
+
+\subsection*{3.4 Linear Algebra Extensions}
+
+\begin{itemize}
+\item Sparse matrices
+\item Advanced decompositions
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{4. MATPLOTLIB (VISUALIZATION)}
+
+\subsection*{4.1 Basic Plotting}
+
+\begin{itemize}
+\item Line plots
+\item Scatter plots
+\item Bar charts
+\end{itemize}
+
+\subsection*{4.2 Customization}
+
+\begin{itemize}
+\item Titles, labels, legends
+\item Axis control
+\item Styles and themes
+\end{itemize}
+
+\subsection*{4.3 Scientific Visualization}
+
+\begin{itemize}
+\item Function plotting
+\item Data analysis visualization
+\item Multi-figure layouts
+\end{itemize}
+
+Example:
+
+\[
+y = f(x)
+\]
+
+\vspace{0.5cm}
+
+\section*{5. OBJECT-ORIENTED PROGRAMMING (OOP)}
+
+\subsection*{5.1 Core Concepts}
+
+\begin{itemize}
+\item Classes and objects
+\item Attributes and methods
+\item Encapsulation
+\end{itemize}
+
+\subsection*{5.2 Inheritance}
+
+\begin{itemize}
+\item Code reuse
+\item Hierarchical structure
+\end{itemize}
+
+\subsection*{5.3 Polymorphism}
+
+\begin{itemize}
+\item Method overriding
+\item Flexible interfaces
+\end{itemize}
+
+\subsection*{5.4 Abstraction}
+
+\begin{itemize}
+\item Abstract classes
+\item Interface design
+\end{itemize}
+
+\subsection*{5.5 Example Structure}
+
+\begin{minted}{python}
+class QuantumState:
+    def __init__(self, state_vector):
+        self.state_vector = state_vector
+
+    def normalize(self):
+        norm = sum(abs(x)**2 for x in self.state_vector) ** 0.5
+        self.state_vector = [x / norm for x in self.state_vector]
+\end{minted}
+
+\vspace{0.5cm}
+
+\section*{FINAL CONNECTION}
+
+All tools in this block serve four main purposes:
+
+\begin{enumerate}
+\item \textbf{Computation:} numerical calculations (NumPy)
+\item \textbf{Analysis:} solving equations and optimization (SciPy)
+\item \textbf{Visualization:} graphical representation (Matplotlib)
+\item \textbf{Structure:} scalable code design (OOP)
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\section*{STUDY ROADMAP}
+
+\subsection*{Phase 1 --- Python Fundamentals}
+\begin{itemize}
+\item Data structures
+\item Functions and modules
+\item Exception handling
+\end{itemize}
+
+\subsection*{Phase 2 --- NumPy}
+\begin{itemize}
+\item Arrays and vectorization
+\item Linear algebra operations
+\end{itemize}
+
+\subsection*{Phase 3 --- SciPy}
+\begin{itemize}
+\item Optimization
+\item Differential equations
+\end{itemize}
+
+\subsection*{Phase 4 --- Matplotlib}
+\begin{itemize}
+\item Plotting and visualization
+\end{itemize}
+
+\subsection*{Phase 5 --- OOP}
+\begin{itemize}
+\item Class design
+\item Scientific code structuring
+\end{itemize}

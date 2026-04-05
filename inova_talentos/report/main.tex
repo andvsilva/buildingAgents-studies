@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,12pt]{book}
 \usepackage[brazil, english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -25,10 +25,13 @@
 \usepackage{siunitx}
 \usetikzlibrary{3d, arrows.meta}
 \usepackage{booktabs}
-
+\usepackage{minted}
 
 \usepackage{color}
 \definecolor{myblue}{rgb}{.8, .8, 1}
+
+\setcounter{secnumdepth}{3}   % enables numbering up to subsubsection
+\setcounter{tocdepth}{3}      % includes subsubsection in the table of contents
 
 \usepackage{amsmath}
 \usepackage{empheq}
@@ -127,148 +130,181 @@
 
 \begin{document}
 
-\noindent\textbf{Key Objective:} \\
-Combine strong analytical skills in data with the practical ability to design and deploy AI agents that generate measurable business impact.
+\maketitle
 
-\vspace{0.5cm}
+\section*{Comprehensive Technical Structure}
 
-\section*{1. Understanding the ``Tech 3 -- Master'' Profile}
+\subsection*{Block 1 — Core Foundations}
 
+\textbf{Quantum Computing}
 \begin{itemize}
-\item[] Advanced analytical reasoning
-\item[] Technical autonomy
-\item[] Strategic business thinking
-\item[] Ability to propose leverage points
-\item[] Capability to design end-to-end solutions
+    \item Quantum optimization (QAOA, VQE)
+    \item Parameterized quantum circuits
+    \item Simulation of quantum systems
 \end{itemize}
 
-\vspace{0.5cm}
-
-\section*{2. Data Analysis \& Business Levers (Critical)}
-
-\subsection*{Advanced SQL}
-
+\textbf{Mathematical Foundations}
 \begin{itemize}
-\item[] CTEs
-\item[] Window functions
-\item[] Complex aggregations
-\item[] Correlated subqueries
-\item[] Query optimization
-\item[] Dimensional modeling (Star Schema)
+    \item Linear Algebra (vector spaces, operators, eigenvalues)
+    \item Quantum Mechanics (postulates, Hermitian operators, measurement theory)
 \end{itemize}
 
-\subsection*{Business Metrics and Levers}
+\subsection*{Block 2 — Scientific Programming}
 
 \begin{itemize}
-\item[] Conversion funnels
-\item[] Cohort analysis
-\item[] Retention metrics
-\item[] LTV (Lifetime Value)
-\item[] CAC (Customer Acquisition Cost)
-\item[] ROI (Return on Investment)
-\item[] Price elasticity
+    \item Advanced Python
+    \item Scientific libraries:
+    \begin{itemize}
+        \item NumPy
+        \item SciPy
+        \item Matplotlib
+    \end{itemize}
+    \item Object-Oriented Programming (OOP)
 \end{itemize}
 
-\vspace{0.5cm}
-
-\section*{3. AI Development -- Agents}
-
-\subsection*{Core Knowledge}
+\subsection*{Block 3 — Quantum Frameworks}
 
 \begin{itemize}
-\item[] LLM fundamentals
-\item[] RAG (Retrieval-Augmented Generation)
-\item[] Tool integration
-\item[] Orchestration
-\item[] Memory strategies
-\item[] Multi-agent systems
-\item[] Observability and monitoring
+    \item Qiskit
+    \item PennyLane
+    \item Cirq
 \end{itemize}
 
-\subsection*{Technical Foundations}
+\textbf{Applications}
+\begin{itemize}
+    \item Quantum circuit simulation
+    \item Execution on quantum hardware
+    \item Integration with classical machine learning models
+\end{itemize}
+
+\subsection*{Block 4 — Machine Learning and Generative AI}
+
+\textbf{Frameworks}
+\begin{itemize}
+    \item PyTorch
+    \item TensorFlow
+    \item JAX
+\end{itemize}
+
+\textbf{Models}
+\begin{itemize}
+    \item Transformers (LLMs)
+    \item Variational Autoencoders (VAE)
+    \item Diffusion Models
+\end{itemize}
+
+\textbf{Techniques}
+\begin{itemize}
+    \item Fine-tuning
+    \item Model evaluation
+\end{itemize}
+
+\subsection*{Block 5 — Optimization Methods}
+
+\textbf{Classical Optimization}
+\begin{itemize}
+    \item Gradient Descent
+    \item Adam
+    \item COBYLA
+    \item SPSA
+\end{itemize}
+
+\textbf{Note:} Classical optimization plays a central role in hybrid quantum-classical algorithms, where parameters of quantum circuits are iteratively adjusted.
+
+\subsection*{Block 6 — Quantum Machine Learning (QML)}
 
 \begin{itemize}
-\item[] Embeddings
-\item[] Vectorization
-\item[] Vector databases (FAISS, Pinecone)
-\item[] Chunking strategies
-\item[] LLM evaluation frameworks
-\item[] Cost vs performance trade-offs
+    \item Quantum Neural Networks (QNNs)
+    \item Variational Quantum Eigensolver (VQE)
+    \item Quantum Approximate Optimization Algorithm (QAOA)
 \end{itemize}
 
-\vspace{0.5cm}
+\textbf{Integrations}
+\begin{itemize}
+    \item Qiskit Machine Learning
+    \item PennyLane AI
+\end{itemize}
 
-\section*{4. Generative AI Depth}
+\subsection*{Block 7 — Advanced and Desirable Skills}
+
+\textbf{Generative AI}
+\begin{itemize}
+    \item Reinforcement Learning from Human Feedback (RLHF)
+    \item Prompt engineering and dataset design
+\end{itemize}
+
+\textbf{Infrastructure}
+\begin{itemize}
+    \item GPU computing
+    \item Experimental pipelines
+\end{itemize}
+
+\textbf{MLOps}
+\begin{itemize}
+    \item MLflow
+    \item Weights \& Biases
+    \item Data Version Control (DVC)
+\end{itemize}
+
+\subsection*{Block 8 — Scientific Production and Reproducibility}
 
 \begin{itemize}
-\item[] Frontier models
-\item[] Context windows
-\item[] Hallucination causes
-\item[] Alignment principles
-\item[] Safety mechanisms
-\item[] Temperature / top-p
-\item[] Prompt chaining
-\item[] Structured outputs
-\item[] Ability to justify technical decisions
+    \item Jupyter Notebooks
+    \item LaTeX
+    \item Git and GitHub
+    \item Reproducible research practices
 \end{itemize}
 
-\vspace{0.5cm}
+\section*{Learning Strategy (Realistic Roadmap)}
 
-\section*{5. Large-Scale Data Systems (Desirable)}
-
+\subsection*{Stage 1 — Foundations}
 \begin{itemize}
-\item[] Partitioning strategies
-\item[] Indexing techniques
-\item[] Query execution plans
-\item[] Distributed systems concepts
-\item[] Spark fundamentals
-\item[] ETL vs ELT
-\item[] Data warehouse vs Data lake
+    \item Scientific Python and linear algebra
+    \item Fundamental quantum mechanics
 \end{itemize}
 
-\vspace{0.5cm}
-
-\section*{6. 3-Week Intensive Study Plan}
-
-\subsection*{Week 1 -- SQL \& Business Analytics}
-
+\subsection*{Stage 2 — Intermediate Development}
 \begin{itemize}
-\item[] Advanced SQL practice
-\item[] Data modeling
-\item[] Business metrics deep dive
-\item[] Churn case study
+    \item Quantum circuits using Qiskit or PennyLane
+    \item Numerical optimization methods
 \end{itemize}
 
-\subsection*{Week 2 -- Generative AI \& Agents}
-
+\subsection*{Stage 3 — Advanced Topics}
 \begin{itemize}
-\item[] Build an agent with tool calling
-\item[] Implement a RAG pipeline
-\item[] Evaluate model outputs
-\item[] Measure inference cost
+    \item Variational algorithms (VQE, QAOA)
+    \item Integration with machine learning frameworks (PyTorch, JAX)
 \end{itemize}
 
-\subsection*{Week 3 -- Architecture \& Strategy}
-
+\subsection*{Stage 4 — Specialization}
 \begin{itemize}
-\item[] Design an end-to-end solution
-\item[] Address scalability concerns
-\item[] Simulate a technical interview
-\item[] Prepare a project pitch
+    \item Quantum Machine Learning (QML)
+    \item Generative AI and end-to-end pipeline development
 \end{itemize}
 
-\vspace{0.5cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Chapter 1
+\input{chapters/1.tex}
 
-\section*{7. Interview Preparation}
+%%%% Chapter 2
+%\input{chapters/2.tex}
 
-Be ready to answer:
+%%%% Chapter 3
+%\input{chapters/3.tex}
 
-\begin{itemize}
-\item[] How would you measure the impact of an AI agent?
-\item[] How do you ensure reliability?
-\item[] How do you reduce hallucinations?
-\item[] How do you scale an LLM-based system?
-\item[] How do you justify cost vs benefit?
-\end{itemize}
+%%%% Chapter 4
+%\input{chapters/4.tex}
+
+%%%% Chapter 5
+%\input{chapters/5.tex}
+
+%%%% Chapter 6
+%\input{chapters/6.tex}
+
+%%%% Chapter 7
+%\input{chapters/7.tex}
+
+%%%% Chapter 8
+%\input{chapters/8.tex}
 
 \end{document}

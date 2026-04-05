@@ -1,0 +1,322 @@
+\chapter{Core Foundations}
+
+This block focuses on the fundamental structure of modern quantum computing:
+
+\begin{center}
+\textbf{How to represent, evolve, and optimize quantum systems using linear algebra and parametrized quantum circuits}
+\end{center}
+
+\vspace{0.5cm}
+
+\section{QUANTUM COMPUTING (CORE)}
+
+Quantum computing is a computational paradigm that leverages the principles of quantum mechanics 
+to process information. Unlike classical computers, which use bits as the basic unit of 
+information, quantum computers use quantum bits (qubits), enabling fundamentally 
+new forms of computation.
+
+\subsection{Qubit and Hilbert Space}
+
+A qubit is a vector in a 2-dimensional complex vector space:
+
+\[
+|\psi\rangle = \alpha |0\rangle + \beta |1\rangle
+\]
+
+with normalization condition:
+
+\[
+|\alpha|^2 + |\beta|^2 = 1
+\]
+
+This naturally introduces:
+\begin{itemize}
+\item Linear algebra
+\item Quantum probability
+\end{itemize}
+
+\subsection{Operators and Quantum Gates}
+
+The evolution of a quantum state is given by:
+
+\[
+|\psi'\rangle = U |\psi\rangle
+\]
+
+where:
+\begin{itemize}
+\item $U$ is a unitary operator
+\item $U^\dagger U = I$
+\end{itemize}
+
+Examples of quantum gates:
+\begin{itemize}
+\item Pauli-X
+\item Hadamard
+\item CNOT
+\end{itemize}
+
+\subsection*{1.3 Quantum Measurement}
+
+Measurement probabilities:
+
+\[
+P(0) = |\alpha|^2, \quad P(1) = |\beta|^2
+\]
+
+After measurement, the state collapses to the observed eigenstate.
+
+\vspace{0.5cm}
+
+\section*{2. PARAMETRIZED QUANTUM CIRCUITS (PQC)}
+
+These are the foundation of:
+\begin{itemize}
+\item Variational algorithms (VQE, QAOA)
+\item Quantum machine learning
+\end{itemize}
+
+\subsection*{General Form}
+
+\[
+|\psi(\theta)\rangle = U(\theta) |0\rangle
+\]
+
+where $\theta$ represents tunable parameters.
+
+Typical parametrized gates:
+
+\[
+R_x(\theta), \quad R_y(\theta), \quad R_z(\theta)
+\]
+
+\subsection*{Core Idea}
+
+Optimization problem:
+
+\[
+\min_{\theta} \langle \psi(\theta) | H | \psi(\theta) \rangle
+\]
+
+This is known as \textbf{variational optimization}.
+
+\vspace{0.5cm}
+
+\section*{3. VARIATIONAL QUANTUM EIGENSOLVER (VQE)}
+
+\subsection*{Objective}
+
+To find the ground state energy of a Hamiltonian.
+
+\subsection*{Eigenvalue Problem}
+
+\[
+H |\psi\rangle = E |\psi\rangle
+\]
+
+\subsection*{Strategy}
+
+\begin{enumerate}
+\item Choose a parametrized ansatz
+\item Compute expectation value
+\item Minimize using classical optimization
+\end{enumerate}
+
+\[
+E(\theta) = \langle \psi(\theta) | H | \psi(\theta) \rangle
+\]
+
+\subsection*{Physical Interpretation}
+
+Approximation of the lowest eigenvalue of $H$.
+
+\vspace{0.5cm}
+
+\section*{4. QUANTUM APPROXIMATE OPTIMIZATION ALGORITHM (QAOA)}
+
+\subsection*{Applications}
+
+\begin{itemize}
+\item Combinatorial optimization (e.g., Max-Cut)
+\end{itemize}
+
+\subsection*{State Construction}
+
+\[
+|\gamma, \beta\rangle = e^{-i\beta H_M} e^{-i\gamma H_C} |+\rangle
+\]
+
+where:
+\begin{itemize}
+\item $H_C$: cost Hamiltonian
+\item $H_M$: mixing Hamiltonian
+\end{itemize}
+
+\subsection*{Key Idea}
+
+Alternate between:
+\begin{itemize}
+\item Cost evolution
+\item Mixing evolution
+\end{itemize}
+
+This resembles:
+\begin{itemize}
+\item Trotterization
+\item Controlled quantum dynamics
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{5. SIMULATION OF QUANTUM SYSTEMS}
+
+\subsection*{Time Evolution}
+
+\[
+|\psi(t)\rangle = e^{-iHt} |\psi(0)\rangle
+\]
+
+\subsection*{Methods}
+
+\begin{itemize}
+\item Exact matrix exponentiation
+\item Trotter-Suzuki decomposition
+\item Variational simulation
+\end{itemize}
+
+\subsection*{Connection to Physics}
+
+Time evolution follows the Schrödinger equation:
+
+\[
+i\hbar \frac{d}{dt} |\psi\rangle = H |\psi\rangle
+\]
+
+\vspace{0.5cm}
+
+\section*{6. MATHEMATICAL FOUNDATION}
+
+\subsection*{6.1 Linear Algebra}
+
+\subsubsection*{Complex Vector Spaces}
+
+\begin{itemize}
+\item Orthonormal basis
+\item Inner product:
+\[
+\langle \psi | \phi \rangle
+\]
+\end{itemize}
+
+\subsubsection*{Linear Operators}
+
+Hermitian operators:
+
+\[
+A = A^\dagger
+\]
+
+These represent physical observables.
+
+\subsubsection*{Eigenvalues and Eigenvectors}
+
+\[
+A |v\rangle = \lambda |v\rangle
+\]
+
+Applications:
+\begin{itemize}
+\item Energy levels
+\item Measurement outcomes
+\end{itemize}
+
+\subsubsection*{Spectral Decomposition}
+
+\[
+A = \sum_i \lambda_i |v_i\rangle \langle v_i|
+\]
+
+\vspace{0.5cm}
+
+\subsection*{6.2 Quantum Mechanics}
+
+\subsubsection*{Postulates}
+
+\begin{enumerate}
+\item State: vector in Hilbert space
+\item Observables: Hermitian operators
+\item Measurement: eigenvalues
+\item Evolution: unitary
+\item Composite systems: tensor product
+\end{enumerate}
+
+\subsubsection*{Tensor Product}
+
+\[
+|00\rangle, |01\rangle, |10\rangle, |11\rangle
+\]
+
+Foundation for:
+\begin{itemize}
+\item Entanglement
+\item Multi-qubit systems
+\end{itemize}
+
+\subsubsection*{Measurement Operators}
+
+\[
+P_i = |v_i\rangle \langle v_i|
+\]
+
+\vspace{0.5cm}
+
+\section*{FINAL CONNECTION}
+
+All concepts reduce to four pillars:
+
+\begin{enumerate}
+\item \textbf{Representation:} state vectors
+\item \textbf{Transformation:} unitary operators
+\item \textbf{Measurement:} Hermitian operators
+\item \textbf{Optimization:} parameter tuning
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\section*{STUDY ROADMAP}
+
+\subsection*{Phase 1 --- Mathematics}
+\begin{itemize}
+\item Complex vector spaces
+\item Inner product
+\item Eigenvalues and eigenvectors
+\item Hermitian operators
+\end{itemize}
+
+\subsection*{Phase 2 --- Quantum Mechanics}
+\begin{itemize}
+\item Postulates
+\item Measurement theory
+\item Time evolution
+\item Composite systems
+\end{itemize}
+
+\subsection*{Phase 3 --- Quantum Computing}
+\begin{itemize}
+\item Qubits
+\item Quantum gates
+\item Circuits
+\end{itemize}
+
+\subsection*{Phase 4 --- Variational Methods}
+\begin{itemize}
+\item Parametrized circuits
+\item VQE
+\item QAOA
+\end{itemize}
+
+\subsection*{Phase 5 --- Implementation}
+\begin{itemize}
+\item Python-based quantum frameworks
+\item Simulation and experimentation
+\end{itemize}

@@ -1,0 +1,7 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{prompt} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{Task: Classify the sentiment of the sentence.}
+\PYG{l+s+s2}{Input: The movie was excellent.}
+\PYG{l+s+s2}{Output:}
+\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\end{MintedVerbatim}

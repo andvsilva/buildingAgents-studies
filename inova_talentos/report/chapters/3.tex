@@ -1,0 +1,211 @@
+\chapter{QUANTUM FRAMEWORKS}
+
+This block focuses on the practical implementation of quantum algorithms using modern quantum software frameworks.
+
+\begin{center}
+\textbf{How to build, simulate, and execute quantum circuits using industry-standard tools and integrate them with classical machine learning}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{1. QISKIT}
+
+\subsection*{1.1 Overview}
+
+Qiskit is an open-source quantum computing framework developed for building and executing quantum circuits on simulators and real quantum hardware.
+
+\subsection*{1.2 Core Components}
+
+\begin{itemize}
+\item \textbf{QuantumCircuit:} circuit construction
+\item \textbf{Aer:} simulation backend
+\item \textbf{IBM Quantum:} real hardware execution
+\end{itemize}
+
+\subsection*{1.3 Circuit Example}
+
+\begin{minted}{python}
+from qiskit import QuantumCircuit
+
+qc = QuantumCircuit(1)
+qc.h(0)
+qc.measure_all()
+\end{minted}
+
+\subsection*{1.4 Key Features}
+
+\begin{itemize}
+\item Gate-based circuit model
+\item Access to real quantum devices
+\item Integration with optimization routines
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{2. PENNYLANE}
+
+\subsection*{2.1 Overview}
+
+PennyLane is a framework designed for quantum machine learning and hybrid quantum-classical computation.
+
+\subsection*{2.2 Core Idea}
+
+Parameterized quantum circuits combined with automatic differentiation:
+
+\[
+f(\theta) = \langle \psi(\theta) | H | \psi(\theta) \rangle
+\]
+
+\subsection*{2.3 Example}
+
+\begin{minted}{python}
+import pennylane as qml
+
+dev = qml.device("default.qubit", wires=1)
+
+@qml.qnode(dev)
+def circuit(theta):
+    qml.RY(theta, wires=0)
+    return qml.expval(qml.PauliZ(0))
+\end{minted}
+
+\subsection*{2.4 Key Features}
+
+\begin{itemize}
+\item Automatic differentiation
+\item Seamless integration with PyTorch, TensorFlow, JAX
+\item Native support for variational algorithms
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{3. CIRQ}
+
+\subsection*{3.1 Overview}
+
+Cirq is a quantum computing framework focused on designing, simulating, and optimizing circuits for near-term quantum devices.
+
+\subsection*{3.2 Circuit Design}
+
+\begin{minted}{python}
+import cirq
+
+q = cirq.LineQubit(0)
+circuit = cirq.Circuit(
+    cirq.H(q),
+    cirq.measure(q)
+)
+\end{minted}
+
+\subsection*{3.3 Key Features}
+
+\begin{itemize}
+\item Fine-grained control of quantum circuits
+\item Focus on NISQ (Noisy Intermediate-Scale Quantum) devices
+\item Hardware-aware circuit optimization
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{4. APPLICATIONS}
+
+\subsection*{4.1 Circuit Simulation}
+
+Simulation allows testing quantum algorithms without real hardware:
+
+\begin{itemize}
+\item Statevector simulation
+\item Shot-based simulation
+\item Noise modeling
+\end{itemize}
+
+Mathematically:
+
+\[
+|\psi_{\text{out}}\rangle = U |\psi_{\text{in}}\rangle
+\]
+
+\vspace{0.3cm}
+
+\subsection*{4.2 Execution on Quantum Hardware}
+
+\begin{itemize}
+\item Access via cloud platforms
+\item Limited qubits and noise constraints
+\item Measurement statistics from repeated runs
+\end{itemize}
+
+Measurement outcome:
+
+\[
+P(i) = |\langle i | \psi \rangle|^2
+\]
+
+\vspace{0.3cm}
+
+\subsection*{4.3 Integration with Classical Machine Learning}
+
+Hybrid quantum-classical workflows:
+
+\begin{itemize}
+\item Quantum circuit as a differentiable layer
+\item Classical optimizer updates parameters
+\item Feedback loop between quantum and classical systems
+\end{itemize}
+
+Optimization loop:
+
+\[
+\theta_{k+1} = \theta_k - \eta \nabla_\theta f(\theta)
+\]
+
+\vspace{0.5cm}
+
+\section*{FINAL CONNECTION}
+
+All frameworks enable three fundamental capabilities:
+
+\begin{enumerate}
+\item \textbf{Construction:} build quantum circuits
+\item \textbf{Simulation:} test algorithms classically
+\item \textbf{Execution:} run on real quantum hardware
+\end{enumerate}
+
+They bridge:
+\begin{itemize}
+\item Quantum physics
+\item Numerical computation
+\item Machine learning
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{STUDY ROADMAP}
+
+\subsection*{Phase 1 --- Qiskit}
+\begin{itemize}
+\item Basic circuits
+\item Simulation
+\item Hardware execution
+\end{itemize}
+
+\subsection*{Phase 2 --- PennyLane}
+\begin{itemize}
+\item Parametrized circuits
+\item Gradient computation
+\item Hybrid models
+\end{itemize}
+
+\subsection*{Phase 3 --- Cirq}
+\begin{itemize}
+\item Circuit optimization
+\item Noise modeling
+\item Hardware-aware design
+\end{itemize}
+
+\subsection*{Phase 4 --- Applications}
+\begin{itemize}
+\item Quantum simulation
+\item Variational algorithms
+\item Quantum machine learning
+\end{itemize}

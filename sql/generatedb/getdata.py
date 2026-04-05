@@ -16,7 +16,7 @@ engine = create_engine(
 
 # dataset size
 n_customers = 100000
-n_products = 2000
+n_products = 20000
 n_orders = 2000000
 
 # -----------------------------

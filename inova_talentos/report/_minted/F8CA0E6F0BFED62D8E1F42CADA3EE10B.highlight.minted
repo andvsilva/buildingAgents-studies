@@ -1,0 +1,7 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{qiskit}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{QuantumCircuit}
+
+\PYG{n}{qc} \PYG{o}{=} \PYG{n}{QuantumCircuit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{qc}\PYG{o}{.}\PYG{n}{h}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{n}{qc}\PYG{o}{.}\PYG{n}{measure\PYGZus{}all}\PYG{p}{(}\PYG{p}{)}
+\end{MintedVerbatim}
