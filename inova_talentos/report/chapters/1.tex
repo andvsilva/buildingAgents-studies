@@ -8,7 +8,7 @@ This block focuses on the fundamental structure of modern quantum computing:
 
 \vspace{0.5cm}
 
-\section{QUANTUM COMPUTING (CORE)}
+\section{Quantum Computing (CORE)}
 
 Quantum computing is a computational paradigm that leverages the principles of quantum mechanics 
 to process information. Unlike classical computers, which use bits as the basic unit of 
@@ -256,7 +256,7 @@ node[below] {$\hspace{0.7cm}\ket{+}$};
 \draw[thick, red!40, ->]
 (0,1) arc[start angle=90, end angle=0, radius=1];
 
-\node[red!70] at (0.6,0.4) {$H$};
+\node[red!70] at (0.7,0.5) {$H$};
 
 % Label
 %\node at (0.7,1.1) {$H:\ \ket{0} \rightarrow \ket{+}$};
@@ -290,10 +290,10 @@ node[below] {$\hspace{0.7cm}\ket{+}$};
 node[right, below] {$\hspace{0.7cm}\ket{-}$};
 
 % Hadamard rotation arc
-\draw[thick, red!40, ->]
-(0,1) arc[start angle=90, end angle=180, radius=1];
+\draw[thick, blue!40, ->]
+(0,-1) arc[start angle=270, end angle=180, radius=1];
 
-\node[red!70] at (0.6,0.4) {$H$};
+\node[blue!70] at (-0.7,-0.5) {$H$};
 
 % Label
 %\node at (0.7,1.1) {$H:\ \ket{0} \rightarrow \ket{-}$};
@@ -305,20 +305,219 @@ node[right, below] {$\hspace{0.7cm}\ket{-}$};
 \caption{Bloch sphere representation of the Hadamard transformation}
 \end{figure}
 
-\subsubsection{Phase Gates (S and T)}
+\subsubsection*{Bloch Sphere Representation of the State $\ket{+}$}
+
+\subsubsection*{Algebraic Definition}
+
+The state $\ket{+}$ is defined as:
+\begin{equation}
+\ket{+} = \frac{\ket{0} + \ket{1}}{\sqrt{2}}
+\end{equation}
+
+This represents a superposition with:
+\begin{itemize}
+\item Equal probability amplitudes for $\ket{0}$ and $\ket{1}$
+\item No relative phase between the components
+\end{itemize}
+
+Measurement in the computational basis yields:
+\begin{equation}
+P(0) = \frac{1}{2}, \qquad P(1) = \frac{1}{2}
+\end{equation}
+
+\subsubsection*{General Qubit State on the Bloch Sphere}
+
+Any single-qubit pure state can be written as:
+\begin{equation}
+\ket{\psi} =
+\cos\left(\frac{\theta}{2}\right)\ket{0}
++
+e^{i\phi}
+\sin\left(\frac{\theta}{2}\right)\ket{1}
+\end{equation}
+
+where:
+\begin{itemize}
+\item $\theta \in [0,\pi]$ is the polar angle
+\item $\phi \in [0,2\pi)$ is the azimuthal angle
+\end{itemize}
+
+\subsubsection*{Mapping $\ket{+}$ onto the Bloch Sphere}
+
+Comparing:
+\begin{equation}
+\ket{+} = \frac{\ket{0} + \ket{1}}{\sqrt{2}}
+\end{equation}
+
+we identify:
+\begin{align}
+\cos\left(\frac{\theta}{2}\right) &= \frac{1}{\sqrt{2}} \\
+\sin\left(\frac{\theta}{2}\right) &= \frac{1}{\sqrt{2}}
+\end{align}
+
+which implies:
+\begin{equation}
+\theta = \frac{\pi}{2}
+\end{equation}
+
+Since there is no complex phase:
+\begin{equation}
+e^{i\phi} = 1 \quad \Rightarrow \quad \phi = 0
+\end{equation}
+
+\subsubsection*{Geometric Interpretation}
+
+Thus, the state $\ket{+}$ corresponds to:
+\begin{itemize}
+\item $\theta = \frac{\pi}{2}$ (equatorial plane)
+\item $\phi = 0$ (aligned with the $x$-axis)
+\end{itemize}
+
+\begin{equation}
+\ket{+} \;\longleftrightarrow\; \text{+x direction on the Bloch sphere}
+\end{equation}
+
+\subsubsection*{Interpretation of Superposition}
+
+The computational basis states correspond to:
+\begin{align}
+\ket{0} &\leftrightarrow \text{north pole } (z = +1) \\
+\ket{1} &\leftrightarrow \text{south pole } (z = -1)
+\end{align}
+
+A superposition does not lie ``between'' these states linearly. Instead:
+\begin{itemize}
+\item Amplitudes determine the polar angle $\theta$
+\item Relative phase determines the azimuthal angle $\phi$
+\end{itemize}
+
+\subsubsection*{Role of Relative Phase}
+
+Consider:
+\begin{align}
+\ket{+} &= \frac{\ket{0} + \ket{1}}{\sqrt{2}} \quad (\phi = 0) \\
+\ket{-} &= \frac{\ket{0} - \ket{1}}{\sqrt{2}} \quad (\phi = \pi)
+\end{align}
+
+Both states yield equal measurement probabilities, but correspond to:
+\begin{align}
+\ket{+} &\leftrightarrow +x \text{ direction} \\
+\ket{-} &\leftrightarrow -x \text{ direction}
+\end{align}
+
+Thus, the relative phase rotates the state around the Bloch sphere.
+
+Therefore:
+\begin{quote}
+$\ket{+}$ is not simply ``between'' $\ket{0}$ and $\ket{1}$, but a state whose interference structure aligns with the $x$-axis.
+\end{quote}
+
+\noindent\rule{\textwidth}{1pt}
+
+\subsection{Phase Gates (S and T)}
+
+In quantum computing, phase gates are single-qubit gates that modify the \textit{relative phase} between basis states without changing measurement probabilities.
+
+\subsubsection{S Gate (Phase Gate)}
+
+The S gate applies a phase of $\frac{\pi}{2}$ to the $\ket{1}$ component:
 
 \begin{equation}
 S =
-\begin{bmatrix}
+\begin{pmatrix}
 1 & 0 \\
 0 & i
-\end{bmatrix}, \quad
+\end{pmatrix}
+\end{equation}
+
+\textbf{Action on basis states:}
+\begin{align}
+S\ket{0} &= \ket{0} \\
+S\ket{1} &= i\ket{1}
+\end{align}
+
+Thus, the S gate introduces a relative phase shift of $\frac{\pi}{2}$.
+
+\subsubsection{T Gate ($\pi/8$ Gate)}
+
+The T gate applies a phase of $\frac{\pi}{4}$:
+
+\begin{equation}
 T =
-\begin{bmatrix}
+\begin{pmatrix}
 1 & 0 \\
 0 & e^{i\pi/4}
-\end{bmatrix}
+\end{pmatrix}
 \end{equation}
+
+\textbf{Action on basis states:}
+\begin{align}
+T\ket{0} &= \ket{0} \\
+T\ket{1} &= e^{i\pi/4}\ket{1}
+\end{align}
+
+\subsubsection{General Phase Gate}
+
+Both S and T are special cases of the general phase gate:
+
+\begin{equation}
+P(\phi) =
+\begin{pmatrix}
+1 & 0 \\
+0 & e^{i\phi}
+\end{pmatrix}
+\end{equation}
+
+\begin{align}
+S &= P\left(\frac{\pi}{2}\right), \\
+T &= P\left(\frac{\pi}{4}\right)
+\end{align}
+
+\subsubsection{Effect on a Superposition State}
+
+Consider the state:
+\begin{equation}
+\ket{\psi} = \frac{\ket{0} + \ket{1}}{\sqrt{2}} = \ket{+}
+\end{equation}
+
+Applying the S gate:
+\begin{equation}
+S\ket{\psi} = \frac{\ket{0} + i\ket{1}}{\sqrt{2}}
+\end{equation}
+
+Applying the T gate:
+\begin{equation}
+T\ket{\psi} = \frac{\ket{0} + e^{i\pi/4}\ket{1}}{\sqrt{2}}
+\end{equation}
+
+\subsubsection{Bloch Sphere Interpretation}
+
+Phase gates correspond to rotations around the Z-axis:
+\begin{align}
+S &= R_z\left(\frac{\pi}{2}\right), \\
+T &= R_z\left(\frac{\pi}{4}\right)
+\end{align}
+
+These rotations change the phase (longitude) without affecting measurement probabilities.
+
+\subsubsection{Key Properties}
+
+\begin{align}
+S^2 &= Z \\
+T^2 &= S \\
+T^4 &= Z \\
+T^8 &= I
+\end{align}
+
+\subsubsection{Summary}
+
+\begin{itemize}
+\item Phase gates modify relative phase, not amplitudes
+\item S gate applies a $\frac{\pi}{2}$ phase shift
+\item T gate applies a $\frac{\pi}{4}$ phase shift
+\item Both correspond to rotations around the Z-axis
+\item The T gate is essential for universal quantum computation
+\end{itemize}
 
 \subsection{Multi-Qubit Gates}
 
@@ -359,7 +558,8 @@ Matrix representation:
 
 \subsubsection{Toffoli Gate (CCNOT)}
 
-The Toffoli gate has two control qubits and one target qubit. The target qubit is flipped only if both control qubits are in state $|1\rangle$.
+The Toffoli gate has two control qubits and one target qubit. The target qubit is flipped 
+only if both control qubits are in state $|1\rangle$.
 
 \subsection{Properties of Quantum Gates}
 
@@ -390,7 +590,7 @@ After measurement, the state collapses to the observed eigenstate.
 
 \vspace{0.5cm}
 
-\section{PARAMETRIZED QUANTUM CIRCUITS (PQC)}
+\section{Parametrized Quantum Circuits (PQC)}
 
 Parametrized Quantum Circuits (PQCs) are quantum circuits with adjustable parameters in their gates.
 These parameters are typically optimized using classical algorithms in a hybrid approach.
@@ -431,7 +631,7 @@ This is known as \textbf{variational optimization}.
 
 \vspace{0.5cm}
 
-\section{VARIATIONAL QUANTUM EIGENSOLVER (VQE)}
+\section{Variational Quantum Eigensolver (VQE)}
 
 The Variational Quantum Eigensolver (VQE) is a hybrid quantum-classical algorithm used to estimate the ground state energy of a quantum system.
 It combines a parametrized quantum circuit with a classical optimizer to minimize the energy expectation value.
@@ -468,13 +668,14 @@ Approximation of the lowest eigenvalue of $H$.
 
 \vspace{0.5cm}
 
-\section{QUANTUM APPROXIMATE OPTIMIZATION ALGORITHM (QAOA)}
+\section{Quantum Approximate Optimization Algorithm (QAOA)}
 
-The Quantum Approximate Optimization Algorithm (QAOA) is a hybrid quantum-classical algorithm designed to solve combinatorial optimization problems.
-It uses a parametrized quantum circuit with alternating operators to explore the solution space.
-A classical optimizer adjusts the parameters to maximize or minimize a given cost function.
-QAOA is particularly effective for problems like Max-Cut and other graph-based optimizations.
-It is well-suited for implementation on noisy intermediate-scale quantum (NISQ) devices.
+The Quantum Approximate Optimization Algorithm (QAOA) is a hybrid quantum-classical algorithm 
+designed to solve combinatorial optimization problems. It uses a parametrized quantum circuit 
+with alternating operators to explore the solution space. A classical optimizer adjusts the 
+parameters to maximize or minimize a given cost function. QAOA is particularly effective for 
+problems like Max-Cut and other graph-based optimizations. It is well-suited for implementation 
+on noisy intermediate-scale quantum (NISQ) devices.
 
 \subsection*{Applications}
 
@@ -510,7 +711,7 @@ This resembles:
 
 \vspace{0.5cm}
 
-\section{SIMULATION OF QUANTUM SYSTEMS}
+\section{Simulation Of Quantum Systems}
 
 Simulation of Quantum Systems involves using computational methods to model the behavior of quantum mechanical systems.
 Quantum computers can efficiently simulate systems that are intractable for classical computers.
@@ -542,7 +743,7 @@ i\hbar \frac{d}{dt} |\psi\rangle = H |\psi\rangle
 
 \vspace{0.5cm}
 
-\section*{MATHEMATICAL FOUNDATION}
+\section*{Mathematical Foundation}
 
 \subsection*{6.1 Linear Algebra}
 
@@ -618,7 +819,7 @@ P_i = |v_i\rangle \langle v_i|
 
 \vspace{0.5cm}
 
-\section*{FINAL CONNECTION}
+\section*{Final Connection}
 
 All concepts reduce to four pillars:
 
@@ -631,7 +832,7 @@ All concepts reduce to four pillars:
 
 \vspace{0.5cm}
 
-\section*{STUDY ROADMAP}
+\section*{Study Roadmap}
 
 \subsection*{Phase 1 --- Mathematics}
 \begin{itemize}

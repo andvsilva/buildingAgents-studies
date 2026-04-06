@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1775418560.4823 "main.aux" "main.bbl" "main" 1775418926.75396 0
+["bibtex main"] 1775435838.6284 "main.aux" "main.bbl" "main" 1775435842.89688 0
   "./bibliography.bib" 1775171380.23718 309 93cb47875ac94874d29e270007d54609 ""
-  "./main-blx.bib" 1775418926.03171 343 49edc20051db315eae61ff8c90935a09 ""
+  "./main-blx.bib" 1775435842.2598 343 49edc20051db315eae61ff8c90935a09 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/biblatex/biblatex.bst" 1711143581 65510 b1f696b0241395385f422f67543c37fd ""
-  "main.aux" 1775418926.02271 4264 eca48ec2c3fd215630d4fa9ca1a3e569 "pdflatex"
+  "main.aux" 1775435842.2508 5246 51a4086200ab8db6bc6d7baa3ea9e981 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1775418922.50546 "/home/andvsilva/repo/buildingAgents-studies/inova_talentos/report/main.tex" "main.pdf" "main" 1775418926.75431 0
+["pdflatex"] 1775435838.78984 "/home/andvsilva/repo/buildingAgents-studies/inova_talentos/report/main.tex" "main.pdf" "main" 1775435842.89715 0
   "/etc/texmf/web2c/texmf.cnf" 1769089137.22928 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/andvsilva/repo/buildingAgents-studies/inova_talentos/report/main.tex" 1775416931.39362 7285 1c44a5f660f58894a5c0b6f25fa3a368 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -334,6 +334,7 @@
   "/usr/share/texmf/fonts/tfm/public/lm/ec-lmr17.tfm" 1254269338 12156 ca1ae6a3c8564e89597f1f993fba1608 ""
   "/usr/share/texmf/fonts/tfm/public/lm/ec-lmr6.tfm" 1254269338 12048 c1068d0f4772be9b0ec447692e1d6d82 ""
   "/usr/share/texmf/fonts/tfm/public/lm/ec-lmr8.tfm" 1254269338 12064 a35db870f0b76c338d749c56dc030ef5 ""
+  "/usr/share/texmf/fonts/tfm/public/lm/ec-lmri12.tfm" 1254269338 17144 271aaf9ebb339934b04110dc5211fba4 ""
   "/usr/share/texmf/fonts/tfm/public/lm/lmex10.tfm" 1148093231 992 ce925c9346c7613270a79afbee98c070 ""
   "/usr/share/texmf/fonts/tfm/public/lm/lmmi10.tfm" 1148093231 1528 6d36b2385e0ca062a654de6ac59cb34f ""
   "/usr/share/texmf/fonts/tfm/public/lm/lmmi12.tfm" 1148093231 1524 753b192b18f2991794f9d41a8228510b ""
@@ -359,6 +360,7 @@
   "/usr/share/texmf/fonts/type1/public/lm/lmr10.pfb" 1255129361 119235 f35b44530a1d90eb90fe15d9cba67ea0 ""
   "/usr/share/texmf/fonts/type1/public/lm/lmr12.pfb" 1255129361 113634 f99c44d58bae0863375faf0e1d74d612 ""
   "/usr/share/texmf/fonts/type1/public/lm/lmr8.pfb" 1255129361 122174 a7a08406857c9530a0320a2517f60370 ""
+  "/usr/share/texmf/fonts/type1/public/lm/lmri12.pfb" 1255129361 109265 32320cb6133d4d76bf83e27b5eb4009b ""
   "/usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb" 1254269338 27863 09ce3735688ffde955e72da27c95b61a ""
   "/usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb" 1254269338 27802 5c876bb2c4040caaf035d60bd74a86bd ""
   "/usr/share/texmf/tex/latex/lm/lmodern.sty" 1616454256 1608 b00724785a9e9c599e5181bb8729160b ""
@@ -371,14 +373,14 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1741904018 41538 c016915c1d51223b6dbbfe27341748a8 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1769089162 5467255 9a64d1b40e0b893fc5588ecce9d8accf ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1769089299 3345117 62aacbb8383772ece80c5b67cf4f2a16 ""
-  "chapters/1.tex" 1775418921.91895 15007 6ddd10906e447e4a532725d83be7d5cb ""
+  "chapters/1.tex" 1775435816.67937 19907 2cd9a5bb542ce9227f63d3d27dcce0de ""
   "commands.tex" 1775171380.23718 2656 d363e0b8577d861578fd1474d4cbfc92 ""
-  "main.aux" 1775418926.02271 4264 eca48ec2c3fd215630d4fa9ca1a3e569 "pdflatex"
-  "main.bbl" 1775418560.62373 520 47390d0fec917a8062f60a58a9b6d248 "bibtex main"
-  "main.out" 1775418926.02571 4488 3889378444a170391c92b5af05c21382 "pdflatex"
-  "main.run.xml" 1775418926.03369 2688 277caaaa50ee2007298cd23f1c6895c3 "pdflatex"
+  "main.aux" 1775435842.2508 5246 51a4086200ab8db6bc6d7baa3ea9e981 "pdflatex"
+  "main.bbl" 1775435838.77778 520 47390d0fec917a8062f60a58a9b6d248 "bibtex main"
+  "main.out" 1775435842.2538 5699 f2d4fe801747509e74de49339f7df5e2 "pdflatex"
+  "main.run.xml" 1775435842.2618 2688 277caaaa50ee2007298cd23f1c6895c3 "pdflatex"
   "main.tex" 1775416931.39362 7285 1c44a5f660f58894a5c0b6f25fa3a368 ""
-  "main.toc" 1775418926.03369 2318 abdc1ccbd2e1546aa1cd9c34fc398721 "pdflatex"
+  "main.toc" 1775435842.2618 3013 c1c6ad3e09bfc27ac0707d6a93fa313f "pdflatex"
   (generated)
   "main-blx.bib"
   "main.aux"
