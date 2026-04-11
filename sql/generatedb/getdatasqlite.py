@@ -1,9 +1,30 @@
+"""
+Synthetic E-commerce Dataset Generator (SQLite)
+
+This script generates a realistic synthetic dataset for an e-commerce system,
+including customers, products, and orders, and stores it in a SQLite database.
+
+The dataset is designed for data analysis, SQL practice, and data science projects,
+simulating real-world business scenarios such as customer behavior, sales,
+inventory, and transactions.
+"""
+
 from faker import Faker
 import pandas as pd
 import random
 import uuid
 from sqlalchemy import create_engine, text
 from tqdm import tqdm
+from pathlib import Path
+
+# Diretório do projeto (raiz)
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "datasets"
+DATA_DIR.mkdir(exist_ok=True)
+
+DB_PATH = BASE_DIR / "datasets" / "datasql.db"
+
+engine = create_engine(f"sqlite:///{DB_PATH}")
 
 # -----------------------------
 # SETUP
@@ -12,18 +33,17 @@ fake = Faker()
 Faker.seed(42)
 random.seed(42)
 
-engine = create_engine("sqlite:///../database/datasql.db")
-
 # SQLite performance tuning
 with engine.connect() as conn:
     conn.execute(text("PRAGMA journal_mode=WAL;"))
     conn.execute(text("PRAGMA synchronous=OFF;"))
 
 # dataset size
-n_customers = 10000
-n_products = 10000
-n_orders = 20000
-BATCH_SIZE = 5000
+# dataset size (balanced for real-world practice)
+n_customers = 1000
+n_products = 1000
+n_orders = 30000
+BATCH_SIZE = 1000
 
 # -----------------------------
 # CUSTOMERS

@@ -8,7 +8,7 @@ This block focuses on the fundamental structure of modern quantum computing:
 
 \vspace{0.5cm}
 
-\section{Quantum Computing (CORE)}
+\section{Quantum Computing}
 
 Quantum computing is a computational paradigm that leverages the principles of quantum mechanics 
 to process information. Unlike classical computers, which use bits as the basic unit of 
@@ -188,6 +188,91 @@ i & 0
 \begin{equation}
 Y|0\rangle = i|1\rangle, \quad Y|1\rangle = -i|0\rangle
 \end{equation}
+
+
+\subsubsection*{\colorbox{yellow}{Example: Single-Qubit Parametrized Quantum Circuit (PQC)}}
+
+A simple parametrized quantum circuit is defined as:
+\[
+|\psi(\theta)\rangle = R_y(\theta)\,|0\rangle
+\]
+
+The rotation operator around the $y$-axis is given by:
+\[
+R_y(\theta) =
+\begin{pmatrix}
+\cos(\theta/2) & -\sin(\theta/2) \\
+\sin(\theta/2) & \cos(\theta/2)
+\end{pmatrix}
+\]
+
+Applying $R_y(\theta)$ to the initial state $|0\rangle$:
+\[
+|\psi(\theta)\rangle =
+\cos(\theta/2)\,|0\rangle + \sin(\theta/2)\,|1\rangle
+\]
+
+\subsubsection*{Measurement Probabilities}
+
+If we measure in the computational basis $\{|0\rangle, |1\rangle\}$:
+
+\[
+P(0) = \cos^2(\theta/2)
+\]
+\[
+P(1) = \sin^2(\theta/2)
+\]
+
+Thus, the parameter $\theta$ directly controls the measurement probabilities.
+
+\subsubsection*{\colorbox{yellow}{Python Implementation (Qiskit)}}
+
+\begin{minted}{python}
+import numpy as np
+from qiskit import QuantumCircuit
+from qiskit_aer import AerSimulator
+
+theta = np.pi / 3
+
+qc = QuantumCircuit(1, 1)
+qc.ry(theta, 0)
+qc.measure(0, 0)
+
+simulator = AerSimulator()
+result = simulator.run(qc, shots=10000).result()
+counts = result.get_counts()
+
+print(counts)
+
+p1 = np.sin(theta/2)**2
+p0 = np.cos(theta/2)**2
+
+print("P(1):", p1)
+print("P(0):", p0)
+\end{minted}
+
+\subsubsection{Output from Algorithm: Qiskit}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.7\textwidth]{../quantum/single-qubit/images/qiskit-measurements.png}
+\caption{Example to Qiskit}
+\label{fig:example-qiskit}
+\end{figure}
+
+\begin{minted}{python}
+python main.py
+Measurement counts: {'1': 2482, '0': 7518}
+Theoretical P(1): 0.2500
+Theoretical P(0): 0.7500
+\end{minted}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{../quantum/single-qubit/images/bloch-sphere.png}
+\caption{Qiskit Bloch Sphere.}
+\label{fig:example-qiskit}
+\end{figure}
 
 \noindent\rule{\textwidth}{1pt}
 
@@ -521,6 +606,54 @@ T^8 &= I
 
 \subsection{Multi-Qubit Gates}
 
+Multi-qubit gates are fundamental in quantum computing because they allow interactions 
+between qubits, enabling the creation of entanglement, a uniquely quantum resource.
+
+\subsubsection{General Idea}
+
+A single-qubit state is given by:
+\begin{equation}
+|\psi\rangle = \alpha|0\rangle + \beta|1\rangle
+\end{equation}
+
+A two-qubit state lives in a larger Hilbert space:
+\begin{equation}
+|\psi\rangle = \alpha|00\rangle + \beta|01\rangle + \gamma|10\rangle + \delta|11\rangle
+\end{equation}
+
+The dimension of the Hilbert space grows exponentially:
+\begin{itemize}
+\item 1 qubit $\rightarrow$ dimension $2$
+\item 2 qubits $\rightarrow$ dimension $4$
+\item $n$ qubits $\rightarrow$ dimension $2^n$
+\end{itemize}
+
+\subsubsection{Controlled-NOT (CNOT) Gate}
+
+The CNOT gate is the most important two-qubit gate.
+
+\subsubsection*{Definition}
+
+It consists of:
+\begin{itemize}
+\item One control qubit
+\item One target qubit
+\end{itemize}
+
+Its action is:
+\begin{equation}
+|c, t\rangle \rightarrow |c, t \oplus c\rangle
+\end{equation}
+
+\subsubsection*{Action on Basis States}
+
+\begin{align}
+|00\rangle &\rightarrow |00\rangle \\
+|01\rangle &\rightarrow |01\rangle \\
+|10\rangle &\rightarrow |11\rangle \\
+|11\rangle &\rightarrow |10\rangle
+\end{align}
+
 \subsubsection{Controlled-NOT (CNOT) Gate}
 
 The CNOT gate flips the target qubit if the control qubit is in state $|1\rangle$.
@@ -543,10 +676,6 @@ Matrix representation:
 \subsubsection{SWAP Gate}
 
 \begin{equation}
-\text{SWAP} |ab\rangle = |ba\rangle
-\end{equation}
-
-\begin{equation}
 \text{SWAP} =
 \begin{bmatrix}
 1 & 0 & 0 & 0 \\
@@ -556,12 +685,18 @@ Matrix representation:
 \end{bmatrix}
 \end{equation}
 
+\begin{equation}
+\text{SWAP} |ab\rangle = |ba\rangle
+\end{equation}
+
+
+
 \subsubsection{Toffoli Gate (CCNOT)}
 
 The Toffoli gate has two control qubits and one target qubit. The target qubit is flipped 
 only if both control qubits are in state $|1\rangle$.
 
-\subsection{Properties of Quantum Gates}
+\subsubsection{Properties of Quantum Gates}
 
 \begin{itemize}
 \item All quantum gates are unitary (reversible transformations).
@@ -569,7 +704,7 @@ only if both control qubits are in state $|1\rangle$.
 \item They enable superposition and entanglement.
 \end{itemize}
 
-\subsection{Applications}
+\subsubsection{Applications}
 
 Quantum gates are essential for:
 \begin{itemize}
@@ -578,7 +713,7 @@ Quantum gates are essential for:
 \item Quantum simulation
 \end{itemize}
 
-\subsection{Quantum Measurement}
+\subsubsection{Quantum Measurement}
 
 Measurement probabilities:
 
@@ -592,7 +727,7 @@ After measurement, the state collapses to the observed eigenstate.
 
 \section{Parametrized Quantum Circuits (PQC)}
 
-Parametrized Quantum Circuits (PQCs) are quantum circuits with adjustable parameters in their gates.
+Parametrized Quantum Circuits (PQCs) are adjustable parameters in their gates.
 These parameters are typically optimized using classical algorithms in a hybrid approach.
 PQCs are widely used in variational quantum algorithms like VQE and QAOA.
 They are suitable for near-term quantum devices with limited coherence.
@@ -601,8 +736,8 @@ By tuning parameters, PQCs aim to minimize a cost function and solve complex pro
 
 These are the foundation of:
 \begin{itemize}
-\item Variational algorithms (VQE, QAOA)
-\item Quantum machine learning
+\item Variational Algorithms (VQE, QAOA)
+\item Quantum Machine Learning
 \end{itemize}
 
 \subsection*{General Form}
@@ -637,12 +772,12 @@ The Variational Quantum Eigensolver (VQE) is a hybrid quantum-classical algorith
 It combines a parametrized quantum circuit with a classical optimizer to minimize the energy expectation value.
 The quantum computer prepares trial states, while the classical computer updates the parameters iteratively.
 VQE is especially useful for problems in quantum chemistry and materials science.
-It is well-suited for noisy intermediate-scale quantum (NISQ) devices.
+It is well-suited for noisy intermediate-scale quantum (NISQ)\cite{RevModPhys.94.015004} devices.
 
 
 \subsection*{Objective}
 
-To find the ground state energy of a Hamiltonian.
+To find the ground state energy of a Hamiltonian (H) of the problem.
 
 \subsection*{Eigenvalue Problem}
 

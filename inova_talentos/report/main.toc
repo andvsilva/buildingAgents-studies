@@ -1,6 +1,6 @@
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{\numberline {1}Core Foundations}{9}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Quantum Computing (CORE)}{9}{section.1.1}%
+\contentsline {section}{\numberline {1.1}Quantum Computing}{9}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Qubit and Hilbert Space}{9}{subsection.1.1.1}%
 \contentsline {subsection}{\numberline {1.1.2}Operators and Quantum Gates}{10}{subsection.1.1.2}%
 \contentsline {subsection}{\numberline {1.1.3}Single-Qubit Gates}{10}{subsection.1.1.3}%
@@ -8,25 +8,29 @@
 \contentsline {subsubsection}{\numberline {1.1.3.2}Action on a General State}{11}{subsubsection.1.1.3.2}%
 \contentsline {subsubsection}{\numberline {1.1.3.3}Geometric Interpretation (Bloch Sphere)}{11}{subsubsection.1.1.3.3}%
 \contentsline {subsubsection}{\numberline {1.1.3.4}Pauli-Y Gate}{12}{subsubsection.1.1.3.4}%
-\contentsline {subsubsection}{\numberline {1.1.3.5}Pauli-Z Gate}{12}{subsubsection.1.1.3.5}%
-\contentsline {subsubsection}{\numberline {1.1.3.6}Hadamard Gate}{12}{subsubsection.1.1.3.6}%
-\contentsline {subsection}{\numberline {1.1.4}Phase Gates (S and T)}{15}{subsection.1.1.4}%
-\contentsline {subsubsection}{\numberline {1.1.4.1}S Gate (Phase Gate)}{16}{subsubsection.1.1.4.1}%
-\contentsline {subsubsection}{\numberline {1.1.4.2}T Gate ($\pi /8$ Gate)}{16}{subsubsection.1.1.4.2}%
-\contentsline {subsubsection}{\numberline {1.1.4.3}General Phase Gate}{16}{subsubsection.1.1.4.3}%
-\contentsline {subsubsection}{\numberline {1.1.4.4}Effect on a Superposition State}{17}{subsubsection.1.1.4.4}%
-\contentsline {subsubsection}{\numberline {1.1.4.5}Bloch Sphere Interpretation}{17}{subsubsection.1.1.4.5}%
-\contentsline {subsubsection}{\numberline {1.1.4.6}Key Properties}{17}{subsubsection.1.1.4.6}%
-\contentsline {subsubsection}{\numberline {1.1.4.7}Summary}{17}{subsubsection.1.1.4.7}%
-\contentsline {subsection}{\numberline {1.1.5}Multi-Qubit Gates}{18}{subsection.1.1.5}%
-\contentsline {subsubsection}{\numberline {1.1.5.1}Controlled-NOT (CNOT) Gate}{18}{subsubsection.1.1.5.1}%
-\contentsline {subsubsection}{\numberline {1.1.5.2}SWAP Gate}{18}{subsubsection.1.1.5.2}%
-\contentsline {subsubsection}{\numberline {1.1.5.3}Toffoli Gate (CCNOT)}{18}{subsubsection.1.1.5.3}%
-\contentsline {subsection}{\numberline {1.1.6}Properties of Quantum Gates}{18}{subsection.1.1.6}%
-\contentsline {subsection}{\numberline {1.1.7}Applications}{19}{subsection.1.1.7}%
-\contentsline {subsection}{\numberline {1.1.8}Quantum Measurement}{19}{subsection.1.1.8}%
-\contentsline {section}{\numberline {1.2}Parametrized Quantum Circuits (PQC)}{19}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Variational Quantum Eigensolver (VQE)}{20}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Quantum Approximate Optimization Algorithm (QAOA)}{21}{section.1.4}%
-\contentsline {subsection}{\numberline {1.4.1}State Construction}{21}{subsection.1.4.1}%
-\contentsline {section}{\numberline {1.5}Simulation Of Quantum Systems}{22}{section.1.5}%
+\contentsline {subsubsection}{\numberline {1.1.3.5}Output from Algorithm: Qiskit}{13}{subsubsection.1.1.3.5}%
+\contentsline {subsubsection}{\numberline {1.1.3.6}Pauli-Z Gate}{15}{subsubsection.1.1.3.6}%
+\contentsline {subsubsection}{\numberline {1.1.3.7}Hadamard Gate}{15}{subsubsection.1.1.3.7}%
+\contentsline {subsection}{\numberline {1.1.4}Phase Gates (S and T)}{18}{subsection.1.1.4}%
+\contentsline {subsubsection}{\numberline {1.1.4.1}S Gate (Phase Gate)}{18}{subsubsection.1.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.1.4.2}T Gate ($\pi /8$ Gate)}{18}{subsubsection.1.1.4.2}%
+\contentsline {subsubsection}{\numberline {1.1.4.3}General Phase Gate}{19}{subsubsection.1.1.4.3}%
+\contentsline {subsubsection}{\numberline {1.1.4.4}Effect on a Superposition State}{19}{subsubsection.1.1.4.4}%
+\contentsline {subsubsection}{\numberline {1.1.4.5}Bloch Sphere Interpretation}{19}{subsubsection.1.1.4.5}%
+\contentsline {subsubsection}{\numberline {1.1.4.6}Key Properties}{20}{subsubsection.1.1.4.6}%
+\contentsline {subsubsection}{\numberline {1.1.4.7}Summary}{20}{subsubsection.1.1.4.7}%
+\contentsline {subsection}{\numberline {1.1.5}Multi-Qubit Gates}{20}{subsection.1.1.5}%
+\contentsline {subsubsection}{\numberline {1.1.5.1}General Idea}{20}{subsubsection.1.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.1.5.2}Controlled-NOT (CNOT) Gate}{21}{subsubsection.1.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.1.5.3}Controlled-NOT (CNOT) Gate}{21}{subsubsection.1.1.5.3}%
+\contentsline {subsubsection}{\numberline {1.1.5.4}SWAP Gate}{22}{subsubsection.1.1.5.4}%
+\contentsline {subsubsection}{\numberline {1.1.5.5}Toffoli Gate (CCNOT)}{22}{subsubsection.1.1.5.5}%
+\contentsline {subsubsection}{\numberline {1.1.5.6}Properties of Quantum Gates}{22}{subsubsection.1.1.5.6}%
+\contentsline {subsubsection}{\numberline {1.1.5.7}Applications}{22}{subsubsection.1.1.5.7}%
+\contentsline {subsubsection}{\numberline {1.1.5.8}Quantum Measurement}{22}{subsubsection.1.1.5.8}%
+\contentsline {section}{\numberline {1.2}Parametrized Quantum Circuits (PQC)}{23}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Variational Quantum Eigensolver (VQE)}{23}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Quantum Approximate Optimization Algorithm (QAOA)}{24}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}State Construction}{25}{subsection.1.4.1}%
+\contentsline {section}{\numberline {1.5}Simulation Of Quantum Systems}{25}{section.1.5}%
+\contentsline {chapter}{Refer\^encias}{31}{chapter*.6}%

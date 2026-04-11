@@ -16,5 +16,114 @@
   {}
 \endgroup
 
-\datalist[entry]{none/global//global/global/global}\enddatalist
+\datalist[entry]{none/global//global/global/global}
+  \entry{RevModPhys.94.015004}{article}{}{}
+    \name{author}{14}{}{%
+      {{hash=BK}{%
+         family={Bharti},
+         familyi={B\bibinitperiod},
+         given={Kishor},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=CLA}{%
+         family={Cervera-Lierta},
+         familyi={C\bibinithyphendelim L\bibinitperiod},
+         given={Alba},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KTH}{%
+         family={Kyaw},
+         familyi={K\bibinitperiod},
+         given={Thi\bibnamedelima Ha},
+         giveni={T\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=HT}{%
+         family={Haug},
+         familyi={H\bibinitperiod},
+         given={Tobias},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=ALS}{%
+         family={Alperin-Lea},
+         familyi={A\bibinithyphendelim L\bibinitperiod},
+         given={Sumner},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Anand},
+         familyi={A\bibinitperiod},
+         given={Abhinav},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=DM}{%
+         family={Degroote},
+         familyi={D\bibinitperiod},
+         given={Matthias},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Heimonen},
+         familyi={H\bibinitperiod},
+         given={Hermanni},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=KJS}{%
+         family={Kottmann},
+         familyi={K\bibinitperiod},
+         given={Jakob\bibnamedelima S.},
+         giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=MT}{%
+         family={Menke},
+         familyi={M\bibinitperiod},
+         given={Tim},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MWK}{%
+         family={Mok},
+         familyi={M\bibinitperiod},
+         given={Wai-Keong},
+         giveni={W\bibinithyphendelim K\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Sim},
+         familyi={S\bibinitperiod},
+         given={Sukin},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=KLC}{%
+         family={Kwek},
+         familyi={K\bibinitperiod},
+         given={Leong-Chuan},
+         giveni={L\bibinithyphendelim C\bibinitperiod},
+      }}%
+      {{hash=AGA}{%
+         family={Aspuru-Guzik},
+         familyi={A\bibinithyphendelim G\bibinitperiod},
+         given={Al\'an},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Physical Society}%
+    }
+    \strng{namehash}{BK+1}
+    \strng{fullhash}{BKCLAKTHHTALSAADMHHKJSMTMWKSSKLCAGA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1103/RevModPhys.94.015004
+    \endverb
+    \field{issue}{1}
+    \field{pages}{015004}
+    \field{title}{Noisy intermediate-scale quantum algorithms}
+    \verb{url}
+    \verb https://link.aps.org/doi/10.1103/RevModPhys.94.015004
+    \endverb
+    \field{volume}{94}
+    \field{journaltitle}{Rev. Mod. Phys.}
+    \field{year}{2022}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+\enddatalist
 \endinput

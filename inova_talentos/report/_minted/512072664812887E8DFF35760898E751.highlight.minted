@@ -1,6 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} Command\PYGZhy{}line usage (conceptual)}
-\PYG{c+c1}{\PYGZsh{} dvc init}
-\PYG{c+c1}{\PYGZsh{} dvc add data.csv}
-\PYG{c+c1}{\PYGZsh{} git add data.csv.dvc}
-\end{MintedVerbatim}

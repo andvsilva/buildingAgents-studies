@@ -4,13 +4,13 @@ from rich import print
 import matplotlib.pyplot as plt
 
 
-db_path = '../datasets/olist.sqlite'
+db_path = '../datasets/datasql.db'
 db_connection = sqlite3.connect(db_path)
 
 # queries
 query = """
-SELECT *
-FROM customers;
+SELECT SUM(total_amount) AS total_revenue
+FROM orders;
 """
 
 df_status = pd.read_sql(query, db_connection)

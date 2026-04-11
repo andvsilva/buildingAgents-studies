@@ -3,11 +3,10 @@
 ############################################
 
 all:
-	pdflatex -shell-escape main
+	TEXMF_OUTPUT_DIRECTORY=. pdflatex -shell-escape main
 	bibtex main
-	pdflatex -shell-escape main
-	pdflatex -shell-escape main
-	cp main.pdf buildingAI.pdf
+	TEXMF_OUTPUT_DIRECTORY=. pdflatex -shell-escape main
+	TEXMF_OUTPUT_DIRECTORY=. pdflatex -shell-escape main
 	date
 
 clean:

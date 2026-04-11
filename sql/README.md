@@ -667,13 +667,13 @@ SQLite is:
 
 ### Comparing SQL types
 
-| Feature          | SQLite | PostgreSQL | MySQL | SQL Server | BigQuery |
-| ---------------- | ------ | ---------- | ----- | ---------- | -------- |
-| Learning         | ⭐⭐⭐⭐⭐  | ⭐⭐⭐⭐       | ⭐⭐⭐   | ⭐⭐⭐        | ⭐⭐⭐      |
-| Analytics        | ⭐⭐     | ⭐⭐⭐⭐⭐      | ⭐⭐⭐   | ⭐⭐⭐⭐       | ⭐⭐⭐⭐⭐    |
-| Window functions | ❌      | ✅          | ✅     | ✅          | ✅        |
-| Date functions   | ⚠️     | ✅          | ⚠️    | ⚠️         | ✅        |
-| Big data         | ❌      | ❌          | ❌     | ❌          | ✅        |
+| Feature          | SQLite     | PostgreSQL | MySQL | SQL Server | BigQuery   |
+| ---------------- | ---------- | ---------- | ----- | ---------- | --------   |
+| Learning         | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐  | ⭐⭐⭐| ⭐⭐⭐     | ⭐⭐⭐     |
+| Analytics        | ⭐⭐       | ⭐⭐⭐⭐⭐| ⭐⭐⭐| ⭐⭐⭐⭐   | ⭐⭐⭐⭐⭐ |
+| Window functions | ❌         | ✅        | ✅     | ✅         | ✅         |
+| Date functions   | ⚠️         | ✅        | ⚠️     | ⚠️         | ✅         |
+| Big data         | ❌         | ❌        | ❌     | ❌         | ✅         |
 
 ## PostgrepSQL
 

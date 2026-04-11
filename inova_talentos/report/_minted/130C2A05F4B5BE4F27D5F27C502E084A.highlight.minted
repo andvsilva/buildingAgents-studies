@@ -1,7 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{torch}
-
-\PYG{n}{x} \PYG{o}{=} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+m+mf}{2.0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{requires\PYGZus{}grad}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
-\PYG{n}{y} \PYG{o}{=} \PYG{n}{x}\PYG{o}{*}\PYG{o}{*}\PYG{l+m+mi}{2}
-\PYG{n}{y}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{backward}\PYG{p}{(}\PYG{p}{)}
-\end{MintedVerbatim}
